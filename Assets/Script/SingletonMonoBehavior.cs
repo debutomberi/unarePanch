@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class SingletonMonoBehavior<T> : MonoBehaviour where T : MonoBehaviour{
+public abstract class SingletonMonoBehavior<T> : MonoBehaviour where T : MonoBehaviour{
 
 
     private static T instance;
@@ -28,20 +28,26 @@ public class SingletonMonoBehavior<T> : MonoBehaviour where T : MonoBehaviour{
 
     virtual protected void Awake()
     {
-        // 他のGameObjectにアタッチされているか調べる.
-        // アタッチされている場合は破棄する.
-        if (this != Instance)
-        {
-            Destroy(this);
-            //Destroy(this.gameObject);
-            Debug.LogError(
-                typeof(T) +
-                " は既に他のGameObjectにアタッチされているため、コンポーネントを破棄しました." +
-                " アタッチされているGameObjectは " + Instance.gameObject.name + " です.");
-            return;
-        }
-
+        // 他のゲームオブジェクトにアタッチされているか調べる
+        // アタッチされている場合は破棄する。
+        CheckInstance();
     }
 
+    protected bool CheckInstance()
+    {
+        if (instance == null)
+        {
+            instance = this as T;
+            return true;
+        }
+        else if (Instance == this)
+        {
+            return true;
+        }
 
+        Destroy(this);
+        return false;
+
+    }
 }
+
