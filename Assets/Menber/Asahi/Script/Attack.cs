@@ -5,12 +5,12 @@ using UnityEngine;
 
 
 public class Attack {
+    //独自で持っているbool
+    bool attack;
 
-    //攻撃の処理
-    public IEnumerator Technique(int[] flame,bool attack,Collider2D attackCollider){
-        
-        if (!attack){
-            Debug.Log("attaCK!");
+    //近接攻撃の処理
+    public IEnumerator Technique(int[] flame,GameObject attackCollider){
+            //Debug.Log("attack!");
             attack = true;
             for (int i = 0; i < flame[0] - 1; i++)
             {
@@ -18,7 +18,7 @@ public class Attack {
             }
 
             //攻撃の発生
-            attackCollider.gameObject.SetActive(true);
+            attackCollider.SetActive(true);
             yield return null;
 
             for (int i = 0; i < flame[1] - 1; i++)
@@ -27,7 +27,7 @@ public class Attack {
             }
 
             //攻撃の停止
-            attackCollider.gameObject.SetActive(false);
+            attackCollider.SetActive(false);
             yield return null;
 
             for (int i = 0; i < flame[2]; i++)
@@ -37,16 +37,22 @@ public class Attack {
 
             //攻撃の終了
             attack = false;
-        }
+            
+        
     }
 
-    public IEnumerator SetParamete(AttackTable paramete,bool attack ,Collider2D attackCollider) {
+    //IEnumeratorを渡す関数
+    public IEnumerator SetParamete(AttackTable paramete,GameObject attackCollider) {
         int[] attackFlame = { 20, 20, 20 };
         attackFlame[0] = paramete.oFlame;
         attackFlame[1] = paramete.cFlame;
         attackFlame[2] = paramete.sFlame;
 
-        return Technique(attackFlame, attack, attackCollider);
+        return Technique(attackFlame,attackCollider);
     }
 
+    //boolを渡す関数
+    public bool attackCheck() {
+        return attack;
+    }
 }
