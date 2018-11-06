@@ -10,7 +10,6 @@ public class StatusManeger : SingletonMonoBehavior<StatusManeger> {
         get{ return onePlayerCommandList;}
         
     }
-
     //2Pのコマンド履歴
     private List<int> twoPlayerCommandList = new List<int>();
     public List<int> TwoPlayerCommandList{
@@ -18,20 +17,28 @@ public class StatusManeger : SingletonMonoBehavior<StatusManeger> {
 
     }
 
+
     //各最終コマンドのチェック
     int onePlayerKey = 5;
     int twoPlayerKey = 5;
-
     //コマンド履歴を消すまでの時間
     int timerCountOne;
     int timerCountTwo;
     const int timer = 20;
+
+
+    //必殺ゲージ
+    int[] deathblowGuage = new int[2]{0,0};
+    public int[] DeathblowGuage{
+        get{return deathblowGuage;}
+    }
     
+
 
     private void Update(){
         DeleteCommand();
 
-
+        /*
         if (Input.GetKeyDown(KeyCode.A))
             SetCommandOnePlayer(4);
         if (Input.GetKeyDown(KeyCode.S))
@@ -41,25 +48,25 @@ public class StatusManeger : SingletonMonoBehavior<StatusManeger> {
         if (Input.GetKeyDown(KeyCode.D))
             SetCommandTwoPlayer(4);
         if (Input.GetKeyDown(KeyCode.W))
-            Debug.Log(CheckCommandOnePlayer());
+            Debug.Log(CheckCommand(1));
         if (Input.GetKeyDown(KeyCode.R)) {
-            Debug.Log(CheckCommandTwoPlayer());
+            Debug.Log(CheckCommand(3));
         }
-        
+        */
     }
     
     //1Pのコマンド履歴に追記
     public void SetCommandOnePlayer(int command){
         //コマンドが押しっぱなしならそのまま返す
         if (onePlayerKey == command) {
-            Debug.Log("同じキーやで");
+            //Debug.Log("同じキーやで");
             return;
         }
         if (onePlayerCommandList.Count <= 1) {
             timerCountOne = 0;
         }
         onePlayerCommandList.Add(command);
-        Debug.Log("1Pコマンド：" + command);
+        //Debug.Log("1Pコマンド：" + command);
         onePlayerKey = command;
     }
     
@@ -67,7 +74,7 @@ public class StatusManeger : SingletonMonoBehavior<StatusManeger> {
     public void SetCommandTwoPlayer(int command){
         //コマンドが押しっぱなしならそのまま返す
         if (twoPlayerKey == command) {
-            Debug.Log("同じキーやで");
+            //Debug.Log("同じキーやで");
             return;
         }
 
@@ -75,7 +82,7 @@ public class StatusManeger : SingletonMonoBehavior<StatusManeger> {
             timerCountTwo = 0;
         }
         twoPlayerCommandList.Add(command);
-        Debug.Log("2Pコマンド：" + command);
+        //Debug.Log("2Pコマンド：" + command);
         twoPlayerKey = command;
     }
     
@@ -87,33 +94,43 @@ public class StatusManeger : SingletonMonoBehavior<StatusManeger> {
             timerCountOne = 0;
             if(onePlayerCommandList.Count > 2) {
                 onePlayerCommandList.RemoveAt(0);
-                Debug.Log("1PCommandDel");
+                //Debug.Log("1PCommandDel");
             }
         }
         if (timerCountTwo >= timer) {
             timerCountTwo =0;
             if (twoPlayerCommandList.Count > 2) {
                 twoPlayerCommandList.RemoveAt(0);
-                Debug.Log("2PCommandDel");
+                //Debug.Log("2PCommandDel");
             }
         }
     }
 
-    
-    public char CheckCommandOnePlayer() {
-       
+    //コマンドのチェック
+    public char CheckCommand(int player) {
+        List<int> commandlist = onePlayerCommandList;
+        if(player == 1) {
+            commandlist = onePlayerCommandList;
+        }
+        else if(player == 2) {
+            commandlist = twoPlayerCommandList;
+        }
+        else {
+            Debug.LogError("コマンドチェックの参照は必ず１か２を選択して下さい。");
+            return '5';
+        }
         
         char command = '5';
 
         //コマンドの実装
-        int lengh = onePlayerCommandList.Count;
+        int lengh = commandlist.Count;
         //Debug.Log(lengh);
-        if (onePlayerCommandList[lengh-1] == 6) {
+        if (commandlist[lengh-1] == 6) {
 
 
             command = 'a';
         }
-        if(onePlayerCommandList[lengh-1] == 4) {
+        if(commandlist[lengh-1] == 4) {
 
 
             command = 'r';
@@ -122,26 +139,16 @@ public class StatusManeger : SingletonMonoBehavior<StatusManeger> {
         return command;
     }
 
-    public char CheckCommandTwoPlayer() {
-        
-        char command = '5';
-
-        //コマンドの実装
-        int lengh = twoPlayerCommandList.Count;
-        //Debug.Log(lengh);
-        if(twoPlayerCommandList[lengh-1] == 6) {
-
-
-            command = 'a';
+    public void GuageUp(int player ,int pow) {
+        if(player > 2) {
+            Debug.LogError("ゲージ上昇は必ず１か２を選択して下さい。");
+            return;
         }
-        if(twoPlayerCommandList[lengh-1] == 4) {
-
-
-            command = 'r';
-        }
-
-        return command;
+        deathblowGuage[player - 1] += pow;
+        if (deathblowGuage[player - 1] >= 100)
+            deathblowGuage[player - 1] = 100;
+        Debug.Log("ゲージ量_1P:" + deathblowGuage[0] + "2P:" + deathblowGuage[1]);
     }
-    
+
 
 }

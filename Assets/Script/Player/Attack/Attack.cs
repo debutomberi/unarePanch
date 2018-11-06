@@ -7,6 +7,7 @@ using UnityEngine;
 public class Attack {
     //独自で持っているbool
     bool attack;
+    public int pow;
 
     //近接攻撃の処理
     public IEnumerator Technique(int[] flame,GameObject attackCollider){
@@ -47,6 +48,7 @@ public class Attack {
         attackFlame[0] = paramete.oFlame;
         attackFlame[1] = paramete.cFlame;
         attackFlame[2] = paramete.sFlame;
+        pow = paramete.power;
 
         return Technique(attackFlame,attackCollider);
     }
