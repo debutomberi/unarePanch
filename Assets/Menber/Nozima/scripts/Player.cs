@@ -19,6 +19,17 @@ public class Player : MonoBehaviour {
     [SerializeField]
     float Jump;
 
+    public string r;//6
+    public string l;//4
+    public string q;//1
+    public string d;//2
+    public string e;//3
+    public string z;//7
+    public string j;//8
+    public string c;//9
+    public string S;//656
+    public string s;//454
+
     public GameObject Player1;
     public GameObject Player2;
 
@@ -30,9 +41,12 @@ public class Player : MonoBehaviour {
 
     void Start () {
         rb = GetComponent<Rigidbody2D>();
-	}
+        Player1 = GameObject.Find("Player");
+        Player2 = GameObject.Find("Player2");
+        
+    }
 
-    
+
     // Update is called once per frame
     void FixedUpdate () {
         Player1Attack();
@@ -122,6 +136,7 @@ public class Player : MonoBehaviour {
             {
                 Debug.Log("3");
                 //return;
+                //しゃがみ状態に
             }
 
             Debug.Log("6");
@@ -140,6 +155,8 @@ public class Player : MonoBehaviour {
             {
                 Debug.Log("1");
                 //return;
+                //しゃがみ状態に
+
             }
             Debug.Log("4");
             float x = Speed;
@@ -185,6 +202,7 @@ public class Player : MonoBehaviour {
             {
                 Debug.Log("3");
                 //return;
+                //しゃがみ状態に
             }
 
             Debug.Log("6");
@@ -203,6 +221,7 @@ public class Player : MonoBehaviour {
             {
                 Debug.Log("1");
                 //return;
+                //しゃがみ状態に
             }
             Debug.Log("4");
             float x = Speed;
