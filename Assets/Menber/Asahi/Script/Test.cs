@@ -41,7 +41,7 @@ public class Test : SingletonMonoBehavior<Test> {
     public void hit(){
 
         //Debug.Log(attackParameter[nowAttackNum].power);
-        StatusManeger.Instance.GuageUp(3, attack.pow);
+        StatusManager.Instance.GuageUp(1, attack.pow);
 
     } 
 

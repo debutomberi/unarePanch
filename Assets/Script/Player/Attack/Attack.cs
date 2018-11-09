@@ -20,6 +20,8 @@ public class Attack {
 
             //攻撃の発生
             attackCollider.SetActive(true);
+            var attackColliderScript = attackCollider.GetComponent<AttackCollider>();
+            attackColliderScript.GuagePow = pow;
             yield return null;
 
             for (int i = 0; i < flame[1] - 1; i++)

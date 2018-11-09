@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StatusManeger : SingletonMonoBehavior<StatusManeger> {
+public class StatusManager : SingletonMonoBehavior<StatusManager> {
 
     //１Pのコマンド履歴
     private List<int> onePlayerCommandList =new List<int>();
@@ -16,7 +16,6 @@ public class StatusManeger : SingletonMonoBehavior<StatusManeger> {
         get{return twoPlayerCommandList;}
 
     }
-
 
     //各最終コマンドのチェック
     int onePlayerKey = 5;
@@ -32,7 +31,6 @@ public class StatusManeger : SingletonMonoBehavior<StatusManeger> {
     public int[] DeathblowGuage{
         get{return deathblowGuage;}
     }
-    
 
 
     private void Update(){
