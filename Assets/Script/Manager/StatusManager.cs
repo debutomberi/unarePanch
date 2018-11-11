@@ -158,6 +158,7 @@ public class StatusManager : SingletonMonoBehavior<StatusManager> {
         return command;
     }
 
+    //ゲージの上昇
     public void GuageUp(int player ,int pow) {
         if(player > 2) {
             Debug.LogError("ゲージ上昇は必ず１か２を選択して下さい。");

@@ -16,6 +16,9 @@ public class AttackTable : ScriptableObject{
     [HeaderAttribute("ゲージ上昇値")]
     public int power;
     [SerializeField]
+    [HeaderAttribute("必殺技")]
+    public bool deathblow;
+    [SerializeField]
     [HeaderAttribute("飛び道具か")]
     public bool missile;
 }
