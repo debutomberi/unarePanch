@@ -9,8 +9,6 @@ public class Test : SingletonMonoBehavior<Test> {
     [SerializeField]
     List<AttackTable> attackParameter = new List<AttackTable>();
 
-    bool nowAttack =false;
-    int nowAttackNum;
 
     Attack attack = new Attack();
 
@@ -31,18 +29,10 @@ public class Test : SingletonMonoBehavior<Test> {
 	}
 
     void Attack(int AttackNum) {
-        nowAttack = attack.attackCheck();
-        if (nowAttack) { return; }
+        if (attack.AttackCheck) { return; }
         IEnumerator coroutine = attack.SetParamete(attackParameter[AttackNum],attackCollider[AttackNum]);
         StartCoroutine(coroutine);
-        nowAttackNum = AttackNum;
     }
 
-    public void hit(){
-
-        //Debug.Log(attackParameter[nowAttackNum].power);
-        StatusManager.Instance.GuageUp(1, attack.pow);
-
-    } 
 
 }

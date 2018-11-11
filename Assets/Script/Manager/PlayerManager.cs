@@ -22,6 +22,27 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     [SerializeField]
     float Jump;
 
+    //1Pの攻撃
+    [SerializeField]
+    List<GameObject> attackColliderOnePlayer = new List<GameObject>();
+    [SerializeField]
+    List<AttackTable> attackParameterOnePlayer = new List<AttackTable>();
+
+    //2Pの攻撃
+    [SerializeField]
+    List<GameObject> attackColliderTwoPlayer = new List<GameObject>();
+    [SerializeField]
+    List<AttackTable> attackParameterTwoPlayer = new List<AttackTable>();
+
+    //2Pの攻撃
+    [SerializeField]
+    List<GameObject>[] attackCollider = new List<GameObject>[2];
+    [SerializeField]
+    List<AttackTable>[] attackParameter = new List<AttackTable>[2];
+
+
+    Attack[] attack = { new Attack() , new Attack()};
+
     //public string r;//6
     //public string l;//4
     //public string q;//1
@@ -48,6 +69,12 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         Player2 = GameObject.Find("Player2");
         P1rb = Player1.GetComponent<Rigidbody2D>();
         P2rb = Player2.GetComponent<Rigidbody2D>();
+
+        attackCollider[0] = attackColliderOnePlayer;
+        attackCollider[1] = attackColliderTwoPlayer;
+
+        attackParameter[0] = attackParameterOnePlayer;
+        attackParameter[1] = attackParameterTwoPlayer;
     }
 
 
@@ -269,5 +296,12 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             }
         
     }
-}        
+}
+
+    void AttackOccurrence(int AttackNum , int player)
+    {
+        if (attack[player-1].AttackCheck) { return; }
+        IEnumerator coroutine = attack[player-1].SetParamete(attackParameter[player-1][AttackNum], attackCollider[player-1][AttackNum]);
+        StartCoroutine(coroutine);
+    }
 }
