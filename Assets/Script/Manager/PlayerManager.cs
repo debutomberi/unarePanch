@@ -34,7 +34,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     [SerializeField]
     List<AttackTable> attackParameterTwoPlayer = new List<AttackTable>();
 
-    //2Pの攻撃
+    //攻撃の配列
     [SerializeField]
     List<GameObject>[] attackCollider = new List<GameObject>[2];
     [SerializeField]
@@ -169,7 +169,6 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     {
         if (Player1)
         {
-
             if (Input.GetAxis("Horizontal") == 1)
             {
                 if (Input.GetAxis("Vertical") == 1)
@@ -208,27 +207,33 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 P1rb.AddForce(new Vector2(-x, 0));
             }
 
-            if (Input.GetAxis("Vertical") == 1 && !P1jump)
+            
+            if (Input.GetAxis("Horizontal") <= 0.5 && Input.GetAxis("Horizontal") >= -0.5)
             {
-                if (Input.GetAxis("Vertical") == 1)
+                if (Input.GetAxis("Vertical") == 1 && !P1jump)
                 {
-                    Debug.Log("8");
-                    //return;
+                    if (Input.GetAxis("Vertical") == 1)
+                    {
+                        Debug.Log("8");
+                        //return;
+                    }
+                    float y = Jump;
+                    P1rb.AddForce(new Vector2(0, y));
+                    P1jump = true;
                 }
-                float y = Jump;
-                P1rb.AddForce(new Vector2(0, y));
-                P1jump = true;
-            }
-            if (Input.GetAxis("Vertical") == -1)
-            {
-                Debug.Log("2");
-                //return;
+                if (Input.GetAxis("Vertical") == -1)
+                {
+                    Debug.Log("2");
+                    //return;
 
-                //しゃがみ状態に
-            }
-            if (Input.GetAxis("Horizontal") <= 0.5 && Input.GetAxis("Horizontal") >= -0.5 && Input.GetAxis("Vertical") <= 0.5 && Input.GetAxis("Vertical") >= -0.5)
-            {
-                Debug.Log("5");
+                    //しゃがみ状態に
+                }
+                if (Input.GetAxis("Vertical") <= 0.5 && Input.GetAxis("Vertical") >= -0.5)
+                {
+                    Debug.Log("5");
+                }
+                
+                
 
             }
         }
