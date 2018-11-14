@@ -174,7 +174,7 @@ public class StatusManager : SingletonMonoBehavior<StatusManager> {
             Debug.LogError("ゲージ上昇は必ず１か２を選択して下さい。");
             return false;
         }
-        if(deathblowGuage[player-1] > 100) { return false; }
+        if(deathblowGuage[player-1] < 100) { return false; }
         deathblowGuage[player - 1] = 0;
         return true;
     }

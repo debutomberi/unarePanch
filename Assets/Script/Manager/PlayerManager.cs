@@ -54,7 +54,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
 
     void Start()
     {
-        Player1 = GameObject.Find("Player");
+        Player1 = GameObject.Find("Player1");
         Player2 = GameObject.Find("Player2");
         P1rb = Player1.GetComponent<Rigidbody2D>();
         P2rb = Player2.GetComponent<Rigidbody2D>();
@@ -71,7 +71,8 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     void FixedUpdate()
     {
         Attack();
-        Move();
+        Move1Input();
+        Move2Input();
     }
 
     public void OnPlayerCollisionEnter(int player,Collision2D collision) {
@@ -154,148 +155,228 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         }
     }
     
-    void Move()
+    void Move1Input()
     {
-        if (Player1)
+        
+        if (Input.GetAxis("Horizontal") == 1)
         {
-            if (Input.GetAxis("Horizontal") == 1)
+            if (Input.GetAxis("Vertical") == 1)
             {
-                if (Input.GetAxis("Vertical") == 1)
-                {
-                    StatusManager.Instance.SetCommandOnePlayer(9);
-                    return;
-                }
-                if (Input.GetAxis("Vertical") == -1)
-                {
-                    StatusManager.Instance.SetCommandOnePlayer(3);
-                    return;
-                    //しゃがみ状態に
-                }
-                StatusManager.Instance.SetCommandOnePlayer(6);
-                float x = Speed;
-                P1rb.AddForce(new Vector2(x, 0));
+                StatusManager.Instance.SetCommandOnePlayer(9);
                 return;
             }
-
-            if (Input.GetAxis("Horizontal") == -1)
+            if (Input.GetAxis("Vertical") == -1)
             {
-                if (Input.GetAxis("Vertical") == 1)
-                {
-                    StatusManager.Instance.SetCommandOnePlayer(7);
-                    return;
-                }
-                if (Input.GetAxis("Vertical") == -1)
-                {
-                    StatusManager.Instance.SetCommandOnePlayer(1);
-                    return;
-                    //しゃがみ状態に
-
-                }
-                StatusManager.Instance.SetCommandOnePlayer(4);
-                float x = Speed;
-                P1rb.AddForce(new Vector2(-x, 0));
+                StatusManager.Instance.SetCommandOnePlayer(3);
                 return;
+                //しゃがみ状態に
             }
-
+            StatusManager.Instance.SetCommandOnePlayer(6);
             
-            if (Input.GetAxis("Horizontal") <= 0.5 && Input.GetAxis("Horizontal") >= -0.5)
+        }
+
+        if (Input.GetAxis("Horizontal") == -1)
+        {
+            if (Input.GetAxis("Vertical") == 1)
             {
-                if (Input.GetAxis("Vertical") == 1 && !P1jump)
+                StatusManager.Instance.SetCommandOnePlayer(7);
+                return;
+            }
+            if (Input.GetAxis("Vertical") == -1)
+            {
+                StatusManager.Instance.SetCommandOnePlayer(1);
+                return;
+                //しゃがみ状態に
+            
+            }
+            StatusManager.Instance.SetCommandOnePlayer(4);
+            
+        }
+    
+        if (Input.GetAxis("Horizontal") <= 0.5 && Input.GetAxis("Horizontal") >= -0.5)
+        {
+            if (Input.GetAxis("Vertical") == 1 && !P1jump)
+            {
+                if (Input.GetAxis("Vertical") == 1)
                 {
-                    if (Input.GetAxis("Vertical") == 1)
-                    {
-                        StatusManager.Instance.SetCommandOnePlayer(8);
-                        return;
-                    }
+                    StatusManager.Instance.SetCommandOnePlayer(8);
+                    return;
+                }
+            }
+            if (Input.GetAxis("Vertical") == -1)
+            {
+                StatusManager.Instance.SetCommandOnePlayer(2);
+                return;
+                //しゃがみ状態に
+            }
+            if (Input.GetAxis("Vertical") <= 0.5 && Input.GetAxis("Vertical") >= -0.5)
+            {
+                StatusManager.Instance.SetCommandOnePlayer(5);
+                return;
+            }
+                
+                
+
+        }
+        
+    }
+
+    void Move2Input()
+    {
+        
+        if (Input.GetAxis("Horizontal2") == 1)
+        {
+            if (Input.GetAxis("Vertical2") == 1)
+            {
+                StatusManager.Instance.SetCommandTwoPlayer(9);
+                return;
+            }
+            if (Input.GetAxis("Vertical2") == -1)
+            {
+               StatusManager.Instance.SetCommandTwoPlayer(3);
+               return;
+               //しゃがみ状態に
+            }
+
+            StatusManager.Instance.SetCommandTwoPlayer(6);
+            
+            }
+
+        if (Input.GetAxis("Horizontal2") == -1)
+        {
+            if (Input.GetAxis("Vertical2") == 1)
+            {
+                StatusManager.Instance.SetCommandTwoPlayer(7);
+                return;
+            }
+            if (Input.GetAxis("Vertical2") == -1)
+            {
+                StatusManager.Instance.SetCommandTwoPlayer(1);
+                return;
+                //しゃがみ状態に
+            }
+            StatusManager.Instance.SetCommandTwoPlayer(4);
+        }
+
+        if (Input.GetAxis("Horizontal2") <= 0.5 && Input.GetAxis("Horizontal2") >= -0.5)
+        {
+            if (Input.GetAxis("Vertical2") == 1 && !P2jump)
+            {
+                if (Input.GetAxis("Vertical2") == 1)
+                {
+                    StatusManager.Instance.SetCommandTwoPlayer(8);
+                    return;
+                }
+
+            }
+            if (Input.GetAxis("Vertical2") == -1)
+            {
+                StatusManager.Instance.SetCommandTwoPlayer(2);
+                return;
+                //しゃがみ状態に
+            }
+            if (Input.GetAxis("Vertical2") <= 0.5 && Input.GetAxis("Vertical2") >= -0.5)
+            {
+                StatusManager.Instance.SetCommandTwoPlayer(5);
+                return;
+            }
+        }
+    }
+
+    void Move(int player)
+    {
+        if(player <= 3) { return; }
+        char command = StatusManager.Instance.CheckCommand(player);
+        switch (command){
+            //6方向に移動
+            case 'r':
+                if (player == 1)
+                {
+                    Player1.transform.position += new Vector3(Speed * Time.deltaTime, 0, 0);
+
+                }
+                else if(player == 2)
+                {
+                    Player2.transform.position += new Vector3(Speed * Time.deltaTime, 0, 0);
+                }
+                break;
+            //6方向にステップ
+            case 'S':
+                if (player == 1) { P1rb.AddForce(new Vector2(-100, 0)); }
+                else if (player == 2) { P2rb.AddForce(new Vector2(100, 0)); }
+                break;
+            //4方向に移動
+            case 'l':
+                if (player == 1)
+                {
+                    Player1.transform.position += new Vector3(-Speed * Time.deltaTime, 0, 0);
+
+                }
+                else if (player == 2)
+                {
+                    Player2.transform.position += new Vector3(-Speed * Time.deltaTime, 0, 0);
+                }
+                break;
+            //4方向にステップ
+            case 's':
+                if (player == 1) { P1rb.AddForce(new Vector2(100, 0)); }
+                else if (player == 2) { P2rb.AddForce(new Vector2(-100, 0)); }
+                break;
+            //垂直ジャンプ
+            case 'j':
+                if (player == 1) {
                     P1rb.AddForce(new Vector2(0, Jump));
                     P1jump = true;
                 }
-                if (Input.GetAxis("Vertical") == -1)
-                {
-                    StatusManager.Instance.SetCommandOnePlayer(2);
-                    return;
-                    //しゃがみ状態に
-                }
-                if (Input.GetAxis("Vertical") <= 0.5 && Input.GetAxis("Vertical") >= -0.5)
-                {
-                    StatusManager.Instance.SetCommandOnePlayer(5);
-                    return;
-                }
-                
-                
-
-            }
-        }
-        if (Player2)
-        {
-            if (Input.GetAxis("Horizontal2") == 1)
-            {
-                if (Input.GetAxis("Vertical2") == 1)
-                {
-                    StatusManager.Instance.SetCommandTwoPlayer(9);
-                    return;
-                }
-                if (Input.GetAxis("Vertical2") == -1)
-                {
-                    StatusManager.Instance.SetCommandTwoPlayer(3);
-                    return;
-                    //しゃがみ状態に
-                }
-
-                StatusManager.Instance.SetCommandTwoPlayer(6);
-                float x = Speed;
-                P2rb.AddForce(new Vector2(x, 0));
-            }
-
-            if (Input.GetAxis("Horizontal2") == -1)
-            {
-                if (Input.GetAxis("Vertical2") == 1)
-                {
-                    StatusManager.Instance.SetCommandTwoPlayer(7);
-                    return;
-                }
-                if (Input.GetAxis("Vertical2") == -1)
-                {
-                    StatusManager.Instance.SetCommandTwoPlayer(1);
-                    return;
-                    //しゃがみ状態に
-                }
-                StatusManager.Instance.SetCommandTwoPlayer(4);
-                float x = Speed;
-                P2rb.AddForce(new Vector2(-x, 0));
-                return;
-            }
-
-            if (Input.GetAxis("Horizontal2") <= 0.5 && Input.GetAxis("Horizontal2") >= -0.5)
-            {
-                if (Input.GetAxis("Vertical2") == 1 && !P2jump)
-                {
-                    if (Input.GetAxis("Vertical2") == 1)
-                    {
-                        StatusManager.Instance.SetCommandTwoPlayer(8);
-                        return;
-                    }
+                else if (player == 2) {
                     P2rb.AddForce(new Vector2(0, Jump));
                     P2jump = true;
                 }
-                if (Input.GetAxis("Vertical2") == -1)
+                break;
+            //6方向ジャンプ
+            case 'c':
+                if (player == 1)
                 {
-                    StatusManager.Instance.SetCommandTwoPlayer(2);
-                    return;
-                    //しゃがみ状態に
+                    P1rb.AddForce(new Vector2(-100, Jump));
+                    P1jump = true;
                 }
-                if (Input.GetAxis("Vertical2") <= 0.5 && Input.GetAxis("Vertical2") >= -0.5)
+                else if (player == 2)
                 {
-                    StatusManager.Instance.SetCommandTwoPlayer(5);
-                    return;
+                    P2rb.AddForce(new Vector2(100, Jump));
+                    P2jump = true;
                 }
-            }
+                break;
+            //4方向ジャンプ
+            case 'z':
+                if (player == 1)
+                {
+                    P2rb.AddForce(new Vector2(100, Jump));
+                    P2jump = true;
+                }
+                else if (player == 2)
+                {
+                    P2rb.AddForce(new Vector2(-100, Jump));
+                    P2jump = true;
+                }
+                break;
+            default:break;
         }
-}
-    void AttackOccurrence(int AttackNum , int player)
+            
+    }
+
+    void AttackOccurrence(int attackNum , int player)
     {
         if (attack[player-1].AttackCheck) { return; }
-        IEnumerator coroutine = attack[player-1].SetParamete(attackParameter[player-1][AttackNum], attackCollider[player-1][AttackNum]);
+        IEnumerator coroutine = attack[player-1].SetParamete(attackParameter[player-1][attackNum], attackCollider[player-1][attackNum]);
+        StartCoroutine(coroutine);
+    }
+
+    void DeathblowOccurrence(int attackNum,int player)
+    {
+        if (attack[player - 1].AttackCheck) { return; }
+        bool Guage = StatusManager.Instance.GuageUse(player);
+        if (!Guage) { return; }
+        IEnumerator coroutine = attack[player - 1].SetParamete(attackParameter[player - 1][attackNum], attackCollider[player - 1][attackNum]);
         StartCoroutine(coroutine);
     }
 }
