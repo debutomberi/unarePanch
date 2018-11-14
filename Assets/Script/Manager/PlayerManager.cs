@@ -110,6 +110,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             if (Input.GetKeyDown("joystick 1 button 0"))
             {
                 Debug.Log("X");
+                AttackOccurrence(0, 1);
             }
             if (Input.GetKeyDown("joystick 1 button 1"))
             {
@@ -126,6 +127,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             if (Input.GetKeyDown("joystick 1 button 4"))
             {
                 Debug.Log("LB");
+                DeathblowOccurrence(1, 1);
             }
             if (Input.GetKeyDown("joystick 1 button 5"))
             {
@@ -142,6 +144,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             if (Input.GetKeyDown("joystick 2 button 0"))
             {
                 Debug.Log("X");
+                AttackOccurrence(0, 2);
             }
             if (Input.GetKeyDown("joystick 2 button 1"))
             {
@@ -158,6 +161,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             if (Input.GetKeyDown("joystick 2 button 4"))
             {
                 Debug.Log("LB");
+                DeathblowOccurrence(1, 1);
             }
             if (Input.GetKeyDown("joystick 2 button 5"))
             {
