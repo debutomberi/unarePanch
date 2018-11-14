@@ -12,12 +12,14 @@ public class UIManager : SingletonMonoBehavior<UIManager>
     GameObject[] textObj = new GameObject[2];
 
     Text[] text = new Text[2];
+    //Text[] wtest = new Text[2];
 
     int onePgage;
     int twoPgage;
 
-    int onePwin;
-    int twoPwin;
+    [SerializeField]
+    GameObject wintext;
+    Text _wimtext;
 
     public void Start()
     {
@@ -28,6 +30,9 @@ public class UIManager : SingletonMonoBehavior<UIManager>
             text[i] = textObj[i].GetComponent<Text>();
         }
         PageChenge();
+
+        WinText(false);
+
     }
 
     public void PageChenge() {
@@ -36,5 +41,18 @@ public class UIManager : SingletonMonoBehavior<UIManager>
 
         text[0].text = onePgage.ToString();
         text[1].text = twoPgage.ToString();
+    }
+
+    public void WinText(bool isWin) {
+        _wimtext = wintext.GetComponent<Text>();
+
+        if (isWin)
+        {
+            _wimtext.text = "1Player Win!";
+        }
+        else
+        {
+            _wimtext.text = "2Player Win!";
+        }
     }
 }
