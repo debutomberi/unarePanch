@@ -42,18 +42,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
 
 
     Attack[] attack = { new Attack() , new Attack()};
-
-    //public string r;//6
-    //public string l;//4
-    //public string q;//1
-    //public string d;//2
-    //public string e;//3
-    //public string z;//7
-    //public string j;//8
-    //public string c;//9
-    //public string S;//656
-    //public string s;//454
-
+    
     GameObject Player1;
     GameObject Player2;
 
@@ -173,38 +162,39 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             {
                 if (Input.GetAxis("Vertical") == 1)
                 {
-                    Debug.Log("9");
-                    //return;
+                    StatusManager.Instance.SetCommandOnePlayer(9);
+                    return;
                 }
                 if (Input.GetAxis("Vertical") == -1)
                 {
-                    Debug.Log("3");
-                    //return;
+                    StatusManager.Instance.SetCommandOnePlayer(3);
+                    return;
                     //しゃがみ状態に
                 }
-
-                Debug.Log("6");
+                StatusManager.Instance.SetCommandOnePlayer(6);
                 float x = Speed;
                 P1rb.AddForce(new Vector2(x, 0));
+                return;
             }
 
             if (Input.GetAxis("Horizontal") == -1)
             {
                 if (Input.GetAxis("Vertical") == 1)
                 {
-                    Debug.Log("7");
-                    //return;
+                    StatusManager.Instance.SetCommandOnePlayer(7);
+                    return;
                 }
                 if (Input.GetAxis("Vertical") == -1)
                 {
-                    Debug.Log("1");
-                    //return;
+                    StatusManager.Instance.SetCommandOnePlayer(1);
+                    return;
                     //しゃがみ状態に
 
                 }
-                Debug.Log("4");
+                StatusManager.Instance.SetCommandOnePlayer(4);
                 float x = Speed;
                 P1rb.AddForce(new Vector2(-x, 0));
+                return;
             }
 
             
@@ -214,23 +204,22 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 {
                     if (Input.GetAxis("Vertical") == 1)
                     {
-                        Debug.Log("8");
-                        //return;
+                        StatusManager.Instance.SetCommandOnePlayer(8);
+                        return;
                     }
-                    float y = Jump;
-                    P1rb.AddForce(new Vector2(0, y));
+                    P1rb.AddForce(new Vector2(0, Jump));
                     P1jump = true;
                 }
                 if (Input.GetAxis("Vertical") == -1)
                 {
-                    Debug.Log("2");
-                    //return;
-
+                    StatusManager.Instance.SetCommandOnePlayer(2);
+                    return;
                     //しゃがみ状態に
                 }
                 if (Input.GetAxis("Vertical") <= 0.5 && Input.GetAxis("Vertical") >= -0.5)
                 {
-                    Debug.Log("5");
+                    StatusManager.Instance.SetCommandOnePlayer(5);
+                    return;
                 }
                 
                 
@@ -243,17 +232,17 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             {
                 if (Input.GetAxis("Vertical2") == 1)
                 {
-                    Debug.Log("9");
-                    //return;
+                    StatusManager.Instance.SetCommandTwoPlayer(9);
+                    return;
                 }
                 if (Input.GetAxis("Vertical2") == -1)
                 {
-                    Debug.Log("3");
-                    //return;
+                    StatusManager.Instance.SetCommandTwoPlayer(3);
+                    return;
                     //しゃがみ状態に
                 }
 
-                Debug.Log("6");
+                StatusManager.Instance.SetCommandTwoPlayer(6);
                 float x = Speed;
                 P2rb.AddForce(new Vector2(x, 0));
             }
@@ -262,47 +251,47 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             {
                 if (Input.GetAxis("Vertical2") == 1)
                 {
-                    Debug.Log("7");
-                    //return;
+                    StatusManager.Instance.SetCommandTwoPlayer(7);
+                    return;
                 }
                 if (Input.GetAxis("Vertical2") == -1)
                 {
-                    Debug.Log("1");
-                    //return;
+                    StatusManager.Instance.SetCommandTwoPlayer(1);
+                    return;
                     //しゃがみ状態に
                 }
-                Debug.Log("4");
+                StatusManager.Instance.SetCommandTwoPlayer(4);
                 float x = Speed;
                 P2rb.AddForce(new Vector2(-x, 0));
+                return;
             }
 
-            if (Input.GetAxis("Vertical2") == 1 && P2jump == false)
+            if (Input.GetAxis("Horizontal2") <= 0.5 && Input.GetAxis("Horizontal2") >= -0.5)
             {
-                if (Input.GetAxis("Vertical2") == 1)
+                if (Input.GetAxis("Vertical2") == 1 && !P2jump)
                 {
-                    Debug.Log("8");
-                    //return;
+                    if (Input.GetAxis("Vertical2") == 1)
+                    {
+                        StatusManager.Instance.SetCommandTwoPlayer(8);
+                        return;
+                    }
+                    P2rb.AddForce(new Vector2(0, Jump));
+                    P2jump = true;
                 }
-                float y = Jump;
-                P2rb.AddForce(new Vector2(0, y));
-                P2jump = true;
+                if (Input.GetAxis("Vertical2") == -1)
+                {
+                    StatusManager.Instance.SetCommandTwoPlayer(2);
+                    return;
+                    //しゃがみ状態に
+                }
+                if (Input.GetAxis("Vertical2") <= 0.5 && Input.GetAxis("Vertical2") >= -0.5)
+                {
+                    StatusManager.Instance.SetCommandTwoPlayer(5);
+                    return;
+                }
             }
-            if (Input.GetAxis("Vertical2") == -1)
-            {
-                Debug.Log("2");
-                //return;
-
-                //しゃがみ状態に
-            }
-            if (Input.GetAxis("Horizontal2") <= 0.5 && Input.GetAxis("Horizontal2") >= -0.5 && Input.GetAxis("Vertical2") <= 0.5 && Input.GetAxis("Vertical2") >= -0.5)
-            {
-                Debug.Log("5");
-
-            }
-        
-    }
+        }
 }
-
     void AttackOccurrence(int AttackNum , int player)
     {
         if (attack[player-1].AttackCheck) { return; }
