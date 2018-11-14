@@ -413,10 +413,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 5
   Jump: 5
-  attackColliderOnePlayer: []
-  attackParameterOnePlayer: []
-  attackColliderTwoPlayer: []
-  attackParameterTwoPlayer: []
+  attackColliderOnePlayer:
+  - {fileID: 1333059949}
+  attackParameterOnePlayer:
+  - {fileID: 11400000, guid: 0cfcfaedca2bc354b8c63479535f1e10, type: 2}
+  attackColliderTwoPlayer:
+  - {fileID: 263238730}
+  attackParameterTwoPlayer:
+  - {fileID: 11400000, guid: 0cfcfaedca2bc354b8c63479535f1e10, type: 2}
 --- !u!4 &770906997
 Transform:
   m_ObjectHideFlags: 0

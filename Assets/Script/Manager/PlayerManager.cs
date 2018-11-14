@@ -64,6 +64,15 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
 
         attackParameter[0] = attackParameterOnePlayer;
         attackParameter[1] = attackParameterTwoPlayer;
+
+        for (int i = 0; i <= attackCollider[0].Count - 1; i++)
+        {
+            attackCollider[0][i].gameObject.SetActive(false);
+        }
+        for (int i = 0; i <= attackCollider[1].Count - 1; i++)
+        {
+            attackCollider[1][i].gameObject.SetActive(false);
+        }
     }
 
 
@@ -73,6 +82,8 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         Attack();
         Move1Input();
         Move2Input();
+        Move(1);
+        Move(2);
     }
 
     public void OnPlayerCollisionEnter(int player,Collision2D collision) {
@@ -285,7 +296,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
 
     void Move(int player)
     {
-        if(player <= 3) { return; }
+        //if(player <= 3) { return; }
         char command = StatusManager.Instance.CheckCommand(player);
         switch (command){
             //6方向に移動
@@ -325,10 +336,12 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             //垂直ジャンプ
             case 'j':
                 if (player == 1) {
+                    if (P1jump) { break; }
                     P1rb.AddForce(new Vector2(0, Jump));
                     P1jump = true;
                 }
                 else if (player == 2) {
+                    if (P2jump) { return; }
                     P2rb.AddForce(new Vector2(0, Jump));
                     P2jump = true;
                 }
@@ -337,12 +350,14 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             case 'c':
                 if (player == 1)
                 {
-                    P1rb.AddForce(new Vector2(-100, Jump));
+                    if (P1jump) { break; }
+                    P1rb.AddForce(new Vector2(200, Jump));
                     P1jump = true;
                 }
                 else if (player == 2)
                 {
-                    P2rb.AddForce(new Vector2(100, Jump));
+                    if (P2jump) { return; }
+                    P2rb.AddForce(new Vector2(-200, Jump));
                     P2jump = true;
                 }
                 break;
@@ -350,12 +365,14 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             case 'z':
                 if (player == 1)
                 {
-                    P2rb.AddForce(new Vector2(100, Jump));
-                    P2jump = true;
+                    if (P1jump) { break; }
+                    P1rb.AddForce(new Vector2(-200, Jump));
+                    P1jump = true;
                 }
                 else if (player == 2)
                 {
-                    P2rb.AddForce(new Vector2(-100, Jump));
+                    if (P2jump) { return; }
+                    P2rb.AddForce(new Vector2(200, Jump));
                     P2jump = true;
                 }
                 break;
