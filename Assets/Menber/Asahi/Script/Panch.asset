@@ -14,6 +14,6 @@ MonoBehaviour:
   oFlame: 5
   cFlame: 10
   sFlame: 10
-  power: 6
+  power: 10
   deathblow: 0
   missile: 0

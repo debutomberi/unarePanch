@@ -24,14 +24,14 @@ public class AttackCollider : MonoBehaviour {
         }
 
         if(collision.gameObject.tag == "1P") {
-            collision.transform.parent.GetComponent<Rigidbody2D>().AddForce(new Vector2(-100, 0));
-            StatusManager.Instance.GuageUp(1, guagePow);
-        }
-        else if (collision.gameObject.tag == "2P") {
-            collision.transform.parent.GetComponent<Rigidbody2D>().AddForce(new Vector2(100, 0));
+            collision.transform.parent.GetComponent<Rigidbody2D>().AddForce(new Vector2(-30, 0));
             StatusManager.Instance.GuageUp(2, guagePow);
         }
-        
+        else if (collision.gameObject.tag == "2P") {
+            collision.transform.parent.GetComponent<Rigidbody2D>().AddForce(new Vector2(30, 0));
+            StatusManager.Instance.GuageUp(1, guagePow);
+        }
+        UIManager.Instance.PageChenge();
     }
     
     //必殺技の処理

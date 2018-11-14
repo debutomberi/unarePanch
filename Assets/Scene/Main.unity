@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 263238731}
   - component: {fileID: 263238734}
   m_Layer: 0
-  m_Name: Panch
+  m_Name: Panch2P
   m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -205,7 +205,7 @@ Transform:
   m_LocalScale: {x: 3.2172084, y: 3.2172084, z: 3.2172084}
   m_Children: []
   m_Father: {fileID: 1888991123}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &263238734
 MonoBehaviour:
@@ -251,7 +251,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 60.5, y: 57.763}
+  m_AnchoredPosition: {x: 60.5, y: 58.237}
   m_SizeDelta: {x: 121, y: 116.475}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &348461740
@@ -360,8 +360,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -60, y: 58}
-  m_SizeDelta: {x: 119, y: 116}
+  m_AnchoredPosition: {x: -60, y: 58.475}
+  m_SizeDelta: {x: 120, y: 116}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &614437280
 MonoBehaviour:
@@ -423,20 +423,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ccfd39641217241aaf297abd979926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 5
+  Speed: 10
   Jump: 400
   attackColliderOnePlayer:
   - {fileID: 1333059949}
   - {fileID: 1417865243}
   attackParameterOnePlayer:
   - {fileID: 11400000, guid: 0cfcfaedca2bc354b8c63479535f1e10, type: 2}
-  - {fileID: 11400000, guid: 0cfcfaedca2bc354b8c63479535f1e10, type: 2}
+  - {fileID: 11400000, guid: 83af026d7ec8d0b4ab4f8a9a46f1f435, type: 2}
   attackColliderTwoPlayer:
   - {fileID: 263238730}
   - {fileID: 1082041183}
   attackParameterTwoPlayer:
   - {fileID: 11400000, guid: 0cfcfaedca2bc354b8c63479535f1e10, type: 2}
-  - {fileID: 11400000, guid: 0cfcfaedca2bc354b8c63479535f1e10, type: 2}
+  - {fileID: 11400000, guid: 83af026d7ec8d0b4ab4f8a9a46f1f435, type: 2}
 --- !u!4 &770906997
 Transform:
   m_ObjectHideFlags: 0
@@ -458,6 +458,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 779689536}
+  - component: {fileID: 779689537}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -478,6 +479,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &779689537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 779689535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d17664dc1f07214389cd879a2455c15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDG: 100
+  textObj:
+  - {fileID: 2139367995}
+  - {fileID: 2100323525}
 --- !u!1 &872553663
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,7 +507,7 @@ GameObject:
   - component: {fileID: 872553667}
   m_Layer: 0
   m_Name: Player1
-  m_TagString: 1P
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -652,7 +668,7 @@ GameObject:
   - component: {fileID: 1082041185}
   - component: {fileID: 1082041187}
   m_Layer: 0
-  m_Name: Hissattu!!!
+  m_Name: Hissattu!!!2P
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -760,7 +776,7 @@ GameObject:
   - component: {fileID: 1333059951}
   - component: {fileID: 1333059953}
   m_Layer: 0
-  m_Name: Panch
+  m_Name: Panch1P
   m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1059,7 +1075,7 @@ GameObject:
   - component: {fileID: 1417865245}
   - component: {fileID: 1417865247}
   m_Layer: 0
-  m_Name: Hissattu!!!
+  m_Name: Hissattu!!!1P
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1300,7 +1316,7 @@ GameObject:
   - component: {fileID: 1888991124}
   m_Layer: 0
   m_Name: Player2
-  m_TagString: 2P
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1361,8 +1377,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1874546926}
-  - {fileID: 263238733}
   - {fileID: 2063384472}
+  - {fileID: 263238733}
   - {fileID: 1082041184}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -1496,7 +1512,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1888991123}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2063384473
 BoxCollider2D:
@@ -1545,7 +1561,7 @@ GameObject:
   - component: {fileID: 2100323528}
   - component: {fileID: 2100323527}
   m_Layer: 5
-  m_Name: GuageCount
+  m_Name: GuageCount2P
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1673,7 +1689,7 @@ GameObject:
   - component: {fileID: 2139367998}
   - component: {fileID: 2139367997}
   m_Layer: 5
-  m_Name: GuageCount
+  m_Name: GuageCount1P
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

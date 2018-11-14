@@ -109,63 +109,63 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
 
             if (Input.GetKeyDown("joystick 1 button 0"))
             {
-                Debug.Log("X");
+                //Debug.Log("X");
                 AttackOccurrence(0, 1);
             }
             if (Input.GetKeyDown("joystick 1 button 1"))
             {
-                Debug.Log("A");
+                //Debug.Log("A");
             }
             if (Input.GetKeyDown("joystick 1 button 2"))
             {
-                Debug.Log("B");
+                //Debug.Log("B");
             }
             if (Input.GetKeyDown("joystick 1 button 3"))
             {
-                Debug.Log("Y");
+                //Debug.Log("Y");
             }
             if (Input.GetKeyDown("joystick 1 button 4"))
             {
-                Debug.Log("LB");
+                //Debug.Log("LB");
                 DeathblowOccurrence(1, 1);
             }
             if (Input.GetKeyDown("joystick 1 button 5"))
             {
-                Debug.Log("RB");
+                //Debug.Log("RB");
             }
         }
         if (Player2)
         {
             if (Input.GetKeyDown(KeyCode.Z))
             {
-                Debug.Log("パンチしました");
+                //Debug.Log("パンチしました");
             }
 
             if (Input.GetKeyDown("joystick 2 button 0"))
             {
-                Debug.Log("X");
+                //Debug.Log("X");
                 AttackOccurrence(0, 2);
             }
             if (Input.GetKeyDown("joystick 2 button 1"))
             {
-                Debug.Log("A");
+                //Debug.Log("A");
             }
             if (Input.GetKeyDown("joystick 2 button 2"))
             {
-                Debug.Log("B");
+                //Debug.Log("B");
             }
             if (Input.GetKeyDown("joystick 2 button 3"))
             {
-                Debug.Log("Y");
+                //Debug.Log("Y");
             }
             if (Input.GetKeyDown("joystick 2 button 4"))
             {
-                Debug.Log("LB");
-                DeathblowOccurrence(1, 1);
+                //Debug.Log("LB");
+                DeathblowOccurrence(1, 2);
             }
             if (Input.GetKeyDown("joystick 2 button 5"))
             {
-                Debug.Log("RB");
+                //Debug.Log("RB");
             }
         }
     }
@@ -307,35 +307,35 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             case 'r':
                 if (player == 1)
                 {
-                    Player1.transform.position += new Vector3(Speed * Time.deltaTime, 0, 0);
+                    P1rb.AddForce(new Vector2(Speed, 0));
 
                 }
                 else if(player == 2)
                 {
-                    Player2.transform.position += new Vector3(Speed * Time.deltaTime, 0, 0);
+                    P2rb.AddForce(new Vector2(Speed, 0));
                 }
                 break;
             //6方向にステップ
             case 'S':
-                if (player == 1) { P1rb.AddForce(new Vector2(-100, 0)); }
-                else if (player == 2) { P2rb.AddForce(new Vector2(100, 0)); }
+                if (player == 1) { P1rb.AddForce(new Vector2(30, 0)); }
+                else if (player == 2) { P2rb.AddForce(new Vector2(30, 0)); }
                 break;
             //4方向に移動
             case 'l':
                 if (player == 1)
                 {
-                    Player1.transform.position += new Vector3(-Speed * Time.deltaTime, 0, 0);
+                    P1rb.AddForce(new Vector2(-Speed, 0));
 
                 }
                 else if (player == 2)
                 {
-                    Player2.transform.position += new Vector3(-Speed * Time.deltaTime, 0, 0);
+                    P2rb.AddForce(new Vector2(-Speed, 0));
                 }
                 break;
             //4方向にステップ
             case 's':
-                if (player == 1) { P1rb.AddForce(new Vector2(100, 0)); }
-                else if (player == 2) { P2rb.AddForce(new Vector2(-100, 0)); }
+                if (player == 1) { P1rb.AddForce(new Vector2(-50, 0)); }
+                else if (player == 2) { P2rb.AddForce(new Vector2(-50, 0)); }
                 break;
             //垂直ジャンプ
             case 'j':
@@ -399,5 +399,6 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         if (!Guage) { return; }
         IEnumerator coroutine = attack[player - 1].SetParamete(attackParameter[player - 1][attackNum], attackCollider[player - 1][attackNum]);
         StartCoroutine(coroutine);
+        UIManager.Instance.PageChenge();
     }
 }

@@ -35,7 +35,7 @@ public class Attack {
         }else{
             attackCollider.SetActive(true);
             var attackColliderScript = attackCollider.GetComponent<AttackCollider>();
-            Debug.Log(pow);
+            //Debug.Log(pow);
             attackColliderScript.GuagePow = pow;
         }
         yield return null;
