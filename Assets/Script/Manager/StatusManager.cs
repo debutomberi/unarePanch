@@ -32,11 +32,15 @@ public class StatusManager : SingletonMonoBehavior<StatusManager> {
         get{return deathblowGuage;}
     }
 
+    private void Start(){
+        SetCommandOnePlayer(5);
+        SetCommandTwoPlayer(5);
+    }
 
     private void Update(){
         DeleteCommand();
 
-        /*
+        
         if (Input.GetKeyDown(KeyCode.A))
             SetCommandOnePlayer(4);
         if (Input.GetKeyDown(KeyCode.S))
@@ -45,12 +49,14 @@ public class StatusManager : SingletonMonoBehavior<StatusManager> {
             SetCommandTwoPlayer(6);
         if (Input.GetKeyDown(KeyCode.D))
             SetCommandTwoPlayer(4);
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W)) {
             Debug.Log(CheckCommand(1));
-        if (Input.GetKeyDown(KeyCode.R)) {
-            Debug.Log(CheckCommand(3));
         }
-        */
+        
+        if (Input.GetKeyDown(KeyCode.R)) {
+            Debug.Log(CheckCommand(2));
+        }
+        
     }
     
     //1Pのコマンド履歴に追記
@@ -119,10 +125,10 @@ public class StatusManager : SingletonMonoBehavior<StatusManager> {
         }
         
         char command = '5';
-
         //コマンドの実装
         int lengh = commandlist.Count;
         //Debug.Log(lengh);
+        if(lengh == 0) { return '5'; }
         if (commandlist[lengh-1] == 8) {
             command = 'j';
         }
@@ -131,7 +137,7 @@ public class StatusManager : SingletonMonoBehavior<StatusManager> {
         }
         if (commandlist[lengh-1] == 6) {
             command = 'r';
-            if (lengh >= 3) { return command; }
+            if (lengh <= 3) { return command; }
             if (commandlist[lengh - 2] == 5 && commandlist[lengh - 3] == 6) {
                 command = 'S';
             }
@@ -144,7 +150,7 @@ public class StatusManager : SingletonMonoBehavior<StatusManager> {
         }
         if(commandlist[lengh-1] == 4) {
             command = 'l';
-            if (lengh >= 3) { return command; }
+            if (lengh <= 3) { return command; }
             if (commandlist[lengh - 2] == 5 && commandlist[lengh - 3] == 4) {
                 command = 's';
             }
@@ -165,10 +171,17 @@ public class StatusManager : SingletonMonoBehavior<StatusManager> {
             return;
         }
         deathblowGuage[player - 1] += pow;
-        if (deathblowGuage[player - 1] >= 100)
-            deathblowGuage[player - 1] = 100;
-        Debug.Log("ゲージ量_1P:" + deathblowGuage[0] + "2P:" + deathblowGuage[1]);
+        if (deathblowGuage[player - 1] >= 100) { deathblowGuage[player - 1] = 100; }
+        //Debug.Log("ゲージ量_1P:" + deathblowGuage[0] + "2P:" + deathblowGuage[1]);
     }
 
-
+    public bool GuageUse(int player) {
+        if(player > 2) {
+            Debug.LogError("ゲージ上昇は必ず１か２を選択して下さい。");
+            return false;
+        }
+        if(deathblowGuage[player-1] < 100) { return false; }
+        deathblowGuage[player - 1] = 0;
+        return true;
+    }
 }

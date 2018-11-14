@@ -18,6 +18,9 @@ public class Player : MonoBehaviour {
 	}
 
     private void OnCollisionEnter2D(Collision2D collision){
-        PlayerManager.Instance.OnPlayerCollisionEnter(playerID, collision);
+        if(collision.gameObject.tag == "Floor") {
+            PlayerManager.Instance.OnPlayerCollisionEnter(playerID, collision);
+        }
+        
     }
 }
