@@ -207,7 +207,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 230606303}
-  - component: {fileID: 230606302}
   - component: {fileID: 230606301}
   m_Layer: 0
   m_Name: GameObject (1)
@@ -227,19 +226,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7963728d68ca86941a282214ca7c54a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &230606302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 230606300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d17664dc1f07214389cd879a2455c15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxDG: 100
-  textObj: {fileID: 280697203}
 --- !u!4 &230606303
 Transform:
   m_ObjectHideFlags: 0
@@ -251,7 +237,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &280697203
 GameObject:
@@ -647,7 +633,7 @@ RectTransform:
   - {fileID: 280697206}
   - {fileID: 1115390325}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -759,7 +745,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1851665165}
   - component: {fileID: 1851665164}
-  - component: {fileID: 1851665163}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -767,17 +752,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1851665163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1851665162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7963728d68ca86941a282214ca7c54a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1851665164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -790,7 +764,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDG: 100
-  textObj: {fileID: 1115390324}
+  textObj:
+  - {fileID: 280697203}
+  - {fileID: 1115390324}
 --- !u!4 &1851665165
 Transform:
   m_ObjectHideFlags: 0
