@@ -54,6 +54,20 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     bool P1jump;
     bool P2jump;
 
+    bool move1P = true;
+    bool move2P = true;
+
+    public bool Move1P
+    {
+        get{return move1P;}
+        set{move1P = value;}
+    }
+    public bool Move2P
+    {
+        get { return move2P; }
+        set { move2P = value; }
+    }
+
     void Start()
     {
         Player1 = GameObject.Find("Player1");
@@ -84,8 +98,9 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         Attack();
         Move1Input();
         Move2Input();
-        Move(1);
-        Move(2);
+        if (move1P && P1jump) { Move(1); }
+        if (move2P && P2jump) { Move(2); }
+        
     }
 
     public void OnPlayerCollisionEnter(int player,Collision2D collision) {
@@ -310,45 +325,45 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             case 'r':
                 if (player == 1)
                 {
-                    P1rb.AddForce(new Vector2(Speed, 0));
+                    Player1.transform.position += new Vector3(Speed * Time.deltaTime, 0, 0);
 
                 }
                 else if(player == 2)
                 {
-                    P2rb.AddForce(new Vector2(Speed, 0));
+                    Player2.transform.position += new Vector3(Speed * Time.deltaTime, 0, 0);
+
                 }
                 break;
             //6方向にステップ
             case 'S':
-                if (player == 1) { P1rb.AddForce(new Vector2(30, 0)); }
-                else if (player == 2) { P2rb.AddForce(new Vector2(30, 0)); }
+                if (player == 1) { StartCoroutine(Step(50, P1rb, move1P)); }
+                else if (player == 2) { StartCoroutine(Step(50, P2rb, move2P)); }
                 break;
             //4方向に移動
             case 'l':
                 if (player == 1)
                 {
-                    P1rb.AddForce(new Vector2(-Speed, 0));
+                    Player1.transform.position += new Vector3(-Speed * Time.deltaTime, 0, 0);
 
                 }
                 else if (player == 2)
                 {
-                    P2rb.AddForce(new Vector2(-Speed, 0));
+                    Player2.transform.position += new Vector3(-Speed * Time.deltaTime, 0, 0);
+
                 }
                 break;
             //4方向にステップ
             case 's':
-                if (player == 1) { P1rb.AddForce(new Vector2(-50, 0)); }
-                else if (player == 2) { P2rb.AddForce(new Vector2(-50, 0)); }
+                if (player == 1) { StartCoroutine(Step(-50, P1rb, move1P)); }
+                else if (player == 2) { StartCoroutine(Step(-50, P2rb, move2P)); }
                 break;
             //垂直ジャンプ
             case 'j':
                 if (player == 1) {
-                    if (P1jump) { break; }
                     P1rb.AddForce(new Vector2(0, Jump));
                     P1jump = true;
                 }
                 else if (player == 2) {
-                    if (P2jump) { return; }
                     P2rb.AddForce(new Vector2(0, Jump));
                     P2jump = true;
                 }
@@ -357,13 +372,11 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             case 'c':
                 if (player == 1)
                 {
-                    if (P1jump) { break; }
                     P1rb.AddForce(new Vector2(200, Jump));
                     P1jump = true;
                 }
                 else if (player == 2)
                 {
-                    if (P2jump) { return; }
                     P2rb.AddForce(new Vector2(-200, Jump));
                     P2jump = true;
                 }
@@ -372,13 +385,11 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             case 'z':
                 if (player == 1)
                 {
-                    if (P1jump) { break; }
                     P1rb.AddForce(new Vector2(-200, Jump));
                     P1jump = true;
                 }
                 else if (player == 2)
                 {
-                    if (P2jump) { return; }
                     P2rb.AddForce(new Vector2(200, Jump));
                     P2jump = true;
                 }
@@ -403,5 +414,12 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         IEnumerator coroutine = attack[player - 1].SetParamete(attackParameter[player - 1][attackNum], attackCollider[player - 1][attackNum],image[player - 1]);
         StartCoroutine(coroutine);
         UIManager.Instance.PageChenge();
+    }
+
+    IEnumerator Step(float step,Rigidbody2D rb,bool move) {
+        move = false;
+        rb.AddForce(new Vector2(step, 0));
+        yield return new WaitForSeconds(1.0f);
+        move = true;
     }
 }
