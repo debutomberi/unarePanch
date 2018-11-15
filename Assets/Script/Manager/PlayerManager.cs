@@ -39,6 +39,8 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     List<GameObject>[] attackCollider = new List<GameObject>[2];
     [SerializeField]
     List<AttackTable>[] attackParameter = new List<AttackTable>[2];
+    [SerializeField]
+    SpriteRenderer[] image = new SpriteRenderer[2];
 
 
     Attack[] attack = { new Attack() , new Attack()};
@@ -105,6 +107,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             if (Input.GetKeyDown(KeyCode.Z))
             {
                 Debug.Log("パンチしました");
+                AttackOccurrence(0, 1);
             }
 
             if (Input.GetKeyDown("joystick 1 button 0"))
@@ -388,7 +391,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     void AttackOccurrence(int attackNum , int player)
     {
         if (attack[player-1].AttackCheck) { return; }
-        IEnumerator coroutine = attack[player-1].SetParamete(attackParameter[player-1][attackNum], attackCollider[player-1][attackNum]);
+        IEnumerator coroutine = attack[player-1].SetParamete(attackParameter[player-1][attackNum], attackCollider[player-1][attackNum],image[player-1]);
         StartCoroutine(coroutine);
     }
 
@@ -397,7 +400,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         if (attack[player - 1].AttackCheck) { return; }
         bool Guage = StatusManager.Instance.GuageUse(player);
         if (!Guage) { return; }
-        IEnumerator coroutine = attack[player - 1].SetParamete(attackParameter[player - 1][attackNum], attackCollider[player - 1][attackNum]);
+        IEnumerator coroutine = attack[player - 1].SetParamete(attackParameter[player - 1][attackNum], attackCollider[player - 1][attackNum],image[player - 1]);
         StartCoroutine(coroutine);
         UIManager.Instance.PageChenge();
     }

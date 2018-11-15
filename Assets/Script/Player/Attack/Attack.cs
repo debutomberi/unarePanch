@@ -11,13 +11,12 @@ public class Attack {
 
     bool db;
     bool msl;
-
     public bool AttackCheck{
         get{ return attackCheck;}
     }
 
     //近接攻撃の処理
-    public IEnumerator Technique(int[] flame,GameObject attackCollider){
+    public IEnumerator Technique(int[] flame,GameObject attackCollider,SpriteRenderer player){
         //Debug.Log("attack!");
         attackCheck = true;
         for (int i = 0; i < flame[0] - 1; i++){
@@ -36,6 +35,7 @@ public class Attack {
             attackCollider.SetActive(true);
             var attackColliderScript = attackCollider.GetComponent<AttackCollider>();
             //Debug.Log(pow);
+            player.sprite = Resources.Load("Images/斜め横　パピヨンEX 差分", typeof(Sprite)) as Sprite;
             attackColliderScript.GuagePow = pow;
         }
         yield return null;
@@ -53,13 +53,14 @@ public class Attack {
         }
 
         //攻撃の終了
+        player.sprite = Resources.Load("Images/パピヨンEX", typeof(Sprite)) as Sprite;
         attackCheck = false;
             
         
     }
 
     //IEnumeratorを渡す関数
-    public IEnumerator SetParamete(AttackTable paramete,GameObject attackCollider) {
+    public IEnumerator SetParamete(AttackTable paramete,GameObject attackCollider,SpriteRenderer player) {
         int[] attackFlame = { 20, 20, 20 };
         attackFlame[0] = paramete.oFlame;
         attackFlame[1] = paramete.cFlame;
@@ -67,7 +68,7 @@ public class Attack {
         pow = paramete.power;
         db = paramete.deathblow;
         msl = paramete.missile;
-        return Technique(attackFlame,attackCollider);
+        return Technique(attackFlame,attackCollider,player);
     }
 
     

@@ -31,7 +31,7 @@ public class UIManager : SingletonMonoBehavior<UIManager>
         }
         PageChenge();
 
-        WinText(false);
+        //WinText(false);
 
     }
 

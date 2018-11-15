@@ -38,9 +38,11 @@ public class AttackCollider : MonoBehaviour {
     void OnDeathblowEnter(Collider2D collision) {
         if(collision.gameObject.tag == "1P") {
             Debug.Log("2Pの勝ち！");
+            UIManager.Instance.WinText(false);
         }
         else if (collision.gameObject.tag == "2P") {
             Debug.Log("1Pの勝ち！");
+            UIManager.Instance.WinText(true);
         }
     }
 
