@@ -98,8 +98,8 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         Attack();
         Move1Input();
         Move2Input();
-        if (move1P && P1jump) { Move(1); }
-        if (move2P && P2jump) { Move(2); }
+        if (move1P && !P1jump) { Move(1); Debug.Log("a"); }
+        if (move2P && !P2jump) { Move(2); }
         
     }
 
