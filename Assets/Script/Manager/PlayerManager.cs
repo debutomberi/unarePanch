@@ -98,8 +98,10 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         Attack();
         Move1Input();
         Move2Input();
-        if (move1P && !P1jump) { Move(1); Debug.Log("a"); }
-        if (move2P && !P2jump) { Move(2); }
+        Debug.Log(move1P);
+        Debug.Log(move2P);
+        if (move1P && !P1jump && !attack[0].AttackCheck) { Move(1); }
+        if (move2P && !P2jump && !attack[1].AttackCheck) { Move(2); }
         
     }
 
@@ -318,6 +320,8 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
 
     void Move(int player)
     {
+        if(player ==1 && !move1P) { return; }
+        if (player == 2 && !move2P) { return; }
         //if(player <= 3) { return; }
         char command = StatusManager.Instance.CheckCommand(player);
         switch (command){
@@ -336,8 +340,8 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 break;
             //6方向にステップ
             case 'S':
-                if (player == 1) { StartCoroutine(Step(50, P1rb, move1P)); }
-                else if (player == 2) { StartCoroutine(Step(50, P2rb, move2P)); }
+                if (player == 1) { Step(150, P1rb, move1P,1); }
+                else if (player == 2) { Step(150, P2rb, move2P,2); }
                 break;
             //4方向に移動
             case 'l':
@@ -354,8 +358,8 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 break;
             //4方向にステップ
             case 's':
-                if (player == 1) { StartCoroutine(Step(-50, P1rb, move1P)); }
-                else if (player == 2) { StartCoroutine(Step(-50, P2rb, move2P)); }
+                if (player == 1) { Step(-150, P1rb, move1P,1); }
+                else if (player == 2) { Step(-150, P2rb, move2P,2); }
                 break;
             //垂直ジャンプ
             case 'j':
@@ -377,7 +381,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 }
                 else if (player == 2)
                 {
-                    P2rb.AddForce(new Vector2(-200, Jump));
+                    P2rb.AddForce(new Vector2(200, Jump));
                     P2jump = true;
                 }
                 break;
@@ -390,7 +394,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 }
                 else if (player == 2)
                 {
-                    P2rb.AddForce(new Vector2(200, Jump));
+                    P2rb.AddForce(new Vector2(-200, Jump));
                     P2jump = true;
                 }
                 break;
@@ -416,10 +420,38 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         UIManager.Instance.PageChenge();
     }
 
-    IEnumerator Step(float step,Rigidbody2D rb,bool move) {
-        move = false;
+    void Step(float step, Rigidbody2D rb, bool move,int player)
+    {
+        if (!move) { return; }
+        StartCoroutine(StepCoroutine(step, rb, move,player));
+    }
+
+    IEnumerator StepCoroutine(float step,Rigidbody2D rb,bool move,int player) {
+        if (!move) { yield break; }
+        if(player == 1) { move1P = false; }
+        else if(player == 2) { move2P = false; }
         rb.AddForce(new Vector2(step, 0));
         yield return new WaitForSeconds(1.0f);
-        move = true;
+        if (player == 1) { move1P = true; }
+        else if (player == 2) { move2P = true; }
+    }
+
+    public void HitAttack(int player, float value, Rigidbody2D rb, bool move, int guagePow)
+    {
+        if (!move) { return; }
+        StartCoroutine(HitAttackCoroutine(player, value,rb,move,guagePow));
+    }
+
+    IEnumerator HitAttackCoroutine(int player, float value, Rigidbody2D rb, bool move, int guagePow)
+    {
+        if (!move) { yield break; }
+        rb.AddForce(new Vector2(value, 0));
+        StatusManager.Instance.GuageUp(player, guagePow);
+        if (player == 2) { PlayerManager.Instance.move1P = false; }
+        else if (player == 1) { PlayerManager.Instance.move2P = false; }
+        yield return new WaitForSeconds(1.0f);
+        Debug.Log(player);
+        if (player == 2) { PlayerManager.Instance.move1P = true; }
+        else if (player == 1) { PlayerManager.Instance.move2P = true; }
     }
 }

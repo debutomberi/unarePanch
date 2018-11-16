@@ -24,11 +24,11 @@ public class AttackCollider : MonoBehaviour {
         }
         if (collision.gameObject.tag == "1P") {
             Rigidbody2D rb2D = collision.transform.parent.GetComponent<Rigidbody2D>();
-            StartCoroutine(HitAttack(1, -100, rb2D, PlayerManager.Instance.Move1P));
+            PlayerManager.Instance.HitAttack(2, -300, rb2D, PlayerManager.Instance.Move1P,guagePow);
         }
         else if (collision.gameObject.tag == "2P") {
             Rigidbody2D rb2D = collision.transform.parent.GetComponent<Rigidbody2D>();
-            StartCoroutine(HitAttack(2, 100, rb2D, PlayerManager.Instance.Move2P));
+            PlayerManager.Instance.HitAttack(1, 300, rb2D, PlayerManager.Instance.Move2P,guagePow);
         }
         UIManager.Instance.PageChenge();
     }
@@ -45,11 +45,5 @@ public class AttackCollider : MonoBehaviour {
         }
     }
 
-    IEnumerator HitAttack(int player,float value,Rigidbody2D rb,bool move) {
-        rb.AddForce(new Vector2(value, 0));
-        StatusManager.Instance.GuageUp(player, guagePow);
-        move = false;
-        yield return new WaitForSeconds(1.0f);
-        move = true;
-    }
+    
 }
