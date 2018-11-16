@@ -247,7 +247,7 @@ Transform:
   m_LocalScale: {x: 3.2172098, y: 3.2172098, z: 3.2172098}
   m_Children: []
   m_Father: {fileID: 1888991123}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &571466867
 MonoBehaviour:
@@ -718,7 +718,7 @@ Transform:
   m_LocalScale: {x: 0.49681997, y: 0.49681997, z: 0.49681997}
   m_Children: []
   m_Father: {fileID: 1888991123}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1082041185
 BoxCollider2D:
@@ -1132,7 +1132,7 @@ GameObject:
   - component: {fileID: 1600443850}
   m_Layer: 0
   m_Name: Collider
-  m_TagString: 1P
+  m_TagString: 2P
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1148,7 +1148,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1888991123}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1600443850
 BoxCollider2D:
@@ -1509,9 +1509,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1792253322}
-  - {fileID: 1600443849}
   - {fileID: 571466866}
   - {fileID: 1082041184}
+  - {fileID: 1600443849}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1629,7 +1629,7 @@ GameObject:
   - component: {fileID: 1986602571}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
