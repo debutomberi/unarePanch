@@ -47,7 +47,11 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     
     GameObject Player1;
     GameObject Player2;
+    GameObject Center;
 
+    Vector2 p1Pos;
+    Vector2 p2Pos;
+    Vector2 centerPos;
 
     Rigidbody2D P1rb;
     Rigidbody2D P2rb;
@@ -70,6 +74,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
 
     void Start()
     {
+        Center = GameObject.Find("Center");
         Player1 = GameObject.Find("Player1");
         Player2 = GameObject.Find("Player2");
         P1rb = Player1.GetComponent<Rigidbody2D>();
@@ -102,7 +107,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         Debug.Log(move2P);
         if (move1P && !P1jump && !attack[0].AttackCheck) { Move(1); }
         if (move2P && !P2jump && !attack[1].AttackCheck) { Move(2); }
-        
+        GetPos();
     }
 
     public void OnPlayerCollisionEnter(int player,Collision2D collision) {
@@ -453,5 +458,17 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         Debug.Log(player);
         if (player == 2) { PlayerManager.Instance.move1P = true; }
         else if (player == 1) { PlayerManager.Instance.move2P = true; }
+    }
+
+    void GetPos() {
+        p1Pos = Player1.transform.position;
+        Debug.Log(p1Pos+ "p1");
+        p2Pos = Player2.transform.position;
+        Debug.Log(p2Pos+ "p2");
+
+        centerPos = (p1Pos + p2Pos) / 2;
+        Debug.Log(centerPos + "まんなか？？");
+
+        Center.transform.position = centerPos;
     }
 }
