@@ -7,7 +7,7 @@ public class CollisionChange {
 	// Use this for initialization
 	public void HitChange()
     {
-        if (Input.GetKeyDown("under"))
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
 
         }
