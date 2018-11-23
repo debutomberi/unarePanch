@@ -12,7 +12,7 @@ public class CollisionChange : MonoBehaviour{
 
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            this.transform.localScale += new Vector3(0, -0.5f, 0);
+            this.transform.localScale = new Vector2(1, 0.5f);
             pos.y += -0.5f;
 
             myTransform.position = pos;
@@ -20,7 +20,7 @@ public class CollisionChange : MonoBehaviour{
 
         else if (Input.GetKeyUp(KeyCode.DownArrow))
         {
-            this.transform.localScale = new Vector2(0, 1);
+            this.transform.localScale = new Vector2(1, 1);
         }
     }
 }

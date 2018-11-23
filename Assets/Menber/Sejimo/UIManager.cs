@@ -23,7 +23,6 @@ public class UIManager : SingletonMonoBehavior<UIManager>
 
     public void Start()
     {
-        Debug.Log("a");
         
         for(int i =0; i <textObj.Length;i++)
         {
