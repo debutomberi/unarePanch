@@ -108,6 +108,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         if (move1P && !P1jump && !attack[0].AttackCheck) { Move(1); }
         if (move2P && !P2jump && !attack[1].AttackCheck) { Move(2); }
         GetPos();
+        CenterLook();
     }
 
     public void OnPlayerCollisionEnter(int player,Collision2D collision) {
@@ -470,5 +471,16 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         Debug.Log(centerPos + "まんなか？？");
 
         Center.transform.position = centerPos;
+    }
+
+    void CenterLook() {
+        if (p1Pos.x > centerPos.x)
+        {
+        Player1.transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
+        }
+        if (p2Pos.x < centerPos.x)
+        {
+        Player2.transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
+        }
     }
 }
