@@ -476,11 +476,18 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     void CenterLook() {
         if (p1Pos.x > centerPos.x)
         {
-        Player1.transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
+            Player1.transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
+        }
+        else {
+            Player1.transform.localScale = new Vector2(transform.localScale.x, transform.localScale.y);
         }
         if (p2Pos.x < centerPos.x)
         {
         Player2.transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
+        }
+        else
+        {
+            Player2.transform.localScale = new Vector2(transform.localScale.x, transform.localScale.y);
         }
     }
 }
