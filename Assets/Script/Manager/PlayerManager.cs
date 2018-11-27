@@ -51,7 +51,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
 
     Vector2 p1Pos;
     Vector2 p2Pos;
-    Vector2 centerPos;
+    public Vector2 centerPos;
 
     Rigidbody2D P1rb;
     Rigidbody2D P2rb;
@@ -461,14 +461,14 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         else if (player == 1) { PlayerManager.Instance.move2P = true; }
     }
 
-    void GetPos() {
+    public void GetPos() {
         p1Pos = Player1.transform.position;
-        Debug.Log(p1Pos+ "p1");
+        //Debug.Log(p1Pos+ "p1");
         p2Pos = Player2.transform.position;
-        Debug.Log(p2Pos+ "p2");
+        //Debug.Log(p2Pos+ "p2");
 
         centerPos = (p1Pos + p2Pos) / 2;
-        Debug.Log(centerPos + "まんなか？？");
+        //Debug.Log(centerPos + "まんなか？？");
 
         Center.transform.position = centerPos;
     }
