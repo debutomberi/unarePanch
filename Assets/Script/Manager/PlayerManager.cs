@@ -58,6 +58,8 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     bool P1jump;
     bool P2jump;
 
+    bool center1p;
+    bool center2p;
     bool move1P = true;
     bool move2P = true;
 
@@ -74,6 +76,10 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
 
     void Start()
     {
+
+        center1p = false;
+        center2p = false;
+
         Center = GameObject.Find("Center");
         Player1 = GameObject.Find("Player1");
         Player2 = GameObject.Find("Player2");
@@ -474,20 +480,25 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     }
 
     void CenterLook() {
-        if (p1Pos.x > centerPos.x)
+        if (p1Pos.x > centerPos.x && !center1p)
         {
-            Player1.transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
+            Player1.transform.Rotate(new Vector3(0f, 180f, 0f));
+            center1p = true;
         }
-        else {
-            Player1.transform.localScale = new Vector2(transform.localScale.x, transform.localScale.y);
+        else if (p1Pos.x < centerPos.x && center1p == true) {
+            Player1.transform.Rotate(new Vector3(0f, 180f, 0f));
+            center1p = false;
         }
-        if (p2Pos.x < centerPos.x)
+
+        if (p2Pos.x < centerPos.x && !center2p)
         {
-        Player2.transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
+            Player2.transform.Rotate(new Vector3(0f, 180f, 0f));
+            center2p = true;
         }
-        else
+        else if (p2Pos.x > centerPos.x && center2p == true)
         {
-            Player2.transform.localScale = new Vector2(transform.localScale.x, transform.localScale.y);
+            Player2.transform.Rotate(new Vector3(0f, 180f, 0f));
+            center2p = false;
         }
     }
 }
