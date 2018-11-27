@@ -55,9 +55,14 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
 
     Rigidbody2D P1rb;
     Rigidbody2D P2rb;
+    //ジャンプしているか
     bool P1jump;
     bool P2jump;
 
+    //ガードしているか
+    bool[] guard = { false, false };
+
+    //移動可能か
     bool move1P = true;
     bool move2P = true;
 
@@ -70,6 +75,12 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     {
         get { return move2P; }
         set { move2P = value; }
+    }
+
+    public bool[] Guard
+    {
+        get{return guard;}
+        set{guard = value;}
     }
 
     void Start()
@@ -103,8 +114,6 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         Attack();
         Move1Input();
         Move2Input();
-        Debug.Log(move1P);
-        Debug.Log(move2P);
         if (move1P && !P1jump && !attack[0].AttackCheck) { Move(1); }
         if (move2P && !P2jump && !attack[1].AttackCheck) { Move(2); }
         GetPos();
@@ -330,6 +339,9 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         if (player == 2 && !move2P) { return; }
         //if(player <= 3) { return; }
         char command = StatusManager.Instance.CheckCommand(player);
+        for(int i =0;i < guard.Length; i++){
+            guard[i] = false;
+        }
         switch (command){
             //6方向に移動
             case 'r':
@@ -341,7 +353,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 else if(player == 2)
                 {
                     Player2.transform.position += new Vector3(Speed * Time.deltaTime, 0, 0);
-
+                    guard[1] = true;
                 }
                 break;
             //6方向にステップ
@@ -354,7 +366,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 if (player == 1)
                 {
                     Player1.transform.position += new Vector3(-Speed * Time.deltaTime, 0, 0);
-
+                    guard[2] = true;
                 }
                 else if (player == 2)
                 {

@@ -22,11 +22,11 @@ public class AttackCollider : MonoBehaviour {
             OnDeathblowEnter(collision);
             return;
         }
-        if (collision.gameObject.tag == "1P") {
+        if (collision.gameObject.tag == "1P"&&!PlayerManager.Instance.Guard[0]) {
             Rigidbody2D rb2D = collision.transform.parent.GetComponent<Rigidbody2D>();
             PlayerManager.Instance.HitAttack(2, -300, rb2D, PlayerManager.Instance.Move1P,guagePow);
         }
-        else if (collision.gameObject.tag == "2P") {
+        else if (collision.gameObject.tag == "2P"&& !PlayerManager.Instance.Guard[1]) {
             Rigidbody2D rb2D = collision.transform.parent.GetComponent<Rigidbody2D>();
             PlayerManager.Instance.HitAttack(1, 300, rb2D, PlayerManager.Instance.Move2P,guagePow);
         }
