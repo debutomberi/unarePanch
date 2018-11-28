@@ -61,9 +61,10 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     //ガードしているか
     bool[] guard = { false, false };
 
-    //移動可能か
+    
     bool center1p;
     bool center2p;
+    //移動可能か
     bool move1P = true;
     bool move2P = true;
 
@@ -353,12 +354,14 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 if (player == 1)
                 {
                     Player1.transform.position += new Vector3(Speed * Time.deltaTime, 0, 0);
+                    if (center1p) { guard[0] = true; Debug.Log("ガード"); }
 
                 }
                 else if(player == 2)
                 {
                     Player2.transform.position += new Vector3(Speed * Time.deltaTime, 0, 0);
-                    guard[1] = true;
+                    if (center1p) { guard[0] = true; Debug.Log("ガード"); }
+                    
                 }
                 break;
             //6方向にステップ
@@ -371,11 +374,13 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 if (player == 1)
                 {
                     Player1.transform.position += new Vector3(-Speed * Time.deltaTime, 0, 0);
-                    guard[2] = true;
+                    guard[1] = true;
+                    if (!center1p) { guard[0] = true; Debug.Log("ガード"); }
                 }
                 else if (player == 2)
                 {
                     Player2.transform.position += new Vector3(-Speed * Time.deltaTime, 0, 0);
+                    if (!center1p) { guard[0] = true; Debug.Log("ガード"); }
 
                 }
                 break;
