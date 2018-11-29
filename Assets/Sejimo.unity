@@ -536,7 +536,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 366870432}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11500000, guid: 698d443c9cbe9ae4c8eccfaa4f492102, type: 3}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &366870432
@@ -657,6 +668,7 @@ GameObject:
   - component: {fileID: 723749685}
   - component: {fileID: 723749684}
   - component: {fileID: 723749683}
+  - component: {fileID: 723749686}
   m_Layer: 5
   m_Name: Prayer2
   m_TagString: Untagged
@@ -721,7 +733,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 723749684}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11500000, guid: 698d443c9cbe9ae4c8eccfaa4f492102, type: 3}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &723749684
@@ -757,6 +780,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 723749681}
+--- !u!114 &723749686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 723749681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 698d443c9cbe9ae4c8eccfaa4f492102, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1115390324
 GameObject:
   m_ObjectHideFlags: 0
