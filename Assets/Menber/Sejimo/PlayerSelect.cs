@@ -8,8 +8,8 @@ public class PlayerSelect : MonoBehaviour {
 
     //int twoP;
 
-    GameObject player1;
-    GameObject player2;
+    int player1;
+    int player2;
 
     PlayerManager script;
 
@@ -42,14 +42,14 @@ public class PlayerSelect : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            player1 = GameObject.Find("player1");
-           // script = player1.GetComponent<PlayerManager.Player1>();
+            //player1 = GameObject.Find("player1");
+           // player1 = PlayerManager.Instance.attackColliderOnePlayer;
         }
 
         if (Input.GetKeyDown(KeyCode.B))
         {
-            player2 = GameObject.Find("player1");
-          //  script = player1.GetComponent<PlayerManager.Player2>();
+            //player2 = GameObject.Find("player1");
+           // player2 = PlayerManager.Instance.;
         }
     }
 
