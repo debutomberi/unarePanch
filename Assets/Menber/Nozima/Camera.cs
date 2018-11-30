@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class Camera : SingletonMonoBehavior<Camera> {
 
-    GameObject Maincamera;
-    GameObject Center;
-    Vector3 CenterPos;
+    GameObject mainCamera;
+    GameObject center;
+    Vector3 cp;
+    Vector3 centerPos;
+
+
+    PlayerManager script;
     void Start()
     {
-        Center = GameObject.Find("Center");
-        Maincamera = GameObject.Find("Main Camera");
+        center = GameObject.Find("Center");
+        mainCamera = GameObject.Find("Main Camera");
     }
 
     private void FixedUpdate()
@@ -19,11 +23,19 @@ public class Camera : SingletonMonoBehavior<Camera> {
     }
 
     void CameraMove() {
-        /*
-        これだとカメラの位置がおかしくなる
-        CenterPos = Center.transform.position;
-        Maincamera.transform.position = CenterPos;
-        */
-
+        cp = center.transform.position;
+ 
+        centerPos = new Vector3(cp.x, 0, -10);
+        mainCamera.transform.position = centerPos;
+        
+        //xが一定の値(x)に到達するとカメラを固定する
+        if (mainCamera.transform.position.x >= 7) {
+            mainCamera.transform.position = new Vector3(7, 0, -10);
+        }
+        //xが一定の値(-x)に到達するとカメラを固定する
+        if (mainCamera.transform.position.x <= -7)
+        {
+            mainCamera.transform.position = new Vector3(-7, 0, -10);
+        }
     }
 }
