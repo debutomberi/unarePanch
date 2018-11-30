@@ -6,6 +6,14 @@ public class AttackCollider : MonoBehaviour {
 
     int guagePow =0;
     bool deathblow;
+    bool missile;
+
+    [SerializeField]
+    float flySpeed = 2.0f;
+    [SerializeField]
+    float flyTime = 1.0f;
+    float flyTimer = 0.0f;
+
     public int GuagePow{
         get{return guagePow;}
         set{guagePow = value;}
@@ -14,6 +22,11 @@ public class AttackCollider : MonoBehaviour {
     public bool Deathblow{
         get{return deathblow;}
         set{deathblow = value;}
+    }
+
+    public bool Missile{
+        get{return missile;}
+        set{missile = value;}
     }
 
     private void OnTriggerEnter2D(Collider2D collision){
@@ -45,5 +58,12 @@ public class AttackCollider : MonoBehaviour {
         }
     }
 
+    void FlyMissile(){
+        transform.position += new Vector3(flySpeed*Time.deltaTime,0,0);
+        flyTimer += Time.deltaTime;
+        if(flyTime <= flyTimer) {
+            gameObject.SetActive(false);
+        }
+    }
     
 }

@@ -19,6 +19,7 @@ public class Attack {
     public IEnumerator Technique(int[] flame,GameObject attackCollider,SpriteRenderer player){
         //Debug.Log("attack!");
         attackCheck = true;
+        Vector3 colliderPoint = attackCollider.transform.position;
         for (int i = 0; i < flame[0] - 1; i++){
             yield return null;
         }
@@ -45,7 +46,7 @@ public class Attack {
         }
 
         //攻撃の停止
-        attackCollider.SetActive(false);
+        if (!msl) { attackCollider.SetActive(false); }
         yield return null;
 
         for (int i = 0; i < flame[2]; i++){
