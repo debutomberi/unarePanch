@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSelect : MonoBehaviour {
+public class PlayerSelect : SingletonMonoBehavior<PlayerSelect> {
 
     //int oneP;
 
@@ -44,12 +44,13 @@ public class PlayerSelect : MonoBehaviour {
         {
             //player1 = GameObject.Find("player1");
            // player1 = PlayerManager.Instance.attackColliderOnePlayer;
+
         }
 
         if (Input.GetKeyDown(KeyCode.B))
         {
             //player2 = GameObject.Find("player1");
-           // player2 = PlayerManager.Instance.;
+            //player2 = PlayerManager.Instance.;
         }
     }
 
