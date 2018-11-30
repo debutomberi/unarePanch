@@ -4,7 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : SingletonMonoBehavior<UIManager>
-{ 
+{
+
+    [SerializeField] private float time;//タイマー
+    [SerializeField] private float downSpeed;//カウントを1減らすのにかかる時間
+    bool isPlaying = false;//play画面かどうか
+
     [SerializeField]
     int maxDG = 100;
 
@@ -54,5 +59,17 @@ public class UIManager : SingletonMonoBehavior<UIManager>
         {
             _wimtext.text = "2Player Win!";
         }
+    }
+
+    public IEnumerator TimerStart()
+    {
+        while (isPlaying || time > 0)
+        {
+            time -= Time.deltaTime * downSpeed;
+            string str = time.ToString("F0");
+            //t.TextUp(str);//ここにテキストの変更をする関数を実装してくれ
+            yield return null;
+        }
+        yield break;
     }
 }

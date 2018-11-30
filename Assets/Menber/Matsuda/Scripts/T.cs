@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class T : MonoBehaviour {
-    Text text;
+    [SerializeField]Text text;
 	// Use this for initialization
 	void Start () {
-        text = GetComponent<Text>();
+        //text = this.GetComponent<Text>();
 	}
 	
 	// Update is called once per frame

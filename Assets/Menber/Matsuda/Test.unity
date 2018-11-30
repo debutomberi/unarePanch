@@ -138,8 +138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63cecd91a2865f84e9ff0d8831faddc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 90
-  downSpeed: 1.2
+  time: 10
+  downSpeed: 1.5
   t: {fileID: 1381978084}
 --- !u!212 &278757592
 SpriteRenderer:
@@ -331,6 +331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7272c9a66fe9ba742986744a5f247802, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 1381978085}
 --- !u!114 &1381978085
 MonoBehaviour:
   m_ObjectHideFlags: 0
