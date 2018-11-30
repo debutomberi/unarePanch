@@ -25,6 +25,8 @@ public class UIManager : SingletonMonoBehavior<UIManager>
     [SerializeField]
     GameObject wintext;
     Text _wimtext;
+    [SerializeField]
+    Text timerText;
 
     public void Start()
     {
@@ -66,8 +68,7 @@ public class UIManager : SingletonMonoBehavior<UIManager>
         while (isPlaying || time > 0)
         {
             time -= Time.deltaTime * downSpeed;
-            string str = time.ToString("F0");
-            //t.TextUp(str);//ここにテキストの変更をする関数を実装してくれ
+            timerText.text = time.ToString("F0");
             yield return null;
         }
         yield break;
