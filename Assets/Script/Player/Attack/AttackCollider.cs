@@ -8,25 +8,39 @@ public class AttackCollider : MonoBehaviour {
     bool deathblow;
     bool missile;
 
+    //飛ぶスピード
     [SerializeField]
     float flySpeed = 2.0f;
+    //飛ぶ時間
     [SerializeField]
     float flyTime = 1.0f;
     float flyTimer = 0.0f;
+    //飛び道具初期位置
+    Vector3 firstColliderPoint;
 
     public int GuagePow{
         get{return guagePow;}
         set{guagePow = value;}
     }
-
     public bool Deathblow{
         get{return deathblow;}
         set{deathblow = value;}
     }
-
     public bool Missile{
         get{return missile;}
         set{missile = value;}
+    }
+    public float FlyTime{
+        get{return flyTime;}
+        set{ flyTime = value;}
+    }
+    public Vector3 FirstColliderPoint{
+        get{return firstColliderPoint;}
+        set{firstColliderPoint = value;}
+    }
+
+    private void FixedUpdate(){
+        if (missile) { FlyMissile(); }
     }
 
     private void OnTriggerEnter2D(Collider2D collision){
@@ -61,7 +75,9 @@ public class AttackCollider : MonoBehaviour {
     void FlyMissile(){
         transform.position += new Vector3(flySpeed*Time.deltaTime,0,0);
         flyTimer += Time.deltaTime;
-        if(flyTime <= flyTimer) {
+        if(FlyTime <= flyTimer) {
+            transform.position = firstColliderPoint;
+            missile = false;
             gameObject.SetActive(false);
         }
     }
