@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class PlayerSelect : SingletonMonoBehavior<PlayerSelect> {
 
-    //int oneP;
 
-    //int twoP;
+    int Pselect;
 
-    int player1;
-    int player2;
+    public int a;
+    int b;
+
+    public int A { get{ return a; } }
+
 
     PlayerManager script;
 
@@ -24,40 +26,22 @@ public class PlayerSelect : SingletonMonoBehavior<PlayerSelect> {
 		
 	}
 
-    //public void OnClick(int select)
-    //{
-    //    switch (select)
-    //    {
-    //        case 0:
-    //           // Debug.Log;
-    //            break;
-
-    //        case 1:
-    //           // Debug.Log;
-    //            break;
-    //    }
-    //}
-
-    void select ()
+    public void Select ()
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            //player1 = GameObject.Find("player1");
-           // player1 = PlayerManager.Instance.attackColliderOnePlayer;
-
+            
         }
 
         if (Input.GetKeyDown(KeyCode.B))
         {
-            //player2 = GameObject.Find("player1");
-            //player2 = PlayerManager.Instance.;
+
         }
     }
 
     public void PlayerS()
     {
-        //oneP = PlayerManager.
-
-        //twoP = PlayerManager.
+        a = 100;
+        b = 200;
     }
 }

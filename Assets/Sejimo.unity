@@ -495,7 +495,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 366870428}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 698d443c9cbe9ae4c8eccfaa4f492102, type: 3}
+  m_Script: {fileID: 11500000, guid: a04097ff27968064db70928d03711995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &366870431
@@ -537,12 +537,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 698d443c9cbe9ae4c8eccfaa4f492102, type: 3}
-        m_MethodName: 
+      - m_Target: {fileID: 366870430}
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -791,6 +791,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 698d443c9cbe9ae4c8eccfaa4f492102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  a: 0
 --- !u!1 &1115390324
 GameObject:
   m_ObjectHideFlags: 0
@@ -1334,6 +1335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 698d443c9cbe9ae4c8eccfaa4f492102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  a: 0
 --- !u!4 &2122041585
 Transform:
   m_ObjectHideFlags: 0
