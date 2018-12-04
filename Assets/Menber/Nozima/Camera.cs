@@ -38,4 +38,20 @@ public class Camera : SingletonMonoBehavior<Camera> {
             mainCamera.transform.position = new Vector3(-7, 0, -10);
         }
     }
+
+    public void TouchLeftWall(Collision2D collision)
+    {
+        //左の壁に触れてるときにカメラを左に動かしていく
+        
+    }
+    public void TouchRightWall(Collision2D collision)
+    {
+        //右の壁に触れてるときにカメラを右に動かしていく
+
+    }
+    public void TouchTwoWall(Collision2D collsion)
+    {
+        //どちらの壁にも触れてるときカメラを動かないようにする
+        
+    }
 }
