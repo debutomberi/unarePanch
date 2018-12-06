@@ -15,10 +15,11 @@ public class Attack {
         get{ return attackCheck;}
     }
 
-    //近接攻撃の処理
-    public IEnumerator Technique(int[] flame,GameObject attackCollider,SpriteRenderer player,float time=1.0f){
-        //Debug.Log("attack!");
+    //攻撃の処理
+    public IEnumerator Technique(int[] flame,GameObject attackCollider,SpriteRenderer player,Sprite[] attackSprite,float time=1.0f){
+        //攻撃発生までの猶予
         attackCheck = true;
+        player.sprite = attackSprite[1];
         for (int i = 0; i < flame[0] - 1; i++){
             yield return null;
         }
@@ -34,7 +35,8 @@ public class Attack {
         }
         attackCollider.SetActive(true);
         //Debug.Log(pow);    
-        player.sprite = Resources.Load("Images/斜め横　パピヨンEX 差分", typeof(Sprite)) as Sprite;
+        //player.sprite = Resources.Load("Images/斜め横　パピヨンEX 差分", typeof(Sprite)) as Sprite;
+        player.sprite = attackSprite[2];
         attackColliderScript.GuagePow = pow;
         yield return null;
 
@@ -44,6 +46,7 @@ public class Attack {
 
         //攻撃の停止
         if (!msl) { attackCollider.SetActive(false); }
+        player.sprite = attackSprite[3];
         yield return null;
 
         for (int i = 0; i < flame[2]; i++){
@@ -51,7 +54,8 @@ public class Attack {
         }
 
         //攻撃の終了
-        player.sprite = Resources.Load("Images/パピヨンEX", typeof(Sprite)) as Sprite;
+        //player.sprite = Resources.Load("Images/パピヨンEX", typeof(Sprite)) as Sprite;
+        player.sprite = attackSprite[4];
         attackCheck = false;
             
         
@@ -67,7 +71,9 @@ public class Attack {
         pow = paramete.power;
         db = paramete.deathblow;
         msl = paramete.missile;
-        return Technique(attackFlame,attackCollider,player, time);
+        if(paramete.AttackSprite.Length != 5) { Debug.LogError("攻撃のスプライトの数が違います。");return null; }
+        Sprite[] Sprite = paramete.AttackSprite;
+        return Technique(attackFlame,attackCollider,player,Sprite,time);
     }
 
     
