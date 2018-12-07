@@ -68,6 +68,15 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     bool move1P = true;
     bool move2P = true;
 
+    //デフォルトのSprite
+    Sprite[] defultSprite = new Sprite[2];
+    //移動するときのsprites
+    Sprite[][] moveSprites = { new Sprite[3], new Sprite[3] };
+    //ガードのSprite
+    Sprite[] guardSprite = new Sprite[2];
+    //ジャンプのSprite
+    Sprite[] jumpSprite = new Sprite[2];
+
     public bool Move1P
     {
         get{return move1P;}
@@ -127,10 +136,10 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     }
 
     public void OnPlayerCollisionEnter(int player,Collision2D collision) {
-        if(player == 1) {
+        if(player == 1&&P1jump) {
             P1jump = false;
         }
-        else if(player == 2) {
+        else if(player == 2&&P2jump) {
             P2jump = false;
         }
         else {
