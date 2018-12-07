@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneManagers : SingletonMonoBehavior<SceneManagers> {
-    public enum Scene
+    enum Scene
     {
         start,
         charaSelect,
@@ -13,7 +13,7 @@ public class SceneManagers : SingletonMonoBehavior<SceneManagers> {
         mainGame,
         result
     }
-    public Scene scene;
+    Scene scene;
     
 
 	// Use this for initialization
@@ -27,7 +27,9 @@ public class SceneManagers : SingletonMonoBehavior<SceneManagers> {
 	void Update () {
 		
 	}
-
+    /// <summary>
+    /// シーン変える関数
+    /// </summary>
     public void ChangeSceneState()
     {
         switch (scene)
