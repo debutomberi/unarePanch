@@ -19,19 +19,12 @@ public class PlayerGet : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //if (Input.GetKeyDown(KeyCode.DownArrow))
-        //{
-        //    int select = script.a;
-        //    Debug.Log(select);
-        //}
-
 
     }
 
     public void OnClick()
     {
         int select = PlayerSelect.Instance.a;
-        //int select = script.a;
         Debug.Log(select);
     }
 
