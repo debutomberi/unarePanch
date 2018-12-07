@@ -7,8 +7,8 @@ public class PlayerSelect : SingletonMonoBehavior<PlayerSelect> {
 
     int Pselect;
 
-    public int a;
-    int b;
+    public int a = 100;
+    public int b;
 
     public int A { get{ return a; } }
 
@@ -35,7 +35,7 @@ public class PlayerSelect : SingletonMonoBehavior<PlayerSelect> {
 
         if (Input.GetKeyDown(KeyCode.B))
         {
-
+            
         }
     }
 
