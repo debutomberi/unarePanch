@@ -60,6 +60,8 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     bool P2jump;
     //ガードしているか
     bool[] guard = { false, false };
+    //しゃがんでいるか
+    bool[] shit = { false, false };
 
     
     bool center1p;
@@ -354,8 +356,13 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         if (player == 2 && !move2P) { return; }
         //if(player <= 3) { return; }
         char command = StatusManager.Instance.CheckCommand(player);
-        for(int i =0;i < guard.Length; i++){
+        for(int i =0;i < guard.Length; i++)
+        {
             guard[i] = false;
+        }
+        for(int i=0;i < shit.Length; i++)
+        {
+            shit[i] = false;
         }
         switch (command){
             //6方向に移動
@@ -369,7 +376,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 else if(player == 2)
                 {
                     Player2.transform.position += new Vector3(Speed * Time.deltaTime, 0, 0);
-                    if (center1p) { guard[0] = true; Debug.Log("ガード"); }
+                    if (center2p) { guard[0] = true; Debug.Log("ガード"); }
                     
                 }
                 break;
@@ -389,7 +396,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 else if (player == 2)
                 {
                     Player2.transform.position += new Vector3(-Speed * Time.deltaTime, 0, 0);
-                    if (!center1p) { guard[0] = true; Debug.Log("ガード"); }
+                    if (!center2p) { guard[0] = true; Debug.Log("ガード"); }
 
                 }
                 break;
@@ -435,9 +442,52 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                     P2jump = true;
                 }
                 break;
+            //1しゃがみ
+            case 'q':
+                if (player == 1)
+                {
+                    shit[0] = true;
+                    if (!center1p) { guard[0] = true; Debug.Log("ガード"); }
+                }
+                else if (player == 2)
+                {
+                    shit[1] = true;
+                    if (!center2p) { guard[0] = true; Debug.Log("ガード"); }
+                }
+                break;
+            //2しゃがみ
+            case 'd':
+                if (player == 1)
+                {
+                    shit[0] = true;
+                }
+                else if (player == 2)
+                {
+                    shit[1] = true;
+                }
+                break;
+            case 'e':
+                if (player == 1)
+                {
+                    shit[0] = true;
+                    if (center1p) { guard[0] = true; Debug.Log("ガード"); }
+                }
+                else if (player == 2)
+                {
+                    shit[1] = true;
+                    if (center2p) { guard[0] = true; Debug.Log("ガード"); }
+                }
+                break;
             default:break;
         }
-            
+        if (shit[0])
+        {
+
+        }
+        if(shit[1])
+        {
+
+        }
     }
 
     void AttackOccurrence(int attackNum , int player)
