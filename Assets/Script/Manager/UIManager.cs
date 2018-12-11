@@ -23,7 +23,6 @@ public class UIManager : SingletonMonoBehavior<UIManager>
 
     public void Start()
     {
-        //Debug.Log("a");
         
         for(int i =0; i <textObj.Length;i++)
         {
@@ -45,14 +44,15 @@ public class UIManager : SingletonMonoBehavior<UIManager>
 
     public void WinText(bool isWin) {
         _wimtext = wintext.GetComponent<Text>();
+        _wimtext.text = (isWin)? "1Player Win!" : "2Player Win!";
 
-        if (isWin)
-        {
-            _wimtext.text = "1Player Win!";
-        }
-        else
-        {
-            _wimtext.text = "2Player Win!";
-        }
+        //if (isWin)
+        //{
+        //    _wimtext.text = "1Player Win!";
+        //}
+        //else
+        //{
+        //    _wimtext.text = "2Player Win!";
+        //}
     }
 }
