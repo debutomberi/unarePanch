@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerGet : MonoBehaviour {
 
+    [SerializeField]
+    int PlayerID = 1;
+
+    [SerializeField]
     GameObject pget;
 
     PlayerSelect script;
@@ -12,20 +16,20 @@ public class PlayerGet : MonoBehaviour {
     //Pselect = 0;
 
 	// Use this for initialization
-	void Start () {
-        pget = GameObject.Find("pget");
-        script =pget.GetComponent<PlayerSelect>();
+	void Start ()
+    {
+
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 
     }
 
     public void OnClick()
     {
-        int select = PlayerSelect.Instance.a;
-        Debug.Log(select);
+        PlayerSelect.Instance.Player[PlayerID-1] = pget;
     }
 
 
