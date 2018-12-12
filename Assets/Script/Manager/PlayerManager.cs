@@ -63,6 +63,12 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     //しゃがんでいるか
     bool[] shit = { false, false };
 
+    //立ちの当たり判定
+    [SerializeField]
+    GameObject[] standCollider = new GameObject[2];
+    //しゃがみの当たり判定
+    [SerializeField]
+    GameObject[] shitCollider = new GameObject[2];
     
     bool center1p;
     bool center2p;
@@ -480,14 +486,20 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 break;
             default:break;
         }
-        if (shit[0])
+        for (int i =0; i < shit.Length; i++)
         {
-
+            if (standCollider[i].activeInHierarchy&&shit[i])
+            {
+                standCollider[i].SetActive(false);
+                shitCollider[i].SetActive(true);
+            }
+            else if (shitCollider[i].activeInHierarchy&&!shit[i])
+            {
+                shitCollider[i].SetActive(false);
+                standCollider[i].SetActive(true);
+            }
         }
-        if(shit[1])
-        {
 
-        }
     }
 
     void AttackOccurrence(int attackNum , int player)
