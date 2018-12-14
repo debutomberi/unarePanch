@@ -9,7 +9,6 @@ public class SceneManagers : SingletonMonoBehavior<SceneManagers> {
     {
         start,
         charaSelect,
-        colerSelect,
         mainGame,
         result
     }
@@ -35,13 +34,10 @@ public class SceneManagers : SingletonMonoBehavior<SceneManagers> {
         switch (scene)
         {
             case Scene.start:
-                scene = Scene.charaSelect;
-                SceneManager.LoadScene("Select");
+                scene = Scene.mainGame;
+                SceneManager.LoadScene("Main");
                 break;
             case Scene.charaSelect:
-                scene = Scene.colerSelect;
-                break;
-            case Scene.colerSelect:
                 scene = Scene.mainGame;
                 SceneManager.LoadScene("Main");
                 break;

@@ -71,8 +71,9 @@ public class ButtonMethod : MonoBehaviour {
         }
         if (mIsAction) ScaleUp();
     }
-    public void StartButton()
+    public void ChangeButton()
     {
         SceneManagers.Instance.ChangeSceneState();
     }
+
 }
