@@ -531,11 +531,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d17664dc1f07214389cd879a2455c15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  time: 0
+  downSpeed: 0
   maxDG: 100
   textObj:
   - {fileID: 2139367995}
   - {fileID: 2100323525}
   wintext: {fileID: 1742445292}
+  timerText: {fileID: 0}
 --- !u!1 &851732868
 GameObject:
   m_ObjectHideFlags: 0
@@ -1692,6 +1695,7 @@ GameObject:
   - component: {fileID: 1980700134}
   - component: {fileID: 1980700133}
   - component: {fileID: 1980700132}
+  - component: {fileID: 1980700137}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1771,6 +1775,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1980700137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1980700131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b92ec480b49aec9408675f1094939414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1986602569
 GameObject:
   m_ObjectHideFlags: 0

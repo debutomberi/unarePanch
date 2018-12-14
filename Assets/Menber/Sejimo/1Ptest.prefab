@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 212181850322548202}
   - component: {fileID: 114767701729688356}
   m_Layer: 0
-  m_Name: Chara
+  m_Name: 1Ptest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,6 +111,7 @@ MonoBehaviour:
   attackCollider:
   - {fileID: 0}
   attackParameter: []
+  image: {fileID: 0}
 --- !u!212 &212181850322548202
 SpriteRenderer:
   m_ObjectHideFlags: 1

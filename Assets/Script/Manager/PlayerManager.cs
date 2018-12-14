@@ -150,9 +150,9 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         else if(player == 2&&P2jump) {
             P2jump = false;
         }
-        else {
-            Debug.LogError("プレイヤーの接触には１か２を選択してください");
-        }
+        //else if(player !=1||player !=2){
+        //    Debug.LogError("プレイヤーの接触には１か２を選択してください");
+        //}
     } 
 
     void Attack()
