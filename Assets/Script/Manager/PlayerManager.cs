@@ -60,13 +60,30 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     bool P2jump;
     //ガードしているか
     bool[] guard = { false, false };
+    //しゃがんでいるか
+    bool[] shit = { false, false };
 
+    //立ちの当たり判定
+    [SerializeField]
+    GameObject[] standCollider = new GameObject[2];
+    //しゃがみの当たり判定
+    [SerializeField]
+    GameObject[] shitCollider = new GameObject[2];
     
     bool center1p;
     bool center2p;
     //移動可能か
     bool move1P = true;
     bool move2P = true;
+
+    //デフォルトのSprite
+    Sprite[] defultSprite = new Sprite[2];
+    //移動するときのsprites
+    Sprite[][] moveSprites = { new Sprite[3], new Sprite[3] };
+    //ガードのSprite
+    Sprite[] guardSprite = new Sprite[2];
+    //ジャンプのSprite
+    Sprite[] jumpSprite = new Sprite[2];
 
     public bool Move1P
     {
@@ -127,10 +144,10 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     }
 
     public void OnPlayerCollisionEnter(int player,Collision2D collision) {
-        if(player == 1) {
+        if(player == 1&&P1jump) {
             P1jump = false;
         }
-        else if(player == 2) {
+        else if(player == 2&&P2jump) {
             P2jump = false;
         }
         else {
@@ -345,8 +362,13 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         if (player == 2 && !move2P) { return; }
         //if(player <= 3) { return; }
         char command = StatusManager.Instance.CheckCommand(player);
-        for(int i =0;i < guard.Length; i++){
+        for(int i =0;i < guard.Length; i++)
+        {
             guard[i] = false;
+        }
+        for(int i=0;i < shit.Length; i++)
+        {
+            shit[i] = false;
         }
         switch (command){
             //6方向に移動
@@ -360,7 +382,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 else if(player == 2)
                 {
                     Player2.transform.position += new Vector3(Speed * Time.deltaTime, 0, 0);
-                    if (center1p) { guard[0] = true; Debug.Log("ガード"); }
+                    if (center2p) { guard[0] = true; Debug.Log("ガード"); }
                     
                 }
                 break;
@@ -380,7 +402,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 else if (player == 2)
                 {
                     Player2.transform.position += new Vector3(-Speed * Time.deltaTime, 0, 0);
-                    if (!center1p) { guard[0] = true; Debug.Log("ガード"); }
+                    if (!center2p) { guard[0] = true; Debug.Log("ガード"); }
 
                 }
                 break;
@@ -426,9 +448,58 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                     P2jump = true;
                 }
                 break;
+            //1しゃがみ
+            case 'q':
+                if (player == 1)
+                {
+                    shit[0] = true;
+                    if (!center1p) { guard[0] = true; Debug.Log("ガード"); }
+                }
+                else if (player == 2)
+                {
+                    shit[1] = true;
+                    if (!center2p) { guard[0] = true; Debug.Log("ガード"); }
+                }
+                break;
+            //2しゃがみ
+            case 'd':
+                if (player == 1)
+                {
+                    shit[0] = true;
+                }
+                else if (player == 2)
+                {
+                    shit[1] = true;
+                }
+                break;
+            case 'e':
+                if (player == 1)
+                {
+                    shit[0] = true;
+                    if (center1p) { guard[0] = true; Debug.Log("ガード"); }
+                }
+                else if (player == 2)
+                {
+                    shit[1] = true;
+                    if (center2p) { guard[0] = true; Debug.Log("ガード"); }
+                }
+                break;
             default:break;
         }
-            
+        for (int i =0; i < shit.Length; i++)
+        {
+            if (standCollider[i].activeInHierarchy&&shit[i])
+            {
+                standCollider[i].SetActive(false);
+                shitCollider[i].SetActive(true);
+            }
+            else if (shitCollider[i].activeInHierarchy&&!shit[i])
+            {
+                shitCollider[i].SetActive(false);
+                standCollider[i].SetActive(true);
+            }
+        }
+
     }
 
     void AttackOccurrence(int attackNum , int player)

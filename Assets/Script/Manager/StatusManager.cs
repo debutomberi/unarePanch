@@ -129,37 +129,19 @@ public class StatusManager : SingletonMonoBehavior<StatusManager> {
         int lengh = commandlist.Count;
         //Debug.Log(lengh);
         if(lengh == 0) { return '5'; }
-        if (commandlist[lengh-1] == 8) {
-            command = 'j';
-        }
-        if (commandlist[lengh-1] == 2) {
-            command = 'd';
-        }
+        char[] simpleCommandList = { '0', 'q', 'd', 'e', 'l', 'n', 'r', 'z', 'j', 'c' };
+        command = simpleCommandList[commandlist[lengh - 1]];
         if (commandlist[lengh-1] == 6) {
-            command = 'r';
             if (lengh <= 3) { return command; }
             if (commandlist[lengh - 2] == 5 && commandlist[lengh - 3] == 6) {
                 command = 'S';
             }
         }
-        if (commandlist[lengh-1] == 3) {
-            command = 'e';
-        }
-        if (commandlist[lengh-1] == 9) {
-            command = 'c';
-        }
         if(commandlist[lengh-1] == 4) {
-            command = 'l';
             if (lengh <= 3) { return command; }
             if (commandlist[lengh - 2] == 5 && commandlist[lengh - 3] == 4) {
                 command = 's';
             }
-        }
-        if(commandlist[lengh-1] == 1) {
-            command = 'q';
-        }
-        if(commandlist[lengh-1] == 7) {
-            command = 'z';
         }
         return command;
     }
