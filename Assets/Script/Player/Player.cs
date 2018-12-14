@@ -21,6 +21,20 @@ public class Player : MonoBehaviour {
         if(collision.gameObject.tag == "Floor") {
             PlayerManager.Instance.OnPlayerCollisionEnter(playerID, collision);
         }
-        
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        //if (collision.gameObject.name == "LeftWall")
+        //{
+        //    Camera.Instance.TouchLeftWall(collision);
+        //}
+        //if (collision.gameObject.name == "RightWall")
+        //{
+        //    Camera.Instance.TouchRightWall(collision);
+        //}
+        if (collision.gameObject.name == "RightWall" && collision.gameObject.name == "LeftWall")
+        {
+            Camera.Instance.TouchTwoWall(collision);
+        }
     }
 }
