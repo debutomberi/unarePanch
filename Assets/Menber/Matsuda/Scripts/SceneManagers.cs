@@ -5,14 +5,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneManagers : SingletonMonoBehavior<SceneManagers> {
-    enum Scene
+    public enum Scene
     {
         start,
         charaSelect,
         mainGame,
         result
     }
-    Scene scene;
+    public Scene scene;
     
 
 	// Use this for initialization
