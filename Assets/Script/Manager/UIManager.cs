@@ -51,8 +51,8 @@ public class UIManager : SingletonMonoBehavior<UIManager>
 
     public void WinText(bool isWin) {
         _wimtext = wintext.GetComponent<Text>();
-        _wimtext.text = (isWin)? "1Player Win!" : "2Player Win!";
-
+        _wimtext.text = (isWin)? "1Player Win!\nBまたは〇ボタンでリザルト画面へ" : "2Player Win!\nBまたは〇ボタンでリザルト画面へ";
+        PlayerManager.Instance.isPlaying = false;
         //if (isWin)
         //{
         //    _wimtext.text = "1Player Win!";

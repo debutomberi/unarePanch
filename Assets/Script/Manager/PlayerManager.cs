@@ -85,6 +85,9 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     //ジャンプのSprite
     Sprite[] jumpSprite = new Sprite[2];
 
+    //勝負がついたか
+    public bool isPlaying = true;
+
     public bool Move1P
     {
         get{return move1P;}
@@ -134,13 +137,23 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     // Update is called once per frame
     void FixedUpdate()
     {
-        Attack();
-        Move1Input();
-        Move2Input();
-        if (move1P && !P1jump && !attack[0].AttackCheck) { Move(1); }
-        if (move2P && !P2jump && !attack[1].AttackCheck) { Move(2); }
-        GetPos();
-        CenterLook();
+        if (!isPlaying)
+        {
+            if(Input.GetKeyDown("joystick 1 button 2"))
+            {
+                SceneManagers.Instance.ChangeSceneState();
+            }
+        }
+        else
+        {
+            Attack();
+            Move1Input();
+            Move2Input();
+            if (move1P && !P1jump && !attack[0].AttackCheck) { Move(1); }
+            if (move2P && !P2jump && !attack[1].AttackCheck) { Move(2); }
+            GetPos();
+            CenterLook();
+        }
     }
 
     public void OnPlayerCollisionEnter(int player,Collision2D collision) {
