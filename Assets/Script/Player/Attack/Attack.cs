@@ -20,7 +20,13 @@ public class Attack {
         //攻撃発生までの猶予
         attackCheck = true;
         player.sprite = attackSprite[1];
-        for (int i = 0; i < flame[0] - 1; i++){
+
+        for (int i = 0; i <= flame[0]/2; i++){
+            yield return null;
+        }
+        player.sprite = attackSprite[2];
+
+        for (int i = 0; i <= flame[0]/2; i++){
             yield return null;
         }
 
@@ -36,26 +42,36 @@ public class Attack {
         attackCollider.SetActive(true);
         //Debug.Log(pow);    
         //player.sprite = Resources.Load("Images/斜め横　パピヨンEX 差分", typeof(Sprite)) as Sprite;
-        player.sprite = attackSprite[2];
+        player.sprite = attackSprite[3];
         attackColliderScript.GuagePow = pow;
         yield return null;
 
-        for (int i = 0; i < flame[1] - 1; i++){
+        for (int i = 0; i <= flame[1]/2; i++){
+            yield return null;
+        }
+        player.sprite = attackSprite[4];
+
+        for (int i = 0; i <= flame[1]/2; i++){
             yield return null;
         }
 
         //攻撃の停止
         if (!msl) { attackCollider.SetActive(false); }
-        player.sprite = attackSprite[3];
+        player.sprite = attackSprite[5];
         yield return null;
 
-        for (int i = 0; i < flame[2]; i++){
+        for (int i = 0; i <= flame[2]/2; i++){
+            yield return null;
+        }
+        player.sprite = attackSprite[6];
+
+        for (int i = 0; i <= flame[2]/2; i++){
             yield return null;
         }
 
         //攻撃の終了
         //player.sprite = Resources.Load("Images/パピヨンEX", typeof(Sprite)) as Sprite;
-        player.sprite = attackSprite[4];
+        player.sprite = attackSprite[7];
         attackCheck = false;
             
         
