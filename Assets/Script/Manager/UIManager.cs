@@ -27,6 +27,10 @@ public class UIManager : SingletonMonoBehavior<UIManager>
     Text _wimtext;
     [SerializeField]
     Text timerText;
+    //数値の画像
+    [SerializeField] Sprite[] spr;
+    //画像を表示するImage
+    [SerializeField] Image[] image;
 
     public void Start()
     {
@@ -72,5 +76,16 @@ public class UIManager : SingletonMonoBehavior<UIManager>
             yield return null;
         }
         yield break;
+    }
+
+    public void NumToSpr(int num)
+    {
+        string numStr = num.ToString();
+        for (int i = 0; i < numStr.Length; i++)
+        {
+            string a = numStr.Substring(i, i);
+            int b = int.Parse(a);
+            image[i].sprite = spr[b];
+        }
     }
 }
