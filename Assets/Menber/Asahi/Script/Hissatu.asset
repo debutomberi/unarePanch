@@ -9,11 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ddd20f58f1876f7439da3725bb4222f2, type: 3}
-  m_Name: Panch
+  m_Name: Hissatu
   m_EditorClassIdentifier: 
-  oFlame: 5
-  cFlame: 10
-  sFlame: 10
-  power: 10
-  deathblow: 0
+  oFlame: 15
+  cFlame: 30
+  sFlame: 60
+  power: 0
+  deathblow: 1
   missile: 0

@@ -21,4 +21,12 @@ public class AttackTable : ScriptableObject{
     [SerializeField]
     [HeaderAttribute("飛び道具か")]
     public bool missile;
+    [SerializeField]
+    [HeaderAttribute("飛ぶ時間")]
+    public float flyTime = 1.0f;
+    [SerializeField]
+    [HeaderAttribute("攻撃の見た目")]
+    public Sprite[] AttackSprite = new Sprite[5];
+
+
 }

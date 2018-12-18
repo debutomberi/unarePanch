@@ -7,6 +7,7 @@ TagManager:
   - 1P
   - 2P
   - Attack
+  - Floor
   layers:
   - Default
   - TransparentFX

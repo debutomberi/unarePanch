@@ -111,6 +111,7 @@ MonoBehaviour:
   attackCollider:
   - {fileID: 0}
   attackParameter: []
+  image: {fileID: 0}
 --- !u!212 &212181850322548202
 SpriteRenderer:
   m_ObjectHideFlags: 1

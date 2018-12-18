@@ -8,7 +8,8 @@ public class Test : SingletonMonoBehavior<Test> {
     List<GameObject> attackCollider = new List<GameObject>();
     [SerializeField]
     List<AttackTable> attackParameter = new List<AttackTable>();
-
+    [SerializeField]
+    SpriteRenderer image;
 
     Attack attack = new Attack();
 
@@ -30,7 +31,7 @@ public class Test : SingletonMonoBehavior<Test> {
 
     void Attack(int AttackNum) {
         if (attack.AttackCheck) { return; }
-        IEnumerator coroutine = attack.SetParamete(attackParameter[AttackNum],attackCollider[AttackNum]);
+        IEnumerator coroutine = attack.SetParamete(attackParameter[AttackNum],attackCollider[AttackNum],image);
         StartCoroutine(coroutine);
     }
 

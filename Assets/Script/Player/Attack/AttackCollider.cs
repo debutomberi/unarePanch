@@ -6,14 +6,41 @@ public class AttackCollider : MonoBehaviour {
 
     int guagePow =0;
     bool deathblow;
+    bool missile;
+
+    //飛ぶスピード
+    [SerializeField]
+    float flySpeed = 2.0f;
+    //飛ぶ時間
+    [SerializeField]
+    float flyTime = 1.0f;
+    float flyTimer = 0.0f;
+    //飛び道具初期位置
+    Vector3 firstColliderPoint;
+
     public int GuagePow{
         get{return guagePow;}
         set{guagePow = value;}
     }
-
     public bool Deathblow{
         get{return deathblow;}
         set{deathblow = value;}
+    }
+    public bool Missile{
+        get{return missile;}
+        set{missile = value;}
+    }
+    public float FlyTime{
+        get{return flyTime;}
+        set{ flyTime = value;}
+    }
+    public Vector3 FirstColliderPoint{
+        get{return firstColliderPoint;}
+        set{firstColliderPoint = value;}
+    }
+
+    private void FixedUpdate(){
+        if (missile) { FlyMissile(); }
     }
 
     private void OnTriggerEnter2D(Collider2D collision){
@@ -22,36 +49,37 @@ public class AttackCollider : MonoBehaviour {
             OnDeathblowEnter(collision);
             return;
         }
-
-        if(collision.gameObject.tag == "1P") {
-            collision.GetComponent<Rigidbody2D>().AddForce(new Vector2(-100, 0));
-            StatusManager.Instance.GuageUp(1, guagePow);
+        if (collision.gameObject.tag == "1P"&&!PlayerManager.Instance.Guard[0]) {
+            Rigidbody2D rb2D = collision.transform.parent.GetComponent<Rigidbody2D>();
+            PlayerManager.Instance.HitAttack(2, -300, rb2D, PlayerManager.Instance.Move1P,guagePow);
         }
-        else if (collision.gameObject.tag == "2P") {
-            collision.GetComponent<Rigidbody2D>().AddForce(new Vector2(100, 0));
-            StatusManager.Instance.GuageUp(2, guagePow);
+        else if (collision.gameObject.tag == "2P"&& !PlayerManager.Instance.Guard[1]) {
+            Rigidbody2D rb2D = collision.transform.parent.GetComponent<Rigidbody2D>();
+            PlayerManager.Instance.HitAttack(1, 300, rb2D, PlayerManager.Instance.Move2P,guagePow);
         }
-        else if(collision.gameObject.tag == "Attack") {
-            if (transform.parent.tag == "1P"){
-                collision.GetComponent<Rigidbody2D>().AddForce(new Vector2(-100, 0));
-                transform.parent.GetComponent<Rigidbody2D>().AddForce(new Vector2(100, 0));
-            }
-            else if(transform.parent.tag == "2P") {
-                collision.transform.parent.GetComponent<Rigidbody2D>().AddForce(new Vector2(100, 0));
-                transform.parent.GetComponent<Rigidbody2D>().AddForce(new Vector2(-100, 0));
-            }
-
-        }
+        UIManager.Instance.PageChenge();
     }
     
     //必殺技の処理
     void OnDeathblowEnter(Collider2D collision) {
         if(collision.gameObject.tag == "1P") {
             Debug.Log("2Pの勝ち！");
+            UIManager.Instance.WinText(false);
         }
         else if (collision.gameObject.tag == "2P") {
             Debug.Log("1Pの勝ち！");
+            UIManager.Instance.WinText(true);
         }
     }
 
+    void FlyMissile(){
+        transform.position += new Vector3(flySpeed*Time.deltaTime,0,0);
+        flyTimer += Time.deltaTime;
+        if(FlyTime <= flyTimer) {
+            transform.position = firstColliderPoint;
+            missile = false;
+            gameObject.SetActive(false);
+        }
+    }
+    
 }
