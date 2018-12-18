@@ -25,12 +25,18 @@ public class Camera : SingletonMonoBehavior<Camera> {
     }
 
     void CameraMove() {
-        cp = center.transform.position;
+        
         if (fixation == false)
         {
+            cp = center.transform.position;
             centerPos = new Vector3(cp.x, 0, -10);
             mainCamera.transform.position = centerPos;
         }
+        if (fixation == true) {
+            Debug.Log("true");
+        }
+
+
         //xが一定の値(x)に到達するとカメラを固定する
         if (mainCamera.transform.position.x >= 7) {
             mainCamera.transform.position = new Vector3(7, 0, -10);
@@ -60,4 +66,9 @@ public class Camera : SingletonMonoBehavior<Camera> {
         fixation = true;
         Debug.Log("hogehoge");
     }
+    public void NotTouchWall() {
+        fixation = false;
+        Debug.Log("fugafuga");
+    }
+
 }
