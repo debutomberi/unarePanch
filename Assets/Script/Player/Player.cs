@@ -48,18 +48,4 @@ public class Player : MonoBehaviour {
         
 
     }
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        
-
-        //if (collision.gameObject.name == "RightWall")
-        //{
-        //    oneTouchWall = true;
-        //}
-        //if (collision.gameObject.name == "LeftWall" && oneTouchWall == true)
-        //{
-        //    Camera.Instance.TouchTwoWall(collision);
-        //}
-
-    }
 }
