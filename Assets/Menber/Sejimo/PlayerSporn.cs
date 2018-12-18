@@ -10,9 +10,9 @@ public class PlayerSporn : MonoBehaviour {
 
     PlayerSelect script;
     GameObject _player;     // playerの入れ物
-
+    GameObject status;
+    PlayerManager pScript;
     void Start () {
-		
 	}
 	
 	// Update is called once per frame
@@ -27,11 +27,16 @@ public class PlayerSporn : MonoBehaviour {
         Debug.Log(_player.transform.position);
     }
 
-    void PlayerAwake()
+    void Awake()
     {
+        /*
         // PlayerGet.cs内でsetしたプレイヤーをgetする。
         _player = PlayerSelect.Instance.Player[playerID - 1];
         _player.transform.position = Vector3.zero;
+        */
+        status = GameObject.Find("PlayerManager");
+        pScript = status.GetComponent<PlayerManager>();
+        Debug.Log(pScript);
     }
 
     public void Pset()
