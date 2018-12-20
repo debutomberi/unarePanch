@@ -244,9 +244,9 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     void Move1Input()
     {
         
-        if (Input.GetAxis("Horizontal") == 1)
+        if (Input.GetAxis("Horizontal") > 0.6)
         {
-            if (Input.GetAxis("Vertical") == 1)
+            if (Input.GetAxis("Vertical") > 0.6)
             {
                 StatusManager.Instance.SetCommandOnePlayer(9);
                 return;
@@ -261,9 +261,9 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             
         }
 
-        if (Input.GetAxis("Horizontal") == -1)
+        if (Input.GetAxis("Horizontal") < -0.6)
         {
-            if (Input.GetAxis("Vertical") == 1)
+            if (Input.GetAxis("Vertical") >0.6)
             {
                 StatusManager.Instance.SetCommandOnePlayer(7);
                 return;
@@ -310,9 +310,9 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     void Move2Input()
     {
         
-        if (Input.GetAxis("Horizontal2") == 1)
+        if (Input.GetAxis("Horizontal2") > 0.6)
         {
-            if (Input.GetAxis("Vertical2") == 1)
+            if (Input.GetAxis("Vertical2") > 0.6)
             {
                 StatusManager.Instance.SetCommandTwoPlayer(9);
                 return;
@@ -328,9 +328,9 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             
             }
 
-        if (Input.GetAxis("Horizontal2") == -1)
+        if (Input.GetAxis("Horizontal2") < -0.6)
         {
-            if (Input.GetAxis("Vertical2") == 1)
+            if (Input.GetAxis("Vertical2") > 0.6)
             {
                 StatusManager.Instance.SetCommandTwoPlayer(7);
                 return;

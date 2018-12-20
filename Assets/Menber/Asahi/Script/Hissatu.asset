@@ -11,9 +11,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddd20f58f1876f7439da3725bb4222f2, type: 3}
   m_Name: Hissatu
   m_EditorClassIdentifier: 
-  oFlame: 15
-  cFlame: 30
+  oFlame: 25
+  cFlame: 20
   sFlame: 60
   power: 0
   deathblow: 1
   missile: 0
+  flyTime: 1
+  AttackSprite:
+  - {fileID: 21300000, guid: ef18910270fea6040897e1634e3ce5be, type: 3}
+  - {fileID: 21300000, guid: ef18910270fea6040897e1634e3ce5be, type: 3}
+  - {fileID: 21300000, guid: ef18910270fea6040897e1634e3ce5be, type: 3}
+  - {fileID: 21300000, guid: ef18910270fea6040897e1634e3ce5be, type: 3}
+  - {fileID: 21300000, guid: ef18910270fea6040897e1634e3ce5be, type: 3}
