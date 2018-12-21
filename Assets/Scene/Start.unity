@@ -559,7 +559,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press To B Button
+  m_Text: Press To B or 3 Button
 --- !u!222 &1242226595
 CanvasRenderer:
   m_ObjectHideFlags: 0

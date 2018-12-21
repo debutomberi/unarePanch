@@ -62,7 +62,7 @@ public class Attack {
     }
 
     //IEnumeratorを渡す関数
-    public IEnumerator SetParamete(AttackTable paramete,GameObject attackCollider,SpriteRenderer player) {
+    public IEnumerator SetParamete(AttackTable paramete,GameObject attackCollider,SpriteRenderer player,int playerNum) {
         int[] attackFlame = { 20, 20, 20 };
         attackFlame[0] = paramete.oFlame;
         attackFlame[1] = paramete.cFlame;
@@ -71,9 +71,22 @@ public class Attack {
         pow = paramete.power;
         db = paramete.deathblow;
         msl = paramete.missile;
-        if(paramete.AttackSprite.Length != 5) { Debug.LogError("攻撃のスプライトの数が違います。");return null; }
-        Sprite[] Sprite = paramete.AttackSprite;
-        return Technique(attackFlame,attackCollider,player,Sprite,time);
+        if (playerNum== 0)
+        {
+            if (paramete.AttackSprite1.Length != 5) { Debug.LogError("攻撃のスプライトの数が違います。"); return null; }
+            Sprite[] Sprites = paramete.AttackSprite1;
+            return Technique(attackFlame, attackCollider, player, Sprites, time);
+        }
+        else if(playerNum == 1)
+        {
+
+            if (paramete.AttackSprite2.Length != 5) { Debug.LogError("攻撃のスプライトの数が違います。"); return null; }
+            Sprite[] Sprites = paramete.AttackSprite2;
+            return Technique(attackFlame, attackCollider, player, Sprites, time);
+        }else
+        {
+            return null;
+        }
     }
 
     

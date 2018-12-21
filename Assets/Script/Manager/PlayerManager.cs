@@ -389,13 +389,13 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 if (player == 1)
                 {
                     Player1.transform.position += new Vector3(Speed * Time.deltaTime, 0, 0);
-                    if (center1p) { guard[0] = true; Debug.Log("ガード"); }
+                    if (center1p) { guard[0] = true; Debug.Log("ガード1"); }
 
                 }
                 else if(player == 2)
                 {
                     Player2.transform.position += new Vector3(Speed * Time.deltaTime, 0, 0);
-                    if (center2p) { guard[0] = true; Debug.Log("ガード"); }
+                    if (!center2p) { guard[0] = true; Debug.Log("ガード2"); }
                     
                 }
                 break;
@@ -410,12 +410,12 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 {
                     Player1.transform.position += new Vector3(-Speed * Time.deltaTime, 0, 0);
                     guard[1] = true;
-                    if (!center1p) { guard[0] = true; Debug.Log("ガード"); }
+                    if (!center1p) { guard[0] = true; Debug.Log("ガード1"); }
                 }
                 else if (player == 2)
                 {
                     Player2.transform.position += new Vector3(-Speed * Time.deltaTime, 0, 0);
-                    if (!center2p) { guard[0] = true; Debug.Log("ガード"); }
+                    if (center2p) { guard[0] = true; Debug.Log("ガード2"); }
 
                 }
                 break;
@@ -466,12 +466,12 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 if (player == 1)
                 {
                     shit[0] = true;
-                    if (!center1p) { guard[0] = true; Debug.Log("ガード"); }
+                    if (!center1p) { guard[0] = true; Debug.Log("ガード1"); }
                 }
                 else if (player == 2)
                 {
                     shit[1] = true;
-                    if (!center2p) { guard[0] = true; Debug.Log("ガード"); }
+                    if (!center2p) { guard[0] = true; Debug.Log("ガード2"); }
                 }
                 break;
             //2しゃがみ
@@ -489,12 +489,12 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 if (player == 1)
                 {
                     shit[0] = true;
-                    if (center1p) { guard[0] = true; Debug.Log("ガード"); }
+                    if (center1p) { guard[0] = true; Debug.Log("ガード1"); }
                 }
                 else if (player == 2)
                 {
                     shit[1] = true;
-                    if (center2p) { guard[0] = true; Debug.Log("ガード"); }
+                    if (center2p) { guard[0] = true; Debug.Log("ガード2"); }
                 }
                 break;
             default:break;
@@ -518,7 +518,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     void AttackOccurrence(int attackNum , int player)
     {
         if (attack[player-1].AttackCheck) { return; }
-        IEnumerator coroutine = attack[player-1].SetParamete(attackParameter[player-1][attackNum], attackCollider[player-1][attackNum],image[player-1]);
+        IEnumerator coroutine = attack[player-1].SetParamete(attackParameter[player-1][attackNum], attackCollider[player-1][attackNum],image[player-1],player - 1 );
         StartCoroutine(coroutine);
     }
 
@@ -527,7 +527,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         if (attack[player - 1].AttackCheck) { return; }
         bool Guage = StatusManager.Instance.GuageUse(player);
         if (!Guage) { return; }
-        IEnumerator coroutine = attack[player - 1].SetParamete(attackParameter[player - 1][attackNum], attackCollider[player - 1][attackNum],image[player - 1]);
+        IEnumerator coroutine = attack[player - 1].SetParamete(attackParameter[player - 1][attackNum], attackCollider[player - 1][attackNum],image[player - 1], player - 1);
         StartCoroutine(coroutine);
         UIManager.Instance.PageChenge();
     }

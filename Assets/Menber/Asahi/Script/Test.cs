@@ -31,8 +31,8 @@ public class Test : SingletonMonoBehavior<Test> {
 
     void Attack(int AttackNum) {
         if (attack.AttackCheck) { return; }
-        IEnumerator coroutine = attack.SetParamete(attackParameter[AttackNum],attackCollider[AttackNum],image);
-        StartCoroutine(coroutine);
+       // IEnumerator coroutine = attack.SetParamete(attackParameter[AttackNum],attackCollider[AttackNum],image);
+       // StartCoroutine(coroutine);
     }
 
 
