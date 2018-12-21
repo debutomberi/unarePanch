@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddd20f58f1876f7439da3725bb4222f2, type: 3}
+  m_Name: AttackTable
+  m_EditorClassIdentifier: 
+  oFlame: 1
+  cFlame: 11
+  sFlame: 1
+  power: 1
+  deathblow: 0
+  missile: 0
+  flyTime: 1
+  AttackSprite:
+  - {fileID: 21300000, guid: 33481ea6dc9f0e640b7695bfe531dbe3, type: 3}
+  - {fileID: 21300000, guid: 33481ea6dc9f0e640b7695bfe531dbe3, type: 3}
+  - {fileID: 21300000, guid: 33481ea6dc9f0e640b7695bfe531dbe3, type: 3}
+  - {fileID: 21300000, guid: 33481ea6dc9f0e640b7695bfe531dbe3, type: 3}
+  - {fileID: 21300000, guid: 33481ea6dc9f0e640b7695bfe531dbe3, type: 3}

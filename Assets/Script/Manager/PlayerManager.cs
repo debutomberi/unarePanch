@@ -18,13 +18,13 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     */
 
     [SerializeField]
-    float Speed;
+    public float Speed;
     [SerializeField]
-    float Jump;
+    public float Jump;
 
     //1Pの攻撃
     [SerializeField]
-    List<GameObject> attackColliderOnePlayer = new List<GameObject>();
+    public List<GameObject> attackColliderOnePlayer = new List<GameObject>();
     [SerializeField]
     List<AttackTable> attackParameterOnePlayer = new List<AttackTable>();
 

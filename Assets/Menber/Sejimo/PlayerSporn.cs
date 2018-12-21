@@ -11,6 +11,9 @@ public class PlayerSporn : MonoBehaviour {
     PlayerSelect script;
     GameObject _player;     // playerの入れ物
     GameObject status;
+    float speed;
+    float jump;
+    List<GameObject> ACOP = new List<GameObject>();
     PlayerManager pScript;
     void Start () {
 	}
@@ -25,6 +28,14 @@ public class PlayerSporn : MonoBehaviour {
         Vector3 pos = _player.transform.position;
         _player.transform.position = new Vector3(-5, 0, 0);
         Debug.Log(_player.transform.position);
+
+        speed = pScript.Speed;
+        jump = pScript.Jump;
+        ACOP = pScript.attackColliderOnePlayer;
+        Debug.Log(speed + "スピード");
+        Debug.Log(jump + "ジャンプ");
+        Debug.Log(ACOP + "1P");
+
     }
 
     void Awake()
@@ -36,7 +47,8 @@ public class PlayerSporn : MonoBehaviour {
         */
         status = GameObject.Find("PlayerManager");
         pScript = status.GetComponent<PlayerManager>();
-        Debug.Log(pScript);
+        
+        //攻撃・スピード・ジャンプの情報を取得
     }
 
     public void Pset()
