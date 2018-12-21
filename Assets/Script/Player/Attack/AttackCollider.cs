@@ -52,17 +52,24 @@ public class AttackCollider : MonoBehaviour {
         if (collision.gameObject.tag == "1P"&&!PlayerManager.Instance.Guard[0]) {
             Rigidbody2D rb2D = collision.transform.parent.GetComponent<Rigidbody2D>();
             PlayerManager.Instance.HitAttack(2, -300, rb2D, PlayerManager.Instance.Move1P,guagePow);
+            var audio = GetComponent<AudioSource>();
+            audio.Play();
         }
         else if (collision.gameObject.tag == "2P"&& !PlayerManager.Instance.Guard[1]) {
             Rigidbody2D rb2D = collision.transform.parent.GetComponent<Rigidbody2D>();
             PlayerManager.Instance.HitAttack(1, 300, rb2D, PlayerManager.Instance.Move2P,guagePow);
+            var audio = GetComponent<AudioSource>();
+            audio.Play();
         }
         UIManager.Instance.PageChenge();
     }
     
     //必殺技の処理
-    void OnDeathblowEnter(Collider2D collision) {
-        if(collision.gameObject.tag == "1P") {
+    void OnDeathblowEnter(Collider2D collision)
+    {
+        var audio = GetComponent<AudioSource>();
+        audio.Play();
+        if (collision.gameObject.tag == "1P") {
             Debug.Log("2Pの勝ち！");
             UIManager.Instance.WinText(false);
         }
