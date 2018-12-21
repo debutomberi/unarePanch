@@ -17,6 +17,7 @@ public class UIManager : SingletonMonoBehavior<UIManager>
     GameObject[] textObj = new GameObject[2];
 
     Text[] text = new Text[2];
+    PopChamge[] pop = new PopChamge[2];
     //Text[] wtest = new Text[2];
 
     int onePgage;
@@ -38,11 +39,12 @@ public class UIManager : SingletonMonoBehavior<UIManager>
         for(int i =0; i <textObj.Length;i++)
         {
             text[i] = textObj[i].GetComponent<Text>();
+            pop[i] = textObj[i].GetComponent<PopChamge>();
         }
         PageChenge();
 
         //WinText(false);
-
+        StartCoroutine(TimerStart());
     }
 
     public void PageChenge() {
@@ -50,7 +52,9 @@ public class UIManager : SingletonMonoBehavior<UIManager>
         twoPgage = StatusManager.Instance.DeathblowGuage[1];
 
         text[0].text = onePgage.ToString();
+        pop[0].StartAction();
         text[1].text = twoPgage.ToString();
+        pop[1].StartAction();
     }
 
     public void WinText(bool isWin) {
