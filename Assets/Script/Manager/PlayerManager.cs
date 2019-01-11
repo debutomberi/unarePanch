@@ -132,14 +132,11 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             attackCollider[1][i].gameObject.SetActive(false);
         }
     }
-
-
-    // Update is called once per frame
-    void FixedUpdate()
+    private void Update()
     {
         if (!isPlaying)
         {
-            if(Input.GetKeyDown("joystick 1 button 2"))
+            if (Input.GetKeyDown("joystick 1 button 2"))
             {
                 SceneManagers.Instance.ChangeSceneState();
             }
@@ -147,13 +144,19 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         else
         {
             Attack();
-            Move1Input();
-            Move2Input();
-            if (move1P && !P1jump && !attack[0].AttackCheck) { Move(1); }
-            if (move2P && !P2jump && !attack[1].AttackCheck) { Move(2); }
-            GetPos();
-            CenterLook();
         }
+    }
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        if (!isPlaying) return;
+        Move1Input();
+        Move2Input();
+        if (move1P && !P1jump && !attack[0].AttackCheck) { Move(1); }
+        if (move2P && !P2jump && !attack[1].AttackCheck) { Move(2); }
+        GetPos();
+        CenterLook();
+        
     }
 
     public void OnPlayerCollisionEnter(int player,Collision2D collision) {
@@ -401,8 +404,8 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 break;
             //6方向にステップ
             case 'S':
-                if (player == 1) { Step(150, P1rb, move1P,1); }
-                else if (player == 2) { Step(150, P2rb, move2P,2); }
+                if (player == 1) { Step(0.05f, P1rb, move1P,1); }
+                else if (player == 2) { Step(0.05f, P2rb, move2P,2); }
                 break;
             //4方向に移動
             case 'l':
@@ -421,8 +424,8 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 break;
             //4方向にステップ
             case 's':
-                if (player == 1) { Step(-150, P1rb, move1P,1); }
-                else if (player == 2) { Step(-150, P2rb, move2P,2); }
+                if (player == 1) { Step(-0.05f, P1rb, move1P,1); }
+                else if (player == 2) { Step(-0.05f, P2rb, move2P,2); }
                 break;
             //垂直ジャンプ
             case 'j':
@@ -542,6 +545,13 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         if (!move) { yield break; }
         if(player == 1) { move1P = false; }
         else if(player == 2) { move2P = false; }
+        int i = 0;
+        while (i >= 60)
+        {
+            rb.gameObject.transform.position += new Vector3(step,0,0);
+            i++;
+            yield return null;
+        }
         rb.AddForce(new Vector2(step, 0));
         yield return new WaitForSeconds(1.0f);
         if (player == 1) { move1P = true; }
@@ -557,7 +567,13 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     IEnumerator HitAttackCoroutine(int player, float value, Rigidbody2D rb, bool move, int guagePow)
     {
         if (!move) { yield break; }
-        rb.AddForce(new Vector2(value, 0));
+        int i = 0;
+        while (i >= 60)
+        {
+            rb.gameObject.transform.position += new Vector3(value, 0, 0);
+            i++;
+            yield return null;
+        }
         StatusManager.Instance.GuageUp(player, guagePow);
         if (player == 2) { PlayerManager.Instance.move1P = false; }
         else if (player == 1) { PlayerManager.Instance.move2P = false; }
