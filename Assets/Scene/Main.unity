@@ -644,6 +644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ccfd39641217241aaf297abd979926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effect: {fileID: 1519628001866730, guid: f2d082f26cdc14c478a70dba6a5a099a, type: 2}
   Speed: 10
   Jump: 500
   attackColliderOnePlayer:

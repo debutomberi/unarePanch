@@ -11,7 +11,7 @@ public class T : MonoBehaviour {
         //text = this.GetComponent<Text>();
         rect = GetComponent<RectTransform>();
         Method();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -23,12 +23,13 @@ public class T : MonoBehaviour {
     }
     private void Method()
     {
-
+        /*
         var localscale = rect.localScale;
         var scaleX = localscale.x;
         scaleX = Mathf.Lerp(1, 5, 5);
         localscale.x = scaleX;
         localscale.y = scaleX;
         rect.localScale = localscale;
+        */
     }
 }

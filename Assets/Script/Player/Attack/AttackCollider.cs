@@ -50,14 +50,14 @@ public class AttackCollider : MonoBehaviour {
             return;
         }
         if (collision.gameObject.tag == "1P"&&!PlayerManager.Instance.Guard[0]) {
-            Rigidbody2D rb2D = collision.transform.parent.GetComponent<Rigidbody2D>();
-            PlayerManager.Instance.HitAttack(2, -0.1f, rb2D, PlayerManager.Instance.Move1P,guagePow);
+            //Rigidbody2D rb2D = collision.transform.parent.GetComponent<Rigidbody2D>();
+            PlayerManager.Instance.HitAttack(2, -0.1f, collision.gameObject, PlayerManager.Instance.Move1P,guagePow);
             var audio = GetComponent<AudioSource>();
             audio.Play();
         }
         else if (collision.gameObject.tag == "2P"&& !PlayerManager.Instance.Guard[1]) {
-            Rigidbody2D rb2D = collision.transform.parent.GetComponent<Rigidbody2D>();
-            PlayerManager.Instance.HitAttack(1, 0.1f, rb2D, PlayerManager.Instance.Move2P,guagePow);
+            //Rigidbody2D rb2D = collision.transform.parent.GetComponent<Rigidbody2D>();
+            PlayerManager.Instance.HitAttack(1, 0.1f, collision.gameObject, PlayerManager.Instance.Move2P,guagePow);
             var audio = GetComponent<AudioSource>();
             audio.Play();
         }

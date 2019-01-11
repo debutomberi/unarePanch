@@ -18,6 +18,9 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     */
 
     [SerializeField]
+    GameObject effect;
+
+    [SerializeField]
     float Speed;
     [SerializeField]
     float Jump;
@@ -404,8 +407,8 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 break;
             //6方向にステップ
             case 'S':
-                if (player == 1) { Step(0.05f, P1rb, move1P,1); }
-                else if (player == 2) { Step(0.05f, P2rb, move2P,2); }
+                if (player == 1) { Step(0.05f, Player1, move1P,1); }
+                else if (player == 2) { Step(0.05f, Player2, move2P,2); }
                 break;
             //4方向に移動
             case 'l':
@@ -424,8 +427,8 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 break;
             //4方向にステップ
             case 's':
-                if (player == 1) { Step(-0.05f, P1rb, move1P,1); }
-                else if (player == 2) { Step(-0.05f, P2rb, move2P,2); }
+                if (player == 1) { Step(-0.05f, Player1, move1P,1); }
+                else if (player == 2) { Step(-0.05f, Player2, move2P,2); }
                 break;
             //垂直ジャンプ
             case 'j':
@@ -535,42 +538,43 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         UIManager.Instance.PageChenge();
     }
 
-    void Step(float step, Rigidbody2D rb, bool move,int player)
+    void Step(float step, GameObject rb, bool move,int player)
     {
         if (!move) { return; }
         StartCoroutine(StepCoroutine(step, rb, move,player));
     }
 
-    IEnumerator StepCoroutine(float step,Rigidbody2D rb,bool move,int player) {
+    IEnumerator StepCoroutine(float step,GameObject rb,bool move,int player) {
         if (!move) { yield break; }
         if(player == 1) { move1P = false; }
         else if(player == 2) { move2P = false; }
         int i = 0;
         while (i >= 60)
         {
-            rb.gameObject.transform.position += new Vector3(step,0,0);
+            rb.transform.position += new Vector3(step,0,0);
             i++;
             yield return null;
         }
-        rb.AddForce(new Vector2(step, 0));
+        //rb.AddForce(new Vector2(step, 0));
         yield return new WaitForSeconds(1.0f);
         if (player == 1) { move1P = true; }
         else if (player == 2) { move2P = true; }
     }
 
-    public void HitAttack(int player, float value, Rigidbody2D rb, bool move, int guagePow)
+    public void HitAttack(int player, float value, GameObject rb, bool move, int guagePow)
     {
         if (!move) { return; }
         StartCoroutine(HitAttackCoroutine(player, value,rb,move,guagePow));
     }
 
-    IEnumerator HitAttackCoroutine(int player, float value, Rigidbody2D rb, bool move, int guagePow)
+    IEnumerator HitAttackCoroutine(int player, float value, GameObject rb, bool move, int guagePow)
     {
         if (!move) { yield break; }
         int i = 0;
+        var obj = Instantiate(effect, rb.transform.position, Quaternion.identity);
         while (i >= 60)
         {
-            rb.gameObject.transform.position += new Vector3(value, 0, 0);
+            rb.transform.position += new Vector3(value, 0, 0);
             i++;
             yield return null;
         }
@@ -579,6 +583,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         else if (player == 1) { PlayerManager.Instance.move2P = false; }
         yield return new WaitForSeconds(1.0f);
         Debug.Log(player);
+        Destroy(obj);
         if (player == 2) { PlayerManager.Instance.move1P = true; }
         else if (player == 1) { PlayerManager.Instance.move2P = true; }
     }
