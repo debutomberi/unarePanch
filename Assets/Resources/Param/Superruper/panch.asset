@@ -9,21 +9,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ddd20f58f1876f7439da3725bb4222f2, type: 3}
-  m_Name: panch
+  m_Name: Panch
   m_EditorClassIdentifier: 
-  oFlame: 6
+  oFlame: 4
   cFlame: 6
-  sFlame: 6
+  sFlame: 4
   power: 3
   deathblow: 0
   missile: 0
   flyTime: 1
   AttackSprite:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: b7c664e9ee85a6d4ea5b5c4d85f2609d, type: 3}
+  - {fileID: 21300000, guid: f4a98720494719b4d8c0c09d9ab2a483, type: 3}
+  - {fileID: 21300000, guid: feb796156821fed47a5ba6931ea2e6d9, type: 3}
+  - {fileID: 21300000, guid: 4e6dd145aa022724889528f40007c085, type: 3}
+  - {fileID: 21300000, guid: 3179abac811b9464e9d003e5f9922a61, type: 3}
+  - {fileID: 21300000, guid: 61d94c071c981e4418f3e4443c81628a, type: 3}
+  - {fileID: 21300000, guid: d1821d1fc0bf8e44180ed6173595502a, type: 3}
+  - {fileID: 21300000, guid: 40628eb1cd8a3bb4881f31156092c110, type: 3}

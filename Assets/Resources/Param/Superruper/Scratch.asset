@@ -11,19 +11,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddd20f58f1876f7439da3725bb4222f2, type: 3}
   m_Name: Scratch
   m_EditorClassIdentifier: 
-  oFlame: 0
-  cFlame: 0
-  sFlame: 0
-  power: 0
+  oFlame: 10
+  cFlame: 10
+  sFlame: 8
+  power: 6
   deathblow: 0
   missile: 0
   flyTime: 1
   AttackSprite:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 68af595dea01e3b43b7a69b9ba104fda, type: 3}
+  - {fileID: 21300000, guid: b20098bd9700f764ea286a52fac5466c, type: 3}
+  - {fileID: 21300000, guid: 073e913dfede70849ad75b9525b5c44d, type: 3}
+  - {fileID: 21300000, guid: 870fdb30f8170fb4e9f53aef540f42ca, type: 3}
+  - {fileID: 21300000, guid: a820f92b6b1726a46b642d940763aef6, type: 3}
+  - {fileID: 21300000, guid: 1637e8a39724ddd41b79fce99c9ac439, type: 3}
+  - {fileID: 21300000, guid: 29347cdab53065c4288e77c3e3be4d9b, type: 3}
+  - {fileID: 21300000, guid: f8c764e72c8144f47b0776e09e7c1b2e, type: 3}

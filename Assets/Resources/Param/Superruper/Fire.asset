@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddd20f58f1876f7439da3725bb4222f2, type: 3}
+  m_Name: Fire
+  m_EditorClassIdentifier: 
+  oFlame: 8
+  cFlame: 16
+  sFlame: 8
+  power: 5
+  deathblow: 0
+  missile: 1
+  flyTime: 0.8
+  AttackSprite:
+  - {fileID: 21300000, guid: f6c61fffb0c3e2045827089670319719, type: 3}
+  - {fileID: 21300000, guid: ec6568db4bee37c4ca753b8cce075f13, type: 3}
+  - {fileID: 21300000, guid: 6e53fbfe87732274fb28c1b2fc8ab506, type: 3}
+  - {fileID: 21300000, guid: 2faa44194fe1b4945b15d2d4ab6b6a55, type: 3}
+  - {fileID: 21300000, guid: 618fba05bc4e23e45bf93d12ad91fb7e, type: 3}
+  - {fileID: 21300000, guid: 5411fc5fca15dcb49883cb22de0f39a3, type: 3}
+  - {fileID: 21300000, guid: 6b8ff2389a8c2cb4494389cdee7076dc, type: 3}
+  - {fileID: 21300000, guid: 6aa6e37695254d74cad17f00df11ecc0, type: 3}
