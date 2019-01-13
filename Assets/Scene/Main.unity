@@ -478,6 +478,34 @@ MonoBehaviour:
   shitCollider:
   - {fileID: 1880506484}
   - {fileID: 1733995014}
+  defultSprite:
+  - {fileID: 21300000, guid: 920cd358279a0ce49beb2370460206c7, type: 3}
+  - {fileID: 21300000, guid: 920cd358279a0ce49beb2370460206c7, type: 3}
+  moveSprites1p:
+  - {fileID: 21300000, guid: f85f96bb80041414196672cbd9e889d4, type: 3}
+  - {fileID: 21300000, guid: 48abec6d733b32b4e899d46f67034e38, type: 3}
+  - {fileID: 21300000, guid: c6d01b047210c8242bbcc5acf02c11dc, type: 3}
+  - {fileID: 21300000, guid: e481d1bf3d27a554cbc54e23d2533596, type: 3}
+  - {fileID: 21300000, guid: ba0f1019866cbdc49aa7d4bda41e91e9, type: 3}
+  - {fileID: 21300000, guid: 0cbca0529313d2c4ea450a5617ed5baf, type: 3}
+  - {fileID: 21300000, guid: c594f1a045f7aa048a52fba5cb93dfc5, type: 3}
+  - {fileID: 21300000, guid: 61644141241b5f5428691904641acc44, type: 3}
+  moveSprites2p:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  shitSprite:
+  - {fileID: 21300000, guid: d1affdd4d61b43c488774e3cecf39ee1, type: 3}
+  - {fileID: 21300000, guid: d1affdd4d61b43c488774e3cecf39ee1, type: 3}
+  guardSprite:
+  - {fileID: 21300000, guid: 9809b32c77f0a724ca4fc619ad40daaf, type: 3}
+  - {fileID: 21300000, guid: 9809b32c77f0a724ca4fc619ad40daaf, type: 3}
+  jumpSprite1p:
+  - {fileID: 0}
+  - {fileID: 0}
+  jumpSprite2p:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &770906997
 Transform:
   m_ObjectHideFlags: 0

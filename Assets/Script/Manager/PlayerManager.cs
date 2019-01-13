@@ -77,13 +77,29 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     bool move2P = true;
 
     //デフォルトのSprite
+    [SerializeField]
     Sprite[] defultSprite = new Sprite[2];
     //移動するときのsprites
-    Sprite[][] moveSprites = { new Sprite[3], new Sprite[3] };
+    [SerializeField]
+    Sprite[] moveSprites1p = new Sprite[3];
+    [SerializeField]
+    Sprite[] moveSprites2p = new Sprite[3];
+    //しゃがみのsprite
+    [SerializeField]
+    Sprite[] shitSprite = new Sprite[2];
     //ガードのSprite
+    [SerializeField]
     Sprite[] guardSprite = new Sprite[2];
     //ジャンプのSprite
-    Sprite[] jumpSprite = new Sprite[2];
+    [SerializeField]
+    Sprite[] jumpSprite1p = new Sprite[2];
+    [SerializeField]
+    Sprite[] jumpSprite2p = new Sprite[2];
+
+    //次の歩きの絵を表示するまでの時間
+    int[] walkTime = { 0, 0 };
+    //次に表示する歩きの絵の番号
+    int[] nextWalk = { 0, 0 };
 
     public bool Move1P
     {
@@ -486,20 +502,53 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 break;
             default:break;
         }
-        for (int i =0; i < shit.Length; i++)
-        {
-            if (standCollider[i].activeInHierarchy&&shit[i])
+        //しゃがみのboolを判定してしゃがみ状態に
+            if (standCollider[player].activeInHierarchy&&shit[player])
             {
-                standCollider[i].SetActive(false);
-                shitCollider[i].SetActive(true);
+                standCollider[player].SetActive(false);
+                shitCollider[player].SetActive(true);
+                image[player].sprite = shitSprite[player];
             }
-            else if (shitCollider[i].activeInHierarchy&&!shit[i])
+            else if (shitCollider[player].activeInHierarchy&&!shit[player])
             {
-                shitCollider[i].SetActive(false);
-                standCollider[i].SetActive(true);
+                shitCollider[player].SetActive(false);
+                standCollider[player].SetActive(true);
+                image[player].sprite = defultSprite[player];
             }
+        switch (command){
+            case 'r':
+            case 'l':
+                WalkingAnim(player);
+                break;
+            default:
+                image[player].sprite = defultSprite[player];
+                break;
         }
-
+    }
+    //歩きのアニメーションを表示する
+    void WalkingAnim(int player)
+    {
+        walkTime[player - 1]++;
+        if (walkTime[player - 1] <= 5) { return; }
+        walkTime[player - 1] = 0;
+        Sprite[] moveSprites = moveSprites1p;
+        if (player == 1)
+        {
+            moveSprites = moveSprites1p;
+        }
+        else if(player == 2)
+        {
+            moveSprites = moveSprites2p;
+        }
+        image[player].sprite = moveSprites[nextWalk[player - 1]];
+        if (nextWalk[player - 1] == moveSprites.Length - 1)
+        {
+            nextWalk[player - 1] = 0;
+        }
+        else
+        {
+            nextWalk[player - 1]++;
+        }
     }
 
     void AttackOccurrence(int attackNum , int player)
@@ -534,6 +583,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         if (player == 1) { move1P = true; }
         else if (player == 2) { move2P = true; }
     }
+
 
     public void HitAttack(int player, float value, Rigidbody2D rb, bool move, int guagePow)
     {
