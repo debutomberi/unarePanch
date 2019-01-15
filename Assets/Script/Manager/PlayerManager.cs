@@ -58,6 +58,8 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
 
     Rigidbody2D P1rb;
     Rigidbody2D P2rb;
+    bool timeControl;
+
     //ジャンプしているか
     bool P1jump;
     bool P2jump;
@@ -196,8 +198,16 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         {
             if (Input.GetKeyDown(KeyCode.Z))
             {
-                Debug.Log("パンチしました");
-                AttackOccurrence(0, 1);
+                StopTime();
+                Camera.Instance.OneDeathblowCamera();
+
+            }
+
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                StartTime();
+                Camera.Instance.CameraMove();
+
             }
 
             if (Input.GetKeyDown("joystick 1 button 0"))
@@ -522,19 +532,20 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             default:break;
         }
         //しゃがみのboolを判定してしゃがみ状態に
-            if (standCollider[player].activeInHierarchy&&shit[player])
-            {
-                standCollider[player].SetActive(false);
-                shitCollider[player].SetActive(true);
-                image[player].sprite = shitSprite[player];
-            }
-            else if (shitCollider[player].activeInHierarchy&&!shit[player])
-            {
-                shitCollider[player].SetActive(false);
-                standCollider[player].SetActive(true);
-                image[player].sprite = defultSprite[player];
-            }
-        switch (command){
+        if (standCollider[player].activeInHierarchy && shit[player])
+        {
+            standCollider[player].SetActive(false);
+            shitCollider[player].SetActive(true);
+            image[player].sprite = shitSprite[player];
+        }
+        else if (shitCollider[player].activeInHierarchy && !shit[player])
+        {
+            shitCollider[player].SetActive(false);
+            standCollider[player].SetActive(true);
+            image[player].sprite = defultSprite[player];
+        }
+        switch (command)
+        {
             case 'r':
             case 'l':
                 WalkingAnim(player);
@@ -671,5 +682,17 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             Player2.transform.Rotate(new Vector3(0f, 180f, 0f));
             center2p = false;
         }
+    }
+
+    void StopTime()
+    {
+        Time.timeScale = 0;
+        timeControl = true;
+    }
+
+    void StartTime()
+    {
+        Time.timeScale = 1;
+        timeControl = false;
     }
 }
