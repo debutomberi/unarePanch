@@ -7,9 +7,10 @@ public class Player : MonoBehaviour {
     [SerializeField]
     int playerID;
 
+    bool oneTouchWall;
 	// Use this for initialization
 	void Start () {
-		
+        oneTouchWall = false;
 	}
 	
 	// Update is called once per frame
@@ -18,23 +19,33 @@ public class Player : MonoBehaviour {
 	}
 
     private void OnCollisionEnter2D(Collision2D collision){
+        //ジャンプの処理
         if(collision.gameObject.tag == "Floor") {
             PlayerManager.Instance.OnPlayerCollisionEnter(playerID, collision);
         }
-    }
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        //if (collision.gameObject.name == "LeftWall")
-        //{
-        //    Camera.Instance.TouchLeftWall(collision);
-        //}
-        //if (collision.gameObject.name == "RightWall")
-        //{
-        //    Camera.Instance.TouchRightWall(collision);
-        //}
-        if (collision.gameObject.name == "RightWall" && collision.gameObject.name == "LeftWall")
+
+        //壁に触れているときのカメラの処理
+        if (collision.gameObject.name == "LeftWall" || collision.gameObject.name == "RightWall")
+        {
+            oneTouchWall = true;
+        }
+       
+        if (collision.gameObject.name == "LeftWall" && oneTouchWall == true || collision.gameObject.name == "RightWall" && oneTouchWall == true)
         {
             Camera.Instance.TouchTwoWall(collision);
         }
+
+    }
+    
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "LeftWall" || collision.gameObject.name == "RightWall")
+        {
+            oneTouchWall = false;
+            Camera.Instance.NotTouchWall();
+        }
+        
+
     }
 }

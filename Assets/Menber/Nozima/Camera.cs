@@ -9,12 +9,14 @@ public class Camera : SingletonMonoBehavior<Camera> {
     Vector3 cp;
     Vector3 centerPos;
 
+    bool fixation;
 
     PlayerManager script;
     void Start()
     {
         center = GameObject.Find("Center");
         mainCamera = GameObject.Find("Main Camera");
+        fixation = false;
     }
 
     private void FixedUpdate()
@@ -23,11 +25,16 @@ public class Camera : SingletonMonoBehavior<Camera> {
     }
 
     void CameraMove() {
-        cp = center.transform.position;
- 
-        centerPos = new Vector3(cp.x, 0, -10);
-        mainCamera.transform.position = centerPos;
         
+        if (fixation == false)
+        {
+            cp = center.transform.position;
+            centerPos = new Vector3(cp.x, 0, -10);
+            mainCamera.transform.position = centerPos;
+        }
+        
+
+
         //xが一定の値(x)に到達するとカメラを固定する
         if (mainCamera.transform.position.x >= 7) {
             mainCamera.transform.position = new Vector3(7, 0, -10);
@@ -38,22 +45,13 @@ public class Camera : SingletonMonoBehavior<Camera> {
             mainCamera.transform.position = new Vector3(-7, 0, -10);
         }
     }
-
-    //public void TouchLeftWall(Collision2D collision)
-    //{
-    //    //左の壁に触れてるときにカメラを左に動かしていく
-    //    mainCamera.transform.Translate(-1, 0, 0);
-    //    Debug.Log("aaaa");
-    //}
-    //public void TouchRightWall(Collision2D collision)
-    //{
-    //    //右の壁に触れてるときにカメラを右に動かしていく
-    //    mainCamera.transform.position += new Vector3(1, 0, -10);
-    //    Debug.Log("bbbb");
-    //}
     public void TouchTwoWall(Collision2D collsion)
     {
         //どちらの壁にも触れてるときカメラを動かないようにする
-       
+        fixation = true;
     }
+    public void NotTouchWall() {
+        fixation = false;
+    }
+
 }

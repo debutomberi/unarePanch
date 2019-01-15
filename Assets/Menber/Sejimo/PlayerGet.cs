@@ -8,7 +8,7 @@ public class PlayerGet : MonoBehaviour {
     int PlayerID = 1;
 
     [SerializeField]
-    GameObject pget;
+    GameObject pget;    // Inspector上に1Pのキャラクターを入れる
 
     PlayerSelect script;
     
@@ -29,6 +29,7 @@ public class PlayerGet : MonoBehaviour {
 
     public void OnClick()
     {
+        // PlayerSelect.csのPlayer関数を呼び出して1Pをsetする。
         PlayerSelect.Instance.Player[PlayerID-1] = pget;
     }
 

@@ -17,6 +17,7 @@ public class UIManager : SingletonMonoBehavior<UIManager>
     GameObject[] textObj = new GameObject[2];
 
     Text[] text = new Text[2];
+    PopChamge[] pop = new PopChamge[2];
     //Text[] wtest = new Text[2];
 
     int onePgage;
@@ -27,6 +28,10 @@ public class UIManager : SingletonMonoBehavior<UIManager>
     Text _wimtext;
     [SerializeField]
     Text timerText;
+    //数値の画像
+    [SerializeField] Sprite[] spr;
+    //画像を表示するImage
+    [SerializeField] Image[] image;
 
     public void Start()
     {
@@ -34,11 +39,12 @@ public class UIManager : SingletonMonoBehavior<UIManager>
         for(int i =0; i <textObj.Length;i++)
         {
             text[i] = textObj[i].GetComponent<Text>();
+            pop[i] = textObj[i].GetComponent<PopChamge>();
         }
         PageChenge();
 
         //WinText(false);
-
+        StartCoroutine(TimerStart());
     }
 
     public void PageChenge() {
@@ -46,13 +52,15 @@ public class UIManager : SingletonMonoBehavior<UIManager>
         twoPgage = StatusManager.Instance.DeathblowGuage[1];
 
         text[0].text = onePgage.ToString();
+        pop[0].StartAction();
         text[1].text = twoPgage.ToString();
+        pop[1].StartAction();
     }
 
     public void WinText(bool isWin) {
         _wimtext = wintext.GetComponent<Text>();
-        _wimtext.text = (isWin)? "1Player Win!" : "2Player Win!";
-
+        _wimtext.text = (isWin)? "1Player Win!\nBまたは3ボタンでリザルト画面へ" : "2Player Win!\nBまたは3ボタンでリザルト画面へ";
+        PlayerManager.Instance.isPlaying = false;
         //if (isWin)
         //{
         //    _wimtext.text = "1Player Win!";
@@ -72,5 +80,16 @@ public class UIManager : SingletonMonoBehavior<UIManager>
             yield return null;
         }
         yield break;
+    }
+
+    public void NumToSpr(int num)
+    {
+        string numStr = num.ToString();
+        for (int i = 0; i < numStr.Length; i++)
+        {
+            string a = numStr.Substring(i, i);
+            int b = int.Parse(a);
+            image[i].sprite = spr[b];
+        }
     }
 }

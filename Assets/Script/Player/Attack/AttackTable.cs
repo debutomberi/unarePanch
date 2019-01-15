@@ -28,5 +28,4 @@ public class AttackTable : ScriptableObject{
     [HeaderAttribute("攻撃の見た目")]
     public Sprite[] AttackSprite = new Sprite[8];
 
-
 }

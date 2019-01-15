@@ -141,6 +141,7 @@ MonoBehaviour:
   time: 10
   downSpeed: 1.5
   t: {fileID: 1381978084}
+  obj: {fileID: 1519628001866730, guid: f2d082f26cdc14c478a70dba6a5a099a, type: 2}
 --- !u!212 &278757592
 SpriteRenderer:
   m_ObjectHideFlags: 0

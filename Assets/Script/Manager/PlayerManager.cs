@@ -18,6 +18,9 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     */
 
     [SerializeField]
+    GameObject effect;
+
+    [SerializeField]
     float Speed;
     [SerializeField]
     float Jump;
@@ -101,6 +104,9 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     //次に表示する歩きの絵の番号
     int[] nextWalk = { 0, 0 };
 
+    //勝負がついたか
+    public bool isPlaying = true;
+
     public bool Move1P
     {
         get{return move1P;}
@@ -145,18 +151,31 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             attackCollider[1][i].gameObject.SetActive(false);
         }
     }
-
-
+    private void Update()
+    {
+        if (!isPlaying)
+        {
+            if (Input.GetKeyDown("joystick 1 button 2"))
+            {
+                SceneManagers.Instance.ChangeSceneState();
+            }
+        }
+        else
+        {
+            Attack();
+        }
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
-        Attack();
+        if (!isPlaying) return;
         Move1Input();
         Move2Input();
         if (move1P && !P1jump && !attack[0].AttackCheck) { Move(1); }
         if (move2P && !P2jump && !attack[1].AttackCheck) { Move(2); }
         GetPos();
         CenterLook();
+        
     }
 
     public void OnPlayerCollisionEnter(int player,Collision2D collision) {
@@ -247,9 +266,9 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     void Move1Input()
     {
         
-        if (Input.GetAxis("Horizontal") == 1)
+        if (Input.GetAxis("Horizontal") > 0.6)
         {
-            if (Input.GetAxis("Vertical") == 1)
+            if (Input.GetAxis("Vertical") > 0.6)
             {
                 StatusManager.Instance.SetCommandOnePlayer(9);
                 return;
@@ -264,9 +283,9 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             
         }
 
-        if (Input.GetAxis("Horizontal") == -1)
+        if (Input.GetAxis("Horizontal") < -0.6)
         {
-            if (Input.GetAxis("Vertical") == 1)
+            if (Input.GetAxis("Vertical") >0.6)
             {
                 StatusManager.Instance.SetCommandOnePlayer(7);
                 return;
@@ -313,9 +332,9 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     void Move2Input()
     {
         
-        if (Input.GetAxis("Horizontal2") == 1)
+        if (Input.GetAxis("Horizontal2") > 0.6)
         {
-            if (Input.GetAxis("Vertical2") == 1)
+            if (Input.GetAxis("Vertical2") > 0.6)
             {
                 StatusManager.Instance.SetCommandTwoPlayer(9);
                 return;
@@ -331,9 +350,9 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             
             }
 
-        if (Input.GetAxis("Horizontal2") == -1)
+        if (Input.GetAxis("Horizontal2") < -0.6)
         {
-            if (Input.GetAxis("Vertical2") == 1)
+            if (Input.GetAxis("Vertical2") > 0.6)
             {
                 StatusManager.Instance.SetCommandTwoPlayer(7);
                 return;
@@ -392,20 +411,20 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 if (player == 1)
                 {
                     Player1.transform.position += new Vector3(Speed * Time.deltaTime, 0, 0);
-                    if (center1p) { guard[0] = true; Debug.Log("ガード"); }
+                    if (center1p) { guard[0] = true; Debug.Log("ガード1"); }
 
                 }
                 else if(player == 2)
                 {
                     Player2.transform.position += new Vector3(Speed * Time.deltaTime, 0, 0);
-                    if (center2p) { guard[0] = true; Debug.Log("ガード"); }
+                    if (!center2p) { guard[0] = true; Debug.Log("ガード2"); }
                     
                 }
                 break;
             //6方向にステップ
             case 'S':
-                if (player == 1) { Step(150, P1rb, move1P,1); }
-                else if (player == 2) { Step(150, P2rb, move2P,2); }
+                if (player == 1) { Step(0.05f, Player1, move1P,1); }
+                else if (player == 2) { Step(0.05f, Player2, move2P,2); }
                 break;
             //4方向に移動
             case 'l':
@@ -413,19 +432,19 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 {
                     Player1.transform.position += new Vector3(-Speed * Time.deltaTime, 0, 0);
                     guard[1] = true;
-                    if (!center1p) { guard[0] = true; Debug.Log("ガード"); }
+                    if (!center1p) { guard[0] = true; Debug.Log("ガード1"); }
                 }
                 else if (player == 2)
                 {
                     Player2.transform.position += new Vector3(-Speed * Time.deltaTime, 0, 0);
-                    if (!center2p) { guard[0] = true; Debug.Log("ガード"); }
+                    if (center2p) { guard[0] = true; Debug.Log("ガード2"); }
 
                 }
                 break;
             //4方向にステップ
             case 's':
-                if (player == 1) { Step(-150, P1rb, move1P,1); }
-                else if (player == 2) { Step(-150, P2rb, move2P,2); }
+                if (player == 1) { Step(-0.05f, Player1, move1P,1); }
+                else if (player == 2) { Step(-0.05f, Player2, move2P,2); }
                 break;
             //垂直ジャンプ
             case 'j':
@@ -469,12 +488,12 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 if (player == 1)
                 {
                     shit[0] = true;
-                    if (!center1p) { guard[0] = true; Debug.Log("ガード"); }
+                    if (!center1p) { guard[0] = true; Debug.Log("ガード1"); }
                 }
                 else if (player == 2)
                 {
                     shit[1] = true;
-                    if (!center2p) { guard[0] = true; Debug.Log("ガード"); }
+                    if (!center2p) { guard[0] = true; Debug.Log("ガード2"); }
                 }
                 break;
             //2しゃがみ
@@ -492,12 +511,12 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 if (player == 1)
                 {
                     shit[0] = true;
-                    if (center1p) { guard[0] = true; Debug.Log("ガード"); }
+                    if (center1p) { guard[0] = true; Debug.Log("ガード1"); }
                 }
                 else if (player == 2)
                 {
                     shit[1] = true;
-                    if (center2p) { guard[0] = true; Debug.Log("ガード"); }
+                    if (center2p) { guard[0] = true; Debug.Log("ガード2"); }
                 }
                 break;
             default:break;
@@ -554,7 +573,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     void AttackOccurrence(int attackNum , int player)
     {
         if (attack[player-1].AttackCheck) { return; }
-        IEnumerator coroutine = attack[player-1].SetParamete(attackParameter[player-1][attackNum], attackCollider[player-1][attackNum],image[player-1]);
+        IEnumerator coroutine = attack[player-1].SetParamete(attackParameter[player-1][attackNum], attackCollider[player-1][attackNum],image[player-1],player - 1 );
         StartCoroutine(coroutine);
     }
 
@@ -563,43 +582,58 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         if (attack[player - 1].AttackCheck) { return; }
         bool Guage = StatusManager.Instance.GuageUse(player);
         if (!Guage) { return; }
-        IEnumerator coroutine = attack[player - 1].SetParamete(attackParameter[player - 1][attackNum], attackCollider[player - 1][attackNum],image[player - 1]);
+        IEnumerator coroutine = attack[player - 1].SetParamete(attackParameter[player - 1][attackNum], attackCollider[player - 1][attackNum],image[player - 1], player - 1);
         StartCoroutine(coroutine);
         UIManager.Instance.PageChenge();
     }
 
-    void Step(float step, Rigidbody2D rb, bool move,int player)
+    void Step(float step, GameObject rb, bool move,int player)
     {
         if (!move) { return; }
         StartCoroutine(StepCoroutine(step, rb, move,player));
     }
 
-    IEnumerator StepCoroutine(float step,Rigidbody2D rb,bool move,int player) {
+    IEnumerator StepCoroutine(float step,GameObject rb,bool move,int player) {
         if (!move) { yield break; }
         if(player == 1) { move1P = false; }
         else if(player == 2) { move2P = false; }
-        rb.AddForce(new Vector2(step, 0));
+        int i = 0;
+        while (i >= 60)
+        {
+            rb.transform.position += new Vector3(step,0,0);
+            i++;
+            yield return null;
+        }
+        //rb.AddForce(new Vector2(step, 0));
         yield return new WaitForSeconds(1.0f);
         if (player == 1) { move1P = true; }
         else if (player == 2) { move2P = true; }
     }
 
 
-    public void HitAttack(int player, float value, Rigidbody2D rb, bool move, int guagePow)
+    public void HitAttack(int player, float value, GameObject rb, bool move, int guagePow)
     {
         if (!move) { return; }
         StartCoroutine(HitAttackCoroutine(player, value,rb,move,guagePow));
     }
 
-    IEnumerator HitAttackCoroutine(int player, float value, Rigidbody2D rb, bool move, int guagePow)
+    IEnumerator HitAttackCoroutine(int player, float value, GameObject rb, bool move, int guagePow)
     {
         if (!move) { yield break; }
-        rb.AddForce(new Vector2(value, 0));
+        int i = 0;
+        var obj = Instantiate(effect, rb.transform.position, Quaternion.identity);
+        while (i >= 60)
+        {
+            rb.transform.position += new Vector3(value, 0, 0);
+            i++;
+            yield return null;
+        }
         StatusManager.Instance.GuageUp(player, guagePow);
         if (player == 2) { PlayerManager.Instance.move1P = false; }
         else if (player == 1) { PlayerManager.Instance.move2P = false; }
         yield return new WaitForSeconds(1.0f);
         Debug.Log(player);
+        Destroy(obj);
         if (player == 2) { PlayerManager.Instance.move1P = true; }
         else if (player == 1) { PlayerManager.Instance.move2P = true; }
     }
