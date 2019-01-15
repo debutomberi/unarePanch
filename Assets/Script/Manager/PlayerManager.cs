@@ -98,11 +98,13 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     Sprite[] jumpSprite1p = new Sprite[2];
     [SerializeField]
     Sprite[] jumpSprite2p = new Sprite[2];
-
     //次の歩きの絵を表示するまでの時間
     int[] walkTime = { 0, 0 };
     //次に表示する歩きの絵の番号
     int[] nextWalk = { 0, 0 };
+    bool[] walkCheck = { false, false };
+    //ジャンプのアニメーションをしたか
+    bool[] jumpAnimEnd = { false, false };
 
     //勝負がついたか
     public bool isPlaying = true;
@@ -173,9 +175,10 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         Move2Input();
         if (move1P && !P1jump && !attack[0].AttackCheck) { Move(1); }
         if (move2P && !P2jump && !attack[1].AttackCheck) { Move(2); }
+        if (P1jump) { JumpAnim(1); }else if (!P1jump && jumpAnimEnd[0]) { jumpAnimEnd[0] = false; }
+        if (P2jump) { JumpAnim(2); } else if (!P2jump && jumpAnimEnd[1]) { jumpAnimEnd[1] = false; }
         GetPos();
         CenterLook();
-        
     }
 
     public void OnPlayerCollisionEnter(int player,Collision2D collision) {
@@ -194,11 +197,30 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     {
         if (Player1)
         {
+            //DEBUG
             if (Input.GetKeyDown(KeyCode.Z))
             {
                 Debug.Log("パンチしました");
-                AttackOccurrence(0, 1);
+                if (shit[0]) { AttackOccurrence(0, 2); }
+                else { AttackOccurrence(0, 1); }
             }
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                Debug.Log("キックしました");
+                if (shit[0]) { AttackOccurrence(0, 3); }
+                else { AttackOccurrence(0, 4); }
+            }
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                Debug.Log("飛び道具しました");
+                if (shit[0]) { AttackOccurrence(0, 5); }
+                else { AttackOccurrence(0, 6); }
+            }
+            if(Input.GetKeyDown(KeyCode.V))
+            {
+                AttackOccurrence(0, 7);
+            }
+            //DEBUG
 
             if (Input.GetKeyDown("joystick 1 button 0"))
             {
@@ -501,12 +523,14 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 if (player == 1)
                 {
                     shit[0] = true;
+                    Debug.Log(shit[0]);
                 }
                 else if (player == 2)
                 {
                     shit[1] = true;
                 }
                 break;
+            //3しゃがみ
             case 'e':
                 if (player == 1)
                 {
@@ -522,25 +546,36 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             default:break;
         }
         //しゃがみのboolを判定してしゃがみ状態に
-            if (standCollider[player].activeInHierarchy&&shit[player])
+            if (standCollider[player-1].activeInHierarchy&&shit[player-1])
             {
-                standCollider[player].SetActive(false);
-                shitCollider[player].SetActive(true);
-                image[player].sprite = shitSprite[player];
+                standCollider[player-1].SetActive(false);
+                shitCollider[player-1].SetActive(true);
+                image[player-1].sprite = shitSprite[player-1];
+                Debug.Log("しゃがむ");
             }
-            else if (shitCollider[player].activeInHierarchy&&!shit[player])
+            else if (shitCollider[player-1].activeInHierarchy&&!shit[player-1])
             {
-                shitCollider[player].SetActive(false);
-                standCollider[player].SetActive(true);
-                image[player].sprite = defultSprite[player];
+                shitCollider[player-1].SetActive(false);
+                standCollider[player-1].SetActive(true);
+                image[player-1].sprite = defultSprite[player-1];
+                Debug.Log("立つ");
             }
-        switch (command){
+        
+        //移動しているときは歩くアニメーション
+        switch (command)
+        {
             case 'r':
             case 'l':
+                if (!walkCheck[player-1]) { walkCheck[player - 1] = true; }
                 WalkingAnim(player);
                 break;
             default:
-                image[player].sprite = defultSprite[player];
+                if (walkCheck[player - 1]){
+                    walkCheck[player - 1] = false;
+                    image[player - 1].sprite = defultSprite[player - 1];
+                    nextWalk[player-1] = 0;
+                    walkTime[player-1] = 0;
+                }
                 break;
         }
     }
@@ -548,7 +583,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     void WalkingAnim(int player)
     {
         walkTime[player - 1]++;
-        if (walkTime[player - 1] <= 5) { return; }
+        if (walkTime[player - 1] <= 2) { return; }
         walkTime[player - 1] = 0;
         Sprite[] moveSprites = moveSprites1p;
         if (player == 1)
@@ -559,7 +594,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         {
             moveSprites = moveSprites2p;
         }
-        image[player].sprite = moveSprites[nextWalk[player - 1]];
+        image[player-1].sprite = moveSprites[nextWalk[player - 1]];
         if (nextWalk[player - 1] == moveSprites.Length - 1)
         {
             nextWalk[player - 1] = 0;
@@ -568,6 +603,34 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         {
             nextWalk[player - 1]++;
         }
+    }
+    //ジャンプのアニメーション
+    void JumpAnim(int player)
+    {
+        if (jumpAnimEnd[player - 1]) { return; }
+        walkTime[player - 1]++;
+        if (walkTime[player - 1] <= 2) { return; }
+        walkTime[player - 1] = 0;
+        Sprite[] jumpSprites = jumpSprite1p;
+        if(player == 1)
+        {
+            jumpSprites = jumpSprite1p;
+        }
+        else if(player == 2)
+        {
+            jumpSprites = jumpSprite2p;
+        }
+        image[player - 1].sprite = jumpSprites[nextWalk[player - 1]];
+        if (nextWalk[player - 1] == jumpSprites.Length - 1)
+        {
+            nextWalk[player - 1] = 0;
+            jumpAnimEnd[player - 1] = true;
+        }
+        else
+        {
+            nextWalk[player - 1]++;
+        }
+
     }
 
     void AttackOccurrence(int attackNum , int player)
