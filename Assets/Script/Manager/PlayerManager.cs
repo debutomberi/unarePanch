@@ -201,24 +201,24 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             if (Input.GetKeyDown(KeyCode.Z))
             {
                 Debug.Log("パンチしました");
-                if (shit[0]) { AttackOccurrence(0, 2); }
+                if (shitCollider[0].activeInHierarchy) { AttackOccurrence(1, 1); }
                 else { AttackOccurrence(0, 1); }
             }
             if (Input.GetKeyDown(KeyCode.X))
             {
                 Debug.Log("キックしました");
-                if (shit[0]) { AttackOccurrence(0, 3); }
-                else { AttackOccurrence(0, 4); }
+                if (shitCollider[0].activeInHierarchy) { AttackOccurrence(3, 1); }
+                else { AttackOccurrence(2, 1); }
             }
             if (Input.GetKeyDown(KeyCode.C))
             {
                 Debug.Log("飛び道具しました");
-                if (shit[0]) { AttackOccurrence(0, 5); }
-                else { AttackOccurrence(0, 6); }
+                if (shitCollider[0].activeInHierarchy) { AttackOccurrence(5, 1); }
+                else { AttackOccurrence(4, 1); }
             }
             if(Input.GetKeyDown(KeyCode.V))
             {
-                AttackOccurrence(0, 7);
+                AttackOccurrence(6, 1);
             }
             //DEBUG
 

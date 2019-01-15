@@ -86,6 +86,7 @@ public class AttackCollider : MonoBehaviour {
             transform.position = firstColliderPoint;
             missile = false;
             gameObject.SetActive(false);
+            flyTimer = 0;
         }
     }
     

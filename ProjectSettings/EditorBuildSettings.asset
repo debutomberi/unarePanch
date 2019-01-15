@@ -5,15 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scene/Start.unity
     guid: 404c84549fc7bd94888e87f76e288f24
   - enabled: 1
-    path: Assets/Scene/Main.unity
+    path: Assets/Menber/Asahi/PVroom.unity
     guid: 3d90fcac37a7db54db868f3dcd31d47d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scene/Select.unity
     guid: 4468132edf0e9d642bcf54741a393c61
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scene/Result.unity
     guid: cb37f61d6ce50d749b0e642a0af820a4
