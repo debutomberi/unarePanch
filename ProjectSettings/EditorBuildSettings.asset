@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scene/Start.unity
     guid: 404c84549fc7bd94888e87f76e288f24
-  - enabled: 1
+  - enabled: 0
     path: Assets/Menber/Asahi/PVroom.unity
     guid: 3d90fcac37a7db54db868f3dcd31d47d
   - enabled: 0
@@ -17,3 +17,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scene/Result.unity
     guid: cb37f61d6ce50d749b0e642a0af820a4
+  - enabled: 1
+    path: Assets/Scene/Main.unity
+    guid: d1285aa8e1688f245bdb197244ff60de
