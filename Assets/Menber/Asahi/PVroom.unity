@@ -408,7 +408,7 @@ GameObject:
   - component: {fileID: 851732869}
   - component: {fileID: 851732870}
   m_Layer: 0
-  m_Name: "\u30D1\u30D4\u30E8\u30F3EX"
+  m_Name: Player1Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
