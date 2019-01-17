@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+
 
 public class PlayerManager : SingletonMonoBehavior<PlayerManager>
 {
@@ -131,6 +133,11 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         {
             attackCollider[1][i].gameObject.SetActive(false);
         }
+
+        int id1 = PlayerSporn.Instance.GetPlayerSelectID(PLAYERID.ID_1);
+        PlayerGet exampleAsset = AssetDatabase.LoadAssetAtPath<PlayerGet>("Assets/Sejimo/CharaInfo" + id1 + ".asset");
+        exampleAsset.GetCharaID();
+
     }
 
 
