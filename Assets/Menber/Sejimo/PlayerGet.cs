@@ -11,7 +11,40 @@ public class PlayerGet : ScriptableObject {
     private int Speed;        // スピード
     [SerializeField]
     private int Jump;         // ジャンプ力
-                                // 攻撃方法
+                              // 攻撃表
+    [SerializeField]
+    public int a_col;          //攻撃のコライダー
+    [SerializeField]
+    [Header("立ちの当たり判定")]
+    public bool st_col;
+    [SerializeField]
+    [Header("座りの当たり判定")]
+    public bool sit_col;
+                             //変更する立ち絵
+    [SerializeField]
+    [Header("デフォルトの立ち絵")]
+    public Sprite d_image;
+    [SerializeField]
+    [Header("歩きの立ち絵")]
+    public Sprite[] w_image = new Sprite[5];
+    [SerializeField]
+    [Header("しゃがみの立ち絵")]
+    public Sprite s_image;
+    [SerializeField]
+    [Header("ガードの立ち絵")]
+    public Sprite g_image;
+    [SerializeField]
+    [Header("しゃがみガードの立ち絵")]
+    public Sprite sg_image;
+    [SerializeField]
+    [Header("ダメージ時の立ち絵")]
+    public Sprite da_image;
+    [SerializeField]
+    [Header("必殺を受けた時の立ち絵")]
+    public Sprite[] sp_image = new Sprite[5];
+    [SerializeField]
+    [Header("ジャンプの立ち絵")]
+    public Sprite[] j_image = new Sprite[5];
 
     [MenuItem("Example/Create ExampleAsset Instance")]
     static void CreateExampleAssetInstance()

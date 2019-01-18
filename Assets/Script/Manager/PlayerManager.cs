@@ -135,7 +135,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         }
 
         int id1 = PlayerSporn.Instance.GetPlayerSelectID(PLAYERID.ID_1);
-        PlayerGet exampleAsset = AssetDatabase.LoadAssetAtPath<PlayerGet>("Assets/Sejimo/CharaInfo" + id1 + ".asset");
+        PlayerGet exampleAsset = AssetDatabase.LoadAssetAtPath<PlayerGet>("Assets/CharaInfo" + id1 + ".asset");
         exampleAsset.GetCharaID();
 
     }
