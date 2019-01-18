@@ -166,6 +166,9 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         {
             Attack();
         }
+
+        StopTime();
+        StartTime();
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -198,15 +201,15 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         {
             if (Input.GetKeyDown(KeyCode.Z))
             {
-                StopTime();
-                Camera.Instance.OneDeathblowCamera();
-
+                
+                timeControl = true;
+                
             }
 
             if (Input.GetKeyDown(KeyCode.X))
             {
                 StartTime();
-                Camera.Instance.CameraMove();
+                
 
             }
 
@@ -686,13 +689,24 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
 
     void StopTime()
     {
-        Time.timeScale = 0;
-        timeControl = true;
+        if (timeControl == true)
+        {
+            Camera.Instance.OneDeathblowCamera();
+            Invoke("StartTime", 2f);
+            Time.timeScale = 0;
+        }
+        else
+    
+        {
+            Debug.Log("asdf");//TimeScaleが0の時動いてない
+            Time.timeScale = 1;
+            timeControl = false;
+            Camera.Instance.CameraMove();
+        }
     }
 
     void StartTime()
     {
-        Time.timeScale = 1;
-        timeControl = false;
+        
     }
 }
