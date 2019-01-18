@@ -93,16 +93,24 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     //ガードのSprite
     [SerializeField]
     Sprite[] guardSprite = new Sprite[2];
+    //ダメージを食らったときのsprite
+    [SerializeField]
+    Sprite[] damageSprite = new Sprite[2];
     //ジャンプのSprite
     [SerializeField]
     Sprite[] jumpSprite1p = new Sprite[2];
     [SerializeField]
     Sprite[] jumpSprite2p = new Sprite[2];
-
     //次の歩きの絵を表示するまでの時間
     int[] walkTime = { 0, 0 };
     //次に表示する歩きの絵の番号
     int[] nextWalk = { 0, 0 };
+    bool[] walkCheck = { false, false };
+    //ジャンプのアニメーションをしたか
+    bool[] jumpAnimEnd = { false, false };
+
+
+    public int missileDirection = 1;
 
     //勝負がついたか
     public bool isPlaying = true;
@@ -173,9 +181,10 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         Move2Input();
         if (move1P && !P1jump && !attack[0].AttackCheck) { Move(1); }
         if (move2P && !P2jump && !attack[1].AttackCheck) { Move(2); }
+        if (P1jump) { JumpAnim(1); }else if (!P1jump && jumpAnimEnd[0]) { jumpAnimEnd[0] = false; }
+        if (P2jump) { JumpAnim(2); } else if (!P2jump && jumpAnimEnd[1]) { jumpAnimEnd[1] = false; }
         GetPos();
         CenterLook();
-        
     }
 
     public void OnPlayerCollisionEnter(int player,Collision2D collision) {
@@ -194,28 +203,56 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     {
         if (Player1)
         {
+            //DEBUG
             if (Input.GetKeyDown(KeyCode.Z))
             {
                 Debug.Log("パンチしました");
-                AttackOccurrence(0, 1);
+                if (shitCollider[0].activeInHierarchy) { AttackOccurrence(1, 1); }
+                else { AttackOccurrence(0, 1); }
             }
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                Debug.Log("キックしました");
+                if (shitCollider[0].activeInHierarchy) { AttackOccurrence(3, 1); }
+                else { AttackOccurrence(2, 1); }
+            }
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                Debug.Log("飛び道具しました");
+                if (center1p) { missileDirection = -1; }
+                else if (!center1p) { missileDirection = 1; }
+                if (shitCollider[0].activeInHierarchy) { AttackOccurrence(5, 1); }
+                else { AttackOccurrence(4, 1); }
+            }
+            if(Input.GetKeyDown(KeyCode.V))
+            {
+                AttackOccurrence(6, 1);
+            }
+            //DEBUG
 
             if (Input.GetKeyDown("joystick 1 button 0"))
             {
-                //Debug.Log("X");
-                AttackOccurrence(0, 1);
+                Debug.Log("パンチしました");
+                if (shitCollider[0].activeInHierarchy) { AttackOccurrence(1, 1); }
+                else { AttackOccurrence(0, 1); }
             }
             if (Input.GetKeyDown("joystick 1 button 1"))
             {
-                //Debug.Log("A");
+                Debug.Log("キックしました");
+                if (shitCollider[0].activeInHierarchy) { AttackOccurrence(3, 1); }
+                else { AttackOccurrence(2, 1); }
             }
             if (Input.GetKeyDown("joystick 1 button 2"))
             {
-                //Debug.Log("B");
+                Debug.Log("飛び道具しました");
+                if (center1p) { missileDirection = -1; }
+                else if (!center1p) { missileDirection = 1; }
+                if (shitCollider[0].activeInHierarchy) { AttackOccurrence(5, 1); }
+                else { AttackOccurrence(4, 1); }
             }
             if (Input.GetKeyDown("joystick 1 button 3"))
             {
-                //Debug.Log("Y");
+                AttackOccurrence(6, 1);
             }
             if (Input.GetKeyDown("joystick 1 button 4"))
             {
@@ -236,20 +273,25 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
 
             if (Input.GetKeyDown("joystick 2 button 0"))
             {
-                //Debug.Log("X");
-                AttackOccurrence(0, 2);
+                Debug.Log("パンチしました");
+                if (shitCollider[0].activeInHierarchy) { AttackOccurrence(1, 2); }
+                else { AttackOccurrence(0, 2); }
             }
             if (Input.GetKeyDown("joystick 2 button 1"))
             {
-                //Debug.Log("A");
+                if (shitCollider[0].activeInHierarchy) { AttackOccurrence(3, 2); }
+                else { AttackOccurrence(2, 2); }
             }
             if (Input.GetKeyDown("joystick 2 button 2"))
             {
-                //Debug.Log("B");
+                if (center2p) { missileDirection = 1; }
+                else if (!center2p) { missileDirection = -1; }
+                if (shitCollider[0].activeInHierarchy) { AttackOccurrence(5, 2); }
+                else { AttackOccurrence(4, 2); }
             }
             if (Input.GetKeyDown("joystick 2 button 3"))
             {
-                //Debug.Log("Y");
+                AttackOccurrence(6, 2);
             }
             if (Input.GetKeyDown("joystick 2 button 4"))
             {
@@ -501,12 +543,14 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 if (player == 1)
                 {
                     shit[0] = true;
+                    Debug.Log(shit[0]);
                 }
                 else if (player == 2)
                 {
                     shit[1] = true;
                 }
                 break;
+            //3しゃがみ
             case 'e':
                 if (player == 1)
                 {
@@ -522,25 +566,36 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             default:break;
         }
         //しゃがみのboolを判定してしゃがみ状態に
-            if (standCollider[player].activeInHierarchy&&shit[player])
+            if (standCollider[player-1].activeInHierarchy&&shit[player-1])
             {
-                standCollider[player].SetActive(false);
-                shitCollider[player].SetActive(true);
-                image[player].sprite = shitSprite[player];
+                standCollider[player-1].SetActive(false);
+                shitCollider[player-1].SetActive(true);
+                image[player-1].sprite = shitSprite[player-1];
+                Debug.Log("しゃがむ");
             }
-            else if (shitCollider[player].activeInHierarchy&&!shit[player])
+            else if (shitCollider[player-1].activeInHierarchy&&!shit[player-1])
             {
-                shitCollider[player].SetActive(false);
-                standCollider[player].SetActive(true);
-                image[player].sprite = defultSprite[player];
+                shitCollider[player-1].SetActive(false);
+                standCollider[player-1].SetActive(true);
+                image[player-1].sprite = defultSprite[player-1];
+                Debug.Log("立つ");
             }
-        switch (command){
+        
+        //移動しているときは歩くアニメーション
+        switch (command)
+        {
             case 'r':
             case 'l':
+                if (!walkCheck[player-1]) { walkCheck[player - 1] = true; }
                 WalkingAnim(player);
                 break;
             default:
-                image[player].sprite = defultSprite[player];
+                if (walkCheck[player - 1]){
+                    walkCheck[player - 1] = false;
+                    image[player - 1].sprite = defultSprite[player - 1];
+                    nextWalk[player-1] = 0;
+                    walkTime[player-1] = 0;
+                }
                 break;
         }
     }
@@ -548,7 +603,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     void WalkingAnim(int player)
     {
         walkTime[player - 1]++;
-        if (walkTime[player - 1] <= 5) { return; }
+        if (walkTime[player - 1] <= 2) { return; }
         walkTime[player - 1] = 0;
         Sprite[] moveSprites = moveSprites1p;
         if (player == 1)
@@ -559,7 +614,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         {
             moveSprites = moveSprites2p;
         }
-        image[player].sprite = moveSprites[nextWalk[player - 1]];
+        image[player-1].sprite = moveSprites[nextWalk[player - 1]];
         if (nextWalk[player - 1] == moveSprites.Length - 1)
         {
             nextWalk[player - 1] = 0;
@@ -568,6 +623,34 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         {
             nextWalk[player - 1]++;
         }
+    }
+    //ジャンプのアニメーション
+    void JumpAnim(int player)
+    {
+        if (jumpAnimEnd[player - 1]) { return; }
+        walkTime[player - 1]++;
+        if (walkTime[player - 1] <= 2) { return; }
+        walkTime[player - 1] = 0;
+        Sprite[] jumpSprites = jumpSprite1p;
+        if(player == 1)
+        {
+            jumpSprites = jumpSprite1p;
+        }
+        else if(player == 2)
+        {
+            jumpSprites = jumpSprite2p;
+        }
+        image[player - 1].sprite = jumpSprites[nextWalk[player - 1]];
+        if (nextWalk[player - 1] == jumpSprites.Length - 1)
+        {
+            nextWalk[player - 1] = 0;
+            jumpAnimEnd[player - 1] = true;
+        }
+        else
+        {
+            nextWalk[player - 1]++;
+        }
+
     }
 
     void AttackOccurrence(int attackNum , int player)
@@ -620,6 +703,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     IEnumerator HitAttackCoroutine(int player, float value, GameObject rb, bool move, int guagePow)
     {
         if (!move) { yield break; }
+        image[player - 1].sprite = damageSprite[player - 1];
         int i = 0;
         var obj = Instantiate(effect, rb.transform.position, Quaternion.identity);
         while (i >= 60)
@@ -632,11 +716,32 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         if (player == 2) { PlayerManager.Instance.move1P = false; }
         else if (player == 1) { PlayerManager.Instance.move2P = false; }
         yield return new WaitForSeconds(1.0f);
+        image[player - 1].sprite = defultSprite[player - 1];
         Debug.Log(player);
         Destroy(obj);
         if (player == 2) { PlayerManager.Instance.move1P = true; }
         else if (player == 1) { PlayerManager.Instance.move2P = true; }
     }
+
+    public void GuardAttack(int player , bool move)
+    {
+        if (!move) { return; }
+        StartCoroutine(GuardAttackCoroutine(player, move));
+    }
+
+    IEnumerator GuardAttackCoroutine(int player, bool move)
+    {
+        if (!move) { yield break; }
+        image[player - 1].sprite = guardSprite[player - 1];
+        if (player == 2) { PlayerManager.Instance.move1P = false; }
+        else if (player == 1) { PlayerManager.Instance.move2P = false; }
+        yield return new WaitForSeconds(1.0f);
+        image[player - 1].sprite = defultSprite[player - 1];
+        Debug.Log(player);
+        if (player == 2) { PlayerManager.Instance.move1P = true; }
+        else if (player == 1) { PlayerManager.Instance.move2P = true; }
+    }
+
 
     public void GetPos() {
         p1Pos = Player1.transform.position;
