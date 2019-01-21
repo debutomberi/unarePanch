@@ -201,7 +201,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
 
     void Attack()
     {
-        if (Player1)
+        if (!P1jump)
         {
             //DEBUG
             if (Input.GetKeyDown(KeyCode.Z))
@@ -264,7 +264,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 //Debug.Log("RB");
             }
         }
-        if (Player2)
+        if (!P2jump)
         {
             if (Input.GetKeyDown(KeyCode.Z))
             {
