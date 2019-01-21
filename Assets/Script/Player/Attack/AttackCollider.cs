@@ -17,6 +17,7 @@ public class AttackCollider : MonoBehaviour {
     float flyTimer = 0.0f;
     //飛び道具初期位置
     Vector3 firstColliderPoint;
+    GameObject player;
 
     public int GuagePow{
         get{return guagePow;}
@@ -39,8 +40,16 @@ public class AttackCollider : MonoBehaviour {
         set{firstColliderPoint = value;}
     }
 
-    private void FixedUpdate(){
-        if (missile) { FlyMissile(); }
+    private void Update(){
+        if (missile & transform.parent) {
+            SetPoint();
+        }
+        else if(missile) { FlyMissile(); }
+    }
+
+    private void SetPoint() {
+        player = transform.parent.gameObject;
+        this.gameObject.transform.parent = null;
     }
 
     private void OnTriggerEnter2D(Collider2D collision){
@@ -90,6 +99,7 @@ public class AttackCollider : MonoBehaviour {
         transform.position += new Vector3(flySpeed*direction*Time.deltaTime,0,0);
         flyTimer += Time.deltaTime;
         if(FlyTime <= flyTimer) {
+            this.gameObject.transform.parent = player.transform;
             transform.position = firstColliderPoint;
             missile = false;
             gameObject.SetActive(false);
