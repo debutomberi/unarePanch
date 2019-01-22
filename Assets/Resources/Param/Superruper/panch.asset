@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ddd20f58f1876f7439da3725bb4222f2, type: 3}
-  m_Name: Panch
+  m_Name: panch
   m_EditorClassIdentifier: 
   oFlame: 4
   cFlame: 6
