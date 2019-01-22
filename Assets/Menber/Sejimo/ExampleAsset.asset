@@ -14,13 +14,15 @@ MonoBehaviour:
   m_charaID: 1
   Speed: 5
   Jump: 3
-  a_col: 0
-  st_col: 0
-  sit_col: 0
+  at_Lists: []
+  standCollider:
+  - {fileID: 0}
+  - {fileID: 0}
+  shitCollider:
+  - {fileID: 0}
+  - {fileID: 0}
   d_image: {fileID: 0}
-  w_image:
-  - {fileID: 0}
-  - {fileID: 0}
+  w_Lists:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

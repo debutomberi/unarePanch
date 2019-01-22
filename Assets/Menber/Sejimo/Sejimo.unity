@@ -414,7 +414,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64676199efc8faf4ea51bfd9bcd5cd3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerID: 1
 --- !u!4 &301840212
 Transform:
   m_ObjectHideFlags: 0
@@ -541,8 +540,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a04097ff27968064db70928d03711995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerID: 1
-  pget: {fileID: 895978831}
+  m_charaID: 0
+  Speed: 0
+  Jump: 0
+  a_col: 0
+  st_col: 0
+  sit_col: 0
+  d_image: {fileID: 0}
+  w_Lists: []
+  s_image: {fileID: 0}
+  g_image: {fileID: 0}
+  sg_image: {fileID: 0}
+  da_image: {fileID: 0}
+  sp_image:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  j_image:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &366870431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -637,7 +658,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4546814903047916, guid: 15f383674afce82489c3549abc7e0915, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -12.68
+      value: -12.51
       objectReference: {fileID: 0}
     - target: {fileID: 4546814903047916, guid: 15f383674afce82489c3549abc7e0915, type: 2}
       propertyPath: m_LocalPosition.y
@@ -944,8 +965,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a04097ff27968064db70928d03711995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerID: 2
-  pget: {fileID: 1763134625}
+  m_charaID: 0
+  Speed: 0
+  Jump: 0
+  a_col: 0
+  st_col: 0
+  sit_col: 0
+  d_image: {fileID: 0}
+  w_Lists: []
+  s_image: {fileID: 0}
+  g_image: {fileID: 0}
+  sg_image: {fileID: 0}
+  da_image: {fileID: 0}
+  sp_image:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  j_image:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &883259269
 GameObject:
   m_ObjectHideFlags: 0
@@ -974,11 +1017,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &895978831 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1940288613505394, guid: 15f383674afce82489c3549abc7e0915,
-    type: 2}
-  m_PrefabInternal: {fileID: 468592083}
 --- !u!4 &895978832 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4546814903047916, guid: 15f383674afce82489c3549abc7e0915,
@@ -1226,7 +1264,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64676199efc8faf4ea51bfd9bcd5cd3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerID: 2
 --- !u!4 &1341169012
 Transform:
   m_ObjectHideFlags: 0

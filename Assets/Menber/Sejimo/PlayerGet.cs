@@ -13,20 +13,32 @@ public class PlayerGet : ScriptableObject {
     private int Jump;         // ジャンプ力
                               // 攻撃表
     [SerializeField]
-    public int a_col;          //攻撃のコライダー
+    [Header("攻撃の当たり判定")]
+    public List<Sprite> at_Lists = new List<Sprite>();
+    public List<Sprite> Getat_Lists()
+    {
+        return at_Lists;
+    }
     [SerializeField]
     [Header("立ちの当たり判定")]
-    public bool st_col;
+    GameObject[] standCollider = new GameObject[2];
+    
     [SerializeField]
-    [Header("座りの当たり判定")]
-    public bool sit_col;
-                             //変更する立ち絵
+    [Header("しゃがみの当たり判定")]
+    GameObject[] shitCollider = new GameObject[2];
+                                               //変更する立ち絵
     [SerializeField]
     [Header("デフォルトの立ち絵")]
     public Sprite d_image;
+
     [SerializeField]
     [Header("歩きの立ち絵")]
-    public Sprite[] w_image = new Sprite[5];
+    public List<Sprite> w_Lists = new List<Sprite>();
+    public List<Sprite> Getw_Lists()
+    {
+        return w_Lists;
+    }
+
     [SerializeField]
     [Header("しゃがみの立ち絵")]
     public Sprite s_image;

@@ -43,13 +43,13 @@ public class PlayerSporn {
     //[SerializeField]
     //int playerID;
 
-    PlayerSelect script;
-    GameObject _player;     // playerの入れ物
-    GameObject status;
-    float speed;
-    float jump;
-    List<GameObject> ACOP = new List<GameObject>();
-    PlayerManager pScript;
+    //PlayerSelect script;
+    //GameObject _player;     // playerの入れ物
+    //GameObject status;
+    //float speed;
+    //float jump;
+    //List<GameObject> ACOP = new List<GameObject>();
+    //PlayerManager pScript;
  //   void Start () {
 	//}
 	
@@ -80,8 +80,8 @@ public class PlayerSporn {
         _player = PlayerSelect.Instance.Player[playerID - 1];
         _player.transform.position = Vector3.zero;
         */
-        status = GameObject.Find("PlayerManager");
-        pScript = status.GetComponent<PlayerManager>();
+        //status = GameObject.Find("PlayerManager");
+        //pScript = status.GetComponent<PlayerManager>();
         
         //攻撃・スピード・ジャンプの情報を取得
     }
