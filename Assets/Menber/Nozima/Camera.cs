@@ -6,9 +6,16 @@ public class Camera : SingletonMonoBehavior<Camera> {
 
     GameObject mainCamera;
     GameObject center;
+
+    GameObject onePlayer;
+    GameObject twoPlayer;
+
     Vector3 cp;
     Vector3 centerPos;
 
+    Vector3 onePos;
+    Vector3 twoPos;
+    
     bool fixation;
 
     PlayerManager script;
@@ -16,15 +23,24 @@ public class Camera : SingletonMonoBehavior<Camera> {
     {
         center = GameObject.Find("Center");
         mainCamera = GameObject.Find("Main Camera");
+        onePlayer = GameObject.Find("Player1");
+        twoPlayer = GameObject.Find("Player2");
         fixation = false;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         CameraMove();
+        GetPlayerPos();
     }
 
-    void CameraMove() {
+    void GetPlayerPos()
+    {
+        onePos = onePlayer.transform.position;
+        twoPos = twoPlayer.transform.position;
+        onePos.z = -10;
+    }
+    public void CameraMove() {
         
         if (fixation == false)
         {
@@ -36,13 +52,13 @@ public class Camera : SingletonMonoBehavior<Camera> {
 
 
         //xが一定の値(x)に到達するとカメラを固定する
-        if (mainCamera.transform.position.x >= 7) {
-            mainCamera.transform.position = new Vector3(7, 0, -10);
+        if (mainCamera.transform.position.x >= 5) {
+            mainCamera.transform.position = new Vector3(5, 0, -10);
         }
         //xが一定の値(-x)に到達するとカメラを固定する
-        if (mainCamera.transform.position.x <= -7)
+        if (mainCamera.transform.position.x <= -5)
         {
-            mainCamera.transform.position = new Vector3(-7, 0, -10);
+            mainCamera.transform.position = new Vector3(-5, 0, -10);
         }
     }
     public void TouchTwoWall(Collision2D collsion)
@@ -52,6 +68,14 @@ public class Camera : SingletonMonoBehavior<Camera> {
     }
     public void NotTouchWall() {
         fixation = false;
+    }
+    public void OneDeathblowCamera()
+    {
+        mainCamera.transform.position = onePos;
+    }
+    public void TwoDeathblowCamera()
+    {
+        mainCamera.transform.position = twoPos;
     }
 
 }

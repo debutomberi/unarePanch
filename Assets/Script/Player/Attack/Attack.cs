@@ -36,6 +36,7 @@ public class Attack {
         attackColliderScript.Missile = msl;
         //飛び道具のときは専用のステータスを組む。
         if (msl) {
+            if (attackCollider.activeInHierarchy) { attackCollider.transform.position = attackColliderScript.FirstColliderPoint; }
             attackColliderScript.FlyTime = time;
             attackColliderScript.FirstColliderPoint = attackCollider.transform.position;
         }
@@ -87,7 +88,7 @@ public class Attack {
         pow = paramete.power;
         db = paramete.deathblow;
         msl = paramete.missile;
-        if (paramete.AttackSprite.Length != 5) { Debug.LogError("攻撃のスプライトの数が違います。"); return null; }
+        if (paramete.AttackSprite.Length != 8) { Debug.LogError("攻撃のスプライトの数が違います。"); return null; }
             Sprite[] Sprites = paramete.AttackSprite;
             return Technique(attackFlame, attackCollider, player, Sprites, time);
        

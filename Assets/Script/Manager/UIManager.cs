@@ -39,7 +39,7 @@ public class UIManager : SingletonMonoBehavior<UIManager>
         for(int i =0; i <textObj.Length;i++)
         {
             text[i] = textObj[i].GetComponent<Text>();
-            pop[i] = textObj[i].GetComponent<PopChamge>();
+            //pop[i] = textObj[i].GetComponent<PopChamge>();
         }
         PageChenge();
 
@@ -52,9 +52,9 @@ public class UIManager : SingletonMonoBehavior<UIManager>
         twoPgage = StatusManager.Instance.DeathblowGuage[1];
 
         text[0].text = onePgage.ToString();
-        pop[0].StartAction();
+        //pop[0].StartAction();
         text[1].text = twoPgage.ToString();
-        pop[1].StartAction();
+        //pop[1].StartAction();
     }
 
     public void WinText(bool isWin) {
