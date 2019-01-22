@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+
 
 public class PlayerManager : SingletonMonoBehavior<PlayerManager>
 {
@@ -19,15 +21,13 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
 
     [SerializeField]
     GameObject effect;
-
+    public float Speed;
     [SerializeField]
-    float Speed;
-    [SerializeField]
-    float Jump;
+    public float Jump;
 
     //1Pの攻撃
     [SerializeField]
-    List<GameObject> attackColliderOnePlayer = new List<GameObject>();
+    public List<GameObject> attackColliderOnePlayer = new List<GameObject>();
     [SerializeField]
     List<AttackTable> attackParameterOnePlayer = new List<AttackTable>();
 
@@ -152,6 +152,11 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         {
             attackCollider[1][i].gameObject.SetActive(false);
         }
+
+        int id1 = PlayerSporn.Instance.GetPlayerSelectID(PLAYERID.ID_1);
+        PlayerGet exampleAsset = AssetDatabase.LoadAssetAtPath<PlayerGet>("Assets/CharaInfo" + id1 + ".asset");
+        exampleAsset.GetCharaID();
+
     }
     private void Update()
     {
