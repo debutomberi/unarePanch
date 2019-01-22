@@ -52,13 +52,13 @@ public class Camera : SingletonMonoBehavior<Camera> {
 
 
         //xが一定の値(x)に到達するとカメラを固定する
-        if (mainCamera.transform.position.x >= 7) {
-            mainCamera.transform.position = new Vector3(7, 0, -10);
+        if (mainCamera.transform.position.x >= 5) {
+            mainCamera.transform.position = new Vector3(5, 0, -10);
         }
         //xが一定の値(-x)に到達するとカメラを固定する
-        if (mainCamera.transform.position.x <= -7)
+        if (mainCamera.transform.position.x <= -5)
         {
-            mainCamera.transform.position = new Vector3(-7, 0, -10);
+            mainCamera.transform.position = new Vector3(-5, 0, -10);
         }
     }
     public void TouchTwoWall(Collision2D collsion)
