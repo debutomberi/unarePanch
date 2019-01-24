@@ -36,6 +36,7 @@ public class Attack {
         attackColliderScript.Missile = msl;
         //飛び道具のときは専用のステータスを組む。
         if (msl) {
+            if (attackCollider.activeInHierarchy) { attackCollider.transform.position = attackColliderScript.FirstColliderPoint; }
             attackColliderScript.FlyTime = time;
             attackColliderScript.FirstColliderPoint = attackCollider.transform.position;
         }

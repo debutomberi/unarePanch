@@ -17,6 +17,7 @@ public class AttackCollider : MonoBehaviour {
     float flyTimer = 0.0f;
     //飛び道具初期位置
     Vector3 firstColliderPoint;
+    GameObject player;
 
     public int GuagePow{
         get{return guagePow;}
@@ -39,8 +40,16 @@ public class AttackCollider : MonoBehaviour {
         set{firstColliderPoint = value;}
     }
 
-    private void FixedUpdate(){
-        if (missile) { FlyMissile(); }
+    private void Update(){
+        if (missile & transform.parent) {
+            SetPoint();
+        }
+        else if(missile) { FlyMissile(); }
+    }
+
+    private void SetPoint() {
+        player = transform.parent.gameObject;
+        this.gameObject.transform.parent = null;
     }
 
     private void OnTriggerEnter2D(Collider2D collision){
@@ -77,11 +86,11 @@ public class AttackCollider : MonoBehaviour {
         //audio.Play();
         if (collision.gameObject.tag == "1P") {
             Debug.Log("2Pの勝ち！");
-            UIManager.Instance.WinText(false);
+            StartCoroutine(DeathblowCoroutine(false));
         }
         else if (collision.gameObject.tag == "2P") {
             Debug.Log("1Pの勝ち！");
-            UIManager.Instance.WinText(true);
+            StartCoroutine(DeathblowCoroutine(true));
         }
     }
 
@@ -90,6 +99,7 @@ public class AttackCollider : MonoBehaviour {
         transform.position += new Vector3(flySpeed*direction*Time.deltaTime,0,0);
         flyTimer += Time.deltaTime;
         if(FlyTime <= flyTimer) {
+            this.gameObject.transform.parent = player.transform;
             transform.position = firstColliderPoint;
             missile = false;
             gameObject.SetActive(false);
@@ -97,4 +107,13 @@ public class AttackCollider : MonoBehaviour {
         }
     }
     
+    IEnumerator DeathblowCoroutine(bool Playernum){
+        UIManager.Instance.WinText(Playernum);
+        PlayerManager.Instance.kOPlayer = Playernum;
+        PlayerManager.Instance.kOanimeTime = true;
+        Time.timeScale = 0.1f;
+        yield return new WaitForSeconds(2.0f);
+        Time.timeScale = 1.0f;
+    }
+
 }

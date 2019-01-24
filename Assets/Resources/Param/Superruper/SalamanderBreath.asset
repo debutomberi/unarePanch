@@ -15,7 +15,7 @@ MonoBehaviour:
   cFlame: 20
   sFlame: 16
   power: 0
-  deathblow: 0
+  deathblow: 1
   missile: 0
   flyTime: 1
   AttackSprite:
