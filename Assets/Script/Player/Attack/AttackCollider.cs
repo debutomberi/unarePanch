@@ -86,11 +86,11 @@ public class AttackCollider : MonoBehaviour {
         //audio.Play();
         if (collision.gameObject.tag == "1P") {
             Debug.Log("2Pの勝ち！");
-            UIManager.Instance.WinText(false);
+            StartCoroutine(DeathblowCoroutine(false));
         }
         else if (collision.gameObject.tag == "2P") {
             Debug.Log("1Pの勝ち！");
-            UIManager.Instance.WinText(true);
+            StartCoroutine(DeathblowCoroutine(true));
         }
     }
 
@@ -107,4 +107,13 @@ public class AttackCollider : MonoBehaviour {
         }
     }
     
+    IEnumerator DeathblowCoroutine(bool Playernum){
+        UIManager.Instance.WinText(Playernum);
+        PlayerManager.Instance.kOPlayer = Playernum;
+        PlayerManager.Instance.kOanimeTime = true;
+        Time.timeScale = 0.1f;
+        yield return new WaitForSeconds(2.0f);
+        Time.timeScale = 1.0f;
+    }
+
 }
