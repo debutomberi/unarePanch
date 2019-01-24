@@ -59,8 +59,8 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     Rigidbody2D P1rb;
     Rigidbody2D P2rb;
     //ジャンプしているか
-    bool P1jump;
-    bool P2jump;
+    [HideInInspector]public bool P1jump;
+    [HideInInspector]public bool P2jump;
     //ガードしているか
     bool[] guard = { false, false };
     //しゃがんでいるか
