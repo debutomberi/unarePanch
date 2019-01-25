@@ -6,10 +6,13 @@ using UnityEditor;
 public class PlayerGet : ScriptableObject {
 
     [SerializeField]
+    [Header("キャラクターID")]
     private int m_charaID;      // ID
     [SerializeField]
+    [Header("スピード")]
     private int Speed;        // スピード
     [SerializeField]
+    [Header("ジャンプ力")]
     private int Jump;         // ジャンプ力
                               // 攻撃表
     [SerializeField]
@@ -19,6 +22,7 @@ public class PlayerGet : ScriptableObject {
     {
         return at_Lists;
     }
+
     [SerializeField]
     [Header("立ちの当たり判定")]
     GameObject[] standCollider = new GameObject[2];
@@ -26,7 +30,11 @@ public class PlayerGet : ScriptableObject {
     [SerializeField]
     [Header("しゃがみの当たり判定")]
     GameObject[] shitCollider = new GameObject[2];
-                                               //変更する立ち絵
+
+    [SerializeField]
+    [Header("変更する立ち絵")]
+    public Sprite c_image;
+
     [SerializeField]
     [Header("デフォルトの立ち絵")]
     public Sprite d_image;
@@ -37,6 +45,14 @@ public class PlayerGet : ScriptableObject {
     public List<Sprite> Getw_Lists()
     {
         return w_Lists;
+    }
+
+    [SerializeField]
+    [Header("KOの立ち絵")]
+    public List<Sprite> ko = new List<Sprite>();
+    public List<Sprite> Getko()
+    {
+        return ko;
     }
 
     [SerializeField]
@@ -65,7 +81,7 @@ public class PlayerGet : ScriptableObject {
         AssetDatabase.CreateAsset(exampleAsset, "Assets/ExampleAsset.asset");
         AssetDatabase.Refresh();
     }
-
+    
     // キャラID取得
     public int GetCharaID()
     {
