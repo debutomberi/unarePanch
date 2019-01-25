@@ -11,7 +11,7 @@ public class ChangeScene : MonoBehaviour {
         {
             SceneManagers.Instance.ChangeSceneState();
         }
-        if (Input.GetKeyDown("joystick 2 button 2"))
+        else if (Input.GetKeyDown("joystick 2 button 2"))
         {
             SceneManagers.Instance.ChangeSceneState();
         }

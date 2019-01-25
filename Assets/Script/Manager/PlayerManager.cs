@@ -182,11 +182,12 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             {
                 if (Input.GetKeyDown("joystick 1 button 2"))
                 {
-
                     SceneManagers.Instance.ChangeSceneState();
-
                 }
-
+                else if (Input.GetKeyDown("joystick 2 button 2"))
+                {
+                    SceneManagers.Instance.ChangeSceneState();
+                }
             }
         }
         else
@@ -739,7 +740,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         if(player == 1) { move1P = false; }
         else if(player == 2) { move2P = false; }
         int i = 0;
-        while (i >= 60)
+        while (i <= 60)
         {
             rb.transform.position += new Vector3(step,0,0);
             i++;
@@ -762,7 +763,8 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     {
         if (!move) { yield break; }
         image[player - 1].sprite = damageSprite[player - 1];
-        var obj = Instantiate(effect, rb.transform.position, Quaternion.identity);
+        var vec = new Vector3(rb.transform.position.x, rb.transform.position.y,rb.transform.position.z - 9);
+        var obj = Instantiate(effect, vec, Quaternion.identity);
         StatusManager.Instance.GuageUp(player, guagePow);
         if (player == 2) { move1P = false; }
         else if (player == 1) { move2P = false; }
