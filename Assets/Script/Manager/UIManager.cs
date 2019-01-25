@@ -26,7 +26,11 @@ public class UIManager : SingletonMonoBehavior<UIManager>
     [SerializeField]
     Slider _1pslider;
     [SerializeField]
+    Image _1pimage;
+    [SerializeField]
     Slider _2pslider;
+    [SerializeField]
+    Image _2pimage;
 
     [SerializeField]
     GameObject wintext;
@@ -58,6 +62,15 @@ public class UIManager : SingletonMonoBehavior<UIManager>
 
         _1pslider.value = onePgage;
         _2pslider.value = twoPgage;
+
+        if(_1pslider.value == 100)
+        {
+            _1pimage.color = Color.yellow;
+        }
+        if(_2pslider.value == 100)
+        {
+            _2pimage.color = Color.yellow;
+        }
 
         text[0].text = onePgage.ToString();
         //pop[0].StartAction();
