@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
+using UnityEngine.SceneManagement;
+//using UnityEditor;
 
 
 public class PlayerManager : SingletonMonoBehavior<PlayerManager>
@@ -72,7 +74,9 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     //しゃがみの当たり判定
     [SerializeField]
     GameObject[] shitCollider = new GameObject[2];
-    
+
+    bool timeControl;
+
     bool center1p;
     bool center2p;
     //移動可能か
@@ -194,6 +198,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         {
             Attack();
         }
+        ReturnTitle();
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -231,6 +236,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 Debug.Log("パンチしました");
                 if (shitCollider[0].activeInHierarchy) { AttackOccurrence(1, 1); }
                 else { AttackOccurrence(0, 1); }
+                
             }
             if (Input.GetKeyDown(KeyCode.X))
             {
@@ -283,13 +289,15 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 {
                     StatusManager.Instance.GuageUse(1);
                     UIManager.Instance.PageChenge();
-                    AttackOccurrence(6, 1);
+                    timeControl = true;
+                    StartCoroutine("OnePlayerCamera");
                 }
             }
             if (Input.GetKeyDown("joystick 1 button 4"))
             {
                 //Debug.Log("LB");
-                //DeathblowOccurrence(1, 1);
+                
+
             }
             if (Input.GetKeyDown("joystick 1 button 5"))
             {
@@ -326,14 +334,18 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 if (StatusManager.Instance.DeathblowGuage[0] == 100)
                 {
                     StatusManager.Instance.GuageUse(0);
-                    AttackOccurrence(6, 2);
                     UIManager.Instance.PageChenge();
+                    timeControl = true;
+                    StartCoroutine("TwoPlayerCamera");
+                    
                 }
             }
             if (Input.GetKeyDown("joystick 2 button 4"))
             {
                 //Debug.Log("LB");
+                
                 //DeathblowOccurrence(1, 2);
+
             }
             if (Input.GetKeyDown("joystick 2 button 5"))
             {
@@ -829,6 +841,47 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         {
             Player2.transform.Rotate(new Vector3(0f, 180f, 0f));
             center2p = false;
+        }
+    }
+
+    IEnumerator OnePlayerCamera()
+    {
+        if (timeControl == true)
+        {
+            Time.timeScale = 0;
+            Camera.Instance.OneDeathblowCamera();
+        }
+        yield return new WaitForSecondsRealtime(2);
+        Time.timeScale = 1;
+        yield return new WaitForSecondsRealtime(0);
+        timeControl = false;
+        yield return new WaitForSecondsRealtime(0);
+        Camera.Instance.NotTouchWall();
+        yield return new WaitForSecondsRealtime(0);
+        AttackOccurrence(6, 1);
+    }
+    IEnumerator TwoPlayerCamera()
+    {
+        if (timeControl == true)
+        {
+            Time.timeScale = 0;
+            Camera.Instance.TwoDeathblowCamera();
+        }
+        yield return new WaitForSecondsRealtime(2);
+        Time.timeScale = 1;
+        yield return new WaitForSecondsRealtime(0);
+        timeControl = false;
+        yield return new WaitForSecondsRealtime(0);
+        Camera.Instance.NotTouchWall();
+        yield return new WaitForSecondsRealtime(0);
+        AttackOccurrence(6, 2);
+    }
+
+    void ReturnTitle()
+    {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            SceneManager.LoadScene("Start");
         }
     }
 }
