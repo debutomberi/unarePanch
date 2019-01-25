@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddd20f58f1876f7439da3725bb4222f2, type: 3}
+  m_Name: ZoomPanch
+  m_EditorClassIdentifier: 
+  oFlame: 10
+  cFlame: 12
+  sFlame: 10
+  power: 8
+  deathblow: 0
+  missile: 0
+  flyTime: 1
+  AttackSprite:
+  - {fileID: 21300000, guid: 6092dba92aeac7e43b9347870cd5c778, type: 3}
+  - {fileID: 21300000, guid: f637ecf464f28114d94e39f5a42b9a9b, type: 3}
+  - {fileID: 21300000, guid: a7c1f02f3e2f0ba42851cb785bed6233, type: 3}
+  - {fileID: 21300000, guid: 9a6234c7c53a29d4fbacc96754c7fbfa, type: 3}
+  - {fileID: 21300000, guid: e255274fb2406a4458a6c3d294995a72, type: 3}
+  - {fileID: 21300000, guid: b357098c071fe6d47a5b743cd260fc10, type: 3}
+  - {fileID: 21300000, guid: f4d4cf3f5d2e462469a40b05c57fb429, type: 3}
+  - {fileID: 21300000, guid: f980df6f5a2d580408acfa89fd69b394, type: 3}

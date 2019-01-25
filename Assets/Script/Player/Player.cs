@@ -8,9 +8,11 @@ public class Player : MonoBehaviour {
     int playerID;
 
     bool oneTouchWall;
+    Rigidbody2D rg2d;
 	// Use this for initialization
 	void Start () {
         oneTouchWall = false;
+        rg2d = GetComponent<Rigidbody2D>();
 	}
 	
 	// Update is called once per frame
@@ -34,7 +36,10 @@ public class Player : MonoBehaviour {
         {
             Camera.Instance.TouchTwoWall(collision);
         }
-
+        if(collision.gameObject.name == "Player1" && PlayerManager.Instance.P2jump && this.transform.position.y - collision.gameObject.transform.position.y >= 3.5f|| collision.gameObject.name == "Player2" && PlayerManager.Instance.P1jump && this.transform.position.y - collision.gameObject.transform.position.y >= 3.5f)
+        {
+            rg2d.AddForce(new Vector2(rg2d.velocity.x,200));
+        }
     }
     
 

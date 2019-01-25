@@ -17,6 +17,7 @@ public class AttackCollider : MonoBehaviour {
     float flyTimer = 0.0f;
     //飛び道具初期位置
     Vector3 firstColliderPoint;
+    GameObject player;
 
     public int GuagePow{
         get{return guagePow;}
@@ -39,47 +40,83 @@ public class AttackCollider : MonoBehaviour {
         set{firstColliderPoint = value;}
     }
 
-    private void FixedUpdate(){
-        if (missile) { FlyMissile(); }
+    private void Update(){
+        if (missile & transform.parent) {
+            SetPoint();
+        }
+        else if(missile) { FlyMissile(); }
+    }
+
+    private void SetPoint() {
+        player = transform.parent.gameObject;
+        this.gameObject.transform.parent = null;
     }
 
     private void OnTriggerEnter2D(Collider2D collision){
         //必殺技は別の処理に投げる。
+        Debug.Log("atatta~");
         if (deathblow) {
             OnDeathblowEnter(collision);
             return;
         }
         if (collision.gameObject.tag == "1P"&&!PlayerManager.Instance.Guard[0]) {
-            Rigidbody2D rb2D = collision.transform.parent.GetComponent<Rigidbody2D>();
-            PlayerManager.Instance.HitAttack(2, -300, rb2D, PlayerManager.Instance.Move1P,guagePow);
+            //Rigidbody2D rb2D = collision.transform.parent.GetComponent<Rigidbody2D>();
+            PlayerManager.Instance.HitAttack(1, collision.gameObject, PlayerManager.Instance.Move1P,guagePow);
+            //var audio = GetComponent<AudioSource>();
+            //audio.Play();
+        }
+        else if (collision.gameObject.tag == "1P" && PlayerManager.Instance.Guard[0]){
+            PlayerManager.Instance.GuardAttack(1, PlayerManager.Instance.Move1P);
+            Debug.Log("がーどした");
         }
         else if (collision.gameObject.tag == "2P"&& !PlayerManager.Instance.Guard[1]) {
-            Rigidbody2D rb2D = collision.transform.parent.GetComponent<Rigidbody2D>();
-            PlayerManager.Instance.HitAttack(1, 300, rb2D, PlayerManager.Instance.Move2P,guagePow);
+            //Rigidbody2D rb2D = collision.transform.parent.GetComponent<Rigidbody2D>();
+            PlayerManager.Instance.HitAttack(2, collision.gameObject, PlayerManager.Instance.Move2P,guagePow);
+            //var audio = GetComponent<AudioSource>();
+            //audio.Play();
+        }
+        else if (collision.gameObject.tag == "2P" && PlayerManager.Instance.Guard[1]){
+            PlayerManager.Instance.GuardAttack(2, PlayerManager.Instance.Move2P);
+            Debug.Log("がーどした");
         }
         UIManager.Instance.PageChenge();
     }
     
     //必殺技の処理
-    void OnDeathblowEnter(Collider2D collision) {
-        if(collision.gameObject.tag == "1P") {
+    void OnDeathblowEnter(Collider2D collision)
+    {
+        Debug.Log("なにかにあたった");
+        var audio = GetComponent<AudioSource>();
+        //audio.Play();
+        if (collision.gameObject.tag == "1P") {
             Debug.Log("2Pの勝ち！");
-            UIManager.Instance.WinText(false);
+            StartCoroutine(DeathblowCoroutine(false));
         }
         else if (collision.gameObject.tag == "2P") {
             Debug.Log("1Pの勝ち！");
-            UIManager.Instance.WinText(true);
+            StartCoroutine(DeathblowCoroutine(true));
         }
     }
 
     void FlyMissile(){
-        transform.position += new Vector3(flySpeed*Time.deltaTime,0,0);
+        int direction = PlayerManager.Instance.missileDirection;
+        transform.position += new Vector3(flySpeed*direction*Time.deltaTime,0,0);
         flyTimer += Time.deltaTime;
         if(FlyTime <= flyTimer) {
+            this.gameObject.transform.parent = player.transform;
             transform.position = firstColliderPoint;
             missile = false;
             gameObject.SetActive(false);
+            flyTimer = 0;
         }
     }
     
+    IEnumerator DeathblowCoroutine(bool Playernum){
+        UIManager.Instance.WinText(Playernum);
+        PlayerManager.Instance.kOPlayer = Playernum;
+        PlayerManager.Instance.kOanimeTime = true;
+        yield return new WaitForSeconds(2.0f);
+        
+    }
+
 }

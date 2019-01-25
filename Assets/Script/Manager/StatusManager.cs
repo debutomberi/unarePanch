@@ -154,17 +154,16 @@ public class StatusManager : SingletonMonoBehavior<StatusManager> {
         }
         deathblowGuage[player - 1] += pow;
         if (deathblowGuage[player - 1] >= 100) { deathblowGuage[player - 1] = 100; }
-        //Debug.Log("ゲージ量_1P:" + deathblowGuage[0] + "2P:" + deathblowGuage[1]);
+        Debug.Log("ゲージ量_1P:" + deathblowGuage[1] + "2P:" + deathblowGuage[0]);
     }
 
-    public bool GuageUse(int player) {
-        if(player > 2) {
+    public void GuageUse(int player) {
+        /*if(player > 2) {
             Debug.LogError("ゲージ上昇は必ず１か２を選択して下さい。");
             return false;
-        }
-        if(deathblowGuage[player-1] < 100) { return false; }
-        deathblowGuage[player - 1] = 0;
+        }*/
+        if(deathblowGuage[player] <= 99) { return; }
+        deathblowGuage[player] = 0;
         //Debug.Log("ゲージ量_1P:" + deathblowGuage[0] + "2P:" + deathblowGuage[1]);
-        return true;
     }
 }
