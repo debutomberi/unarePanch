@@ -54,27 +54,32 @@ public class AttackCollider : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision){
         //必殺技は別の処理に投げる。
+        Debug.Log("atatta~");
         if (deathblow) {
             OnDeathblowEnter(collision);
             return;
         }
         if (collision.gameObject.tag == "1P"&&!PlayerManager.Instance.Guard[0]) {
             //Rigidbody2D rb2D = collision.transform.parent.GetComponent<Rigidbody2D>();
-            PlayerManager.Instance.HitAttack(2, -0.1f, collision.gameObject, PlayerManager.Instance.Move1P,guagePow);
+            PlayerManager.Instance.HitAttack(1, collision.gameObject, PlayerManager.Instance.Move1P,guagePow);
             //var audio = GetComponent<AudioSource>();
-            //audio.Play();
+            GameObject.Find("Audio Source").GetComponent<SEmanager>().PlaySE(0);
         }
-        else if (collision.gameObject.tag == "1P" && !PlayerManager.Instance.Guard[0]){
-            PlayerManager.Instance.GuardAttack(2, PlayerManager.Instance.Move1P);
+        else if (collision.gameObject.tag == "1P" && PlayerManager.Instance.Guard[0]){
+            PlayerManager.Instance.GuardAttack(1, PlayerManager.Instance.Move1P);
+            GameObject.Find("Audio Source").GetComponent<SEmanager>().PlaySE(0);
+            Debug.Log("がーどした");
         }
         else if (collision.gameObject.tag == "2P"&& !PlayerManager.Instance.Guard[1]) {
             //Rigidbody2D rb2D = collision.transform.parent.GetComponent<Rigidbody2D>();
-            PlayerManager.Instance.HitAttack(1, 0.1f, collision.gameObject, PlayerManager.Instance.Move2P,guagePow);
+            PlayerManager.Instance.HitAttack(2, collision.gameObject, PlayerManager.Instance.Move2P,guagePow);
             //var audio = GetComponent<AudioSource>();
-            //audio.Play();
+            GameObject.Find("Audio Source").GetComponent<SEmanager>().PlaySE(0);
         }
-        else if (collision.gameObject.tag == "2P" && !PlayerManager.Instance.Guard[1]){
-            PlayerManager.Instance.GuardAttack(1, PlayerManager.Instance.Move2P);
+        else if (collision.gameObject.tag == "2P" && PlayerManager.Instance.Guard[1]){
+            PlayerManager.Instance.GuardAttack(2, PlayerManager.Instance.Move2P);
+            GameObject.Find("Audio Source").GetComponent<SEmanager>().PlaySE(0);
+            Debug.Log("がーどした");
         }
         UIManager.Instance.PageChenge();
     }
@@ -82,8 +87,8 @@ public class AttackCollider : MonoBehaviour {
     //必殺技の処理
     void OnDeathblowEnter(Collider2D collision)
     {
-        var audio = GetComponent<AudioSource>();
-        //audio.Play();
+        Debug.Log("なにかにあたった");
+        GameObject.Find("Audio Source").GetComponent<SEmanager>().PlaySE(2);
         if (collision.gameObject.tag == "1P") {
             Debug.Log("2Pの勝ち！");
             StartCoroutine(DeathblowCoroutine(false));
@@ -111,9 +116,8 @@ public class AttackCollider : MonoBehaviour {
         UIManager.Instance.WinText(Playernum);
         PlayerManager.Instance.kOPlayer = Playernum;
         PlayerManager.Instance.kOanimeTime = true;
-        Time.timeScale = 0.1f;
         yield return new WaitForSeconds(2.0f);
-        Time.timeScale = 1.0f;
+        
     }
 
 }

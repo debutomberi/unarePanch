@@ -36,7 +36,7 @@ public class Player : MonoBehaviour {
         {
             Camera.Instance.TouchTwoWall(collision);
         }
-        if(collision.gameObject.name == "Player1" && PlayerManager.Instance.P2jump || collision.gameObject.name == "Player2" && PlayerManager.Instance.P1jump)
+        if(collision.gameObject.name == "Player1" && PlayerManager.Instance.P2jump && this.transform.position.y - collision.gameObject.transform.position.y >= 3.5f|| collision.gameObject.name == "Player2" && PlayerManager.Instance.P1jump && this.transform.position.y - collision.gameObject.transform.position.y >= 3.5f)
         {
             rg2d.AddForce(new Vector2(rg2d.velocity.x,200));
         }
