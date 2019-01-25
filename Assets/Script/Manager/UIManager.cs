@@ -59,9 +59,9 @@ public class UIManager : SingletonMonoBehavior<UIManager>
         _1pslider.value = onePgage / 100;
         _2pslider.value = twoPgage / 100;
 
-        //text[0].text = onePgage.ToString();
+        text[0].text = onePgage.ToString();
         //pop[0].StartAction();
-        //text[1].text = twoPgage.ToString();
+        text[1].text = twoPgage.ToString();
         //pop[1].StartAction();
     }
 
