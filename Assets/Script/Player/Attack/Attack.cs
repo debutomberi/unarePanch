@@ -32,15 +32,12 @@ public class Attack {
 
         var attackColliderScript = attackCollider.GetComponent<AttackCollider>();
         //攻撃の発生。発生時に飛び道具かと必殺技かを持たせる。
-        attackColliderScript.Deathblow = db;        
-        attackColliderScript.Missile = msl;
+        attackColliderScript.Deathblow = db;
+        attackCollider.SetActive(true);
         //飛び道具のときは専用のステータスを組む。
         if (msl) {
-            if (attackCollider.activeInHierarchy) { attackCollider.transform.position = attackColliderScript.FirstColliderPoint; }
-            attackColliderScript.FlyTime = time;
-            attackColliderScript.FirstColliderPoint = attackCollider.transform.position;
+            attackColliderScript.Fire(time,pow);
         }
-        attackCollider.SetActive(true);
         //Debug.Log(pow);    
         //player.sprite = Resources.Load("Images/斜め横　パピヨンEX 差分", typeof(Sprite)) as Sprite;
         player.sprite = attackSprite[3];

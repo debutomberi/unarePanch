@@ -18,6 +18,8 @@ public class AttackCollider : MonoBehaviour {
     //飛び道具初期位置
     Vector3 firstColliderPoint;
     GameObject player;
+    [SerializeField]
+    GameObject mslPrefab;
 
     public int GuagePow{
         get{return guagePow;}
@@ -41,10 +43,7 @@ public class AttackCollider : MonoBehaviour {
     }
 
     private void Update(){
-        if (missile & transform.parent) {
-            SetPoint();
-        }
-        else if(missile) { FlyMissile(); }
+        if(missile) { FlyMissile(); }
     }
 
     private void SetPoint() {
@@ -102,11 +101,7 @@ public class AttackCollider : MonoBehaviour {
         transform.position += new Vector3(flySpeed*direction*Time.deltaTime,0,0);
         flyTimer += Time.deltaTime;
         if(FlyTime <= flyTimer) {
-            this.gameObject.transform.parent = player.transform;
-            transform.position = firstColliderPoint;
-            missile = false;
-            gameObject.SetActive(false);
-            flyTimer = 0;
+            Destroy(this.gameObject);
         }
     }
     
@@ -115,6 +110,15 @@ public class AttackCollider : MonoBehaviour {
         PlayerManager.Instance.kOPlayer = Playernum;
         PlayerManager.Instance.kOanimeTime = true;
         yield return new WaitForSeconds(2.0f);
+        
+    }
+
+    public void Fire(float time, int pow){
+        var s = Instantiate(mslPrefab,this.transform);
+        s.GetComponent<AttackCollider>().missile = true;
+        s.GetComponent<AttackCollider>().flyTime = time;
+        s.GetComponent<AttackCollider>().guagePow = pow;
+        s.transform.parent = null;
         
     }
 
