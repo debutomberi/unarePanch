@@ -237,8 +237,6 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 if (shitCollider[0].activeInHierarchy) { AttackOccurrence(1, 1); }
                 else { AttackOccurrence(0, 1); }
                 
-                timeControl = true;
-                StartCoroutine("OnePlayerCamera");
             }
             if (Input.GetKeyDown(KeyCode.X))
             {
