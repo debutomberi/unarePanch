@@ -247,7 +247,12 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             }
             if(Input.GetKeyDown(KeyCode.V))
             {
-                AttackOccurrence(6, 1);
+                if (StatusManager.Instance.DeathblowGuage[1] == 100)
+                {
+                    StatusManager.Instance.GuageUse(1);
+                    AttackOccurrence(6, 1);
+                    UIManager.Instance.PageChenge();
+                }
             }
             //DEBUG
 
@@ -273,12 +278,17 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             }
             if (Input.GetKeyDown("joystick 1 button 3"))
             {
-                AttackOccurrence(6, 1);
+                if (StatusManager.Instance.DeathblowGuage[1] == 100)
+                {
+                    StatusManager.Instance.GuageUse(1);
+                    UIManager.Instance.PageChenge();
+                    AttackOccurrence(6, 1);
+                }
             }
             if (Input.GetKeyDown("joystick 1 button 4"))
             {
                 //Debug.Log("LB");
-                DeathblowOccurrence(1, 1);
+                //DeathblowOccurrence(1, 1);
             }
             if (Input.GetKeyDown("joystick 1 button 5"))
             {
@@ -312,12 +322,17 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             }
             if (Input.GetKeyDown("joystick 2 button 3"))
             {
-                AttackOccurrence(6, 2);
+                if (StatusManager.Instance.DeathblowGuage[0] == 100)
+                {
+                    StatusManager.Instance.GuageUse(0);
+                    AttackOccurrence(6, 2);
+                    UIManager.Instance.PageChenge();
+                }
             }
             if (Input.GetKeyDown("joystick 2 button 4"))
             {
                 //Debug.Log("LB");
-                DeathblowOccurrence(1, 2);
+                //DeathblowOccurrence(1, 2);
             }
             if (Input.GetKeyDown("joystick 2 button 5"))
             {
@@ -713,16 +728,6 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         StartCoroutine(coroutine);
     }
 
-    void DeathblowOccurrence(int attackNum,int player)
-    {
-        if (attack[player - 1].AttackCheck) { return; }
-        bool Guage = StatusManager.Instance.GuageUse(player);
-        if (!Guage) { return; }
-        IEnumerator coroutine = attack[player - 1].SetParamete(attackParameter[player - 1][attackNum], attackCollider[player - 1][attackNum],image[player - 1], player - 1);
-        StartCoroutine(coroutine);
-        UIManager.Instance.PageChenge();
-    }
-
     void Step(float step, GameObject rb, bool move,int player)
     {
         if (!move) { return; }
@@ -759,8 +764,9 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         image[player - 1].sprite = damageSprite[player - 1];
         var obj = Instantiate(effect, rb.transform.position, Quaternion.identity);
         StatusManager.Instance.GuageUp(player, guagePow);
-        if (player == 2) { PlayerManager.Instance.move1P = false; }
-        else if (player == 1) { PlayerManager.Instance.move2P = false; }
+        if (player == 2) { move1P = false; }
+        else if (player == 1) { move2P = false; }
+        Debug.Log("Hit1P:" + move1P + "Hit2P:" + move2P);
         yield return new WaitForSeconds(1.0f);
         image[player - 1].sprite = defultSprite[player - 1];
         Debug.Log(player);
