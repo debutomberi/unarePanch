@@ -169,8 +169,8 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         }
 
         int id1 = PlayerSporn.Instance.GetPlayerSelectID(PLAYERID.ID_1);
-        PlayerGet exampleAsset = AssetDatabase.LoadAssetAtPath<PlayerGet>("Assets/CharaInfo" + id1 + ".asset");
-        exampleAsset.GetCharaID();
+        //PlayerGet exampleAsset = AssetDatabase.LoadAssetAtPath<PlayerGet>("Assets/CharaInfo" + id1 + ".asset");
+        //exampleAsset.GetCharaID();
 
     }
     private void Update()
@@ -306,19 +306,19 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             if (Input.GetKeyDown("joystick 2 button 0"))
             {
                 Debug.Log("パンチしました");
-                if (shitCollider[0].activeInHierarchy) { AttackOccurrence(1, 2); }
+                if (shitCollider[1].activeInHierarchy) { AttackOccurrence(1, 2); }
                 else { AttackOccurrence(0, 2); }
             }
             if (Input.GetKeyDown("joystick 2 button 1"))
             {
-                if (shitCollider[0].activeInHierarchy) { AttackOccurrence(3, 2); }
+                if (shitCollider[1].activeInHierarchy) { AttackOccurrence(3, 2); }
                 else { AttackOccurrence(2, 2); }
             }
             if (Input.GetKeyDown("joystick 2 button 2"))
             {
                 if (center2p) { missileDirection = 1; }
                 else if (!center2p) { missileDirection = -1; }
-                if (shitCollider[0].activeInHierarchy) { AttackOccurrence(5, 2); }
+                if (shitCollider[1].activeInHierarchy) { AttackOccurrence(5, 2); }
                 else { AttackOccurrence(4, 2); }
             }
             if (Input.GetKeyDown("joystick 2 button 3"))
