@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+//using UnityEditor;
+
+
 public class PlayerManager : SingletonMonoBehavior<PlayerManager>
 {
 
@@ -20,15 +23,13 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
 
     [SerializeField]
     GameObject effect;
-
+    public float Speed;
     [SerializeField]
-    float Speed;
-    [SerializeField]
-    float Jump;
+    public float Jump;
 
     //1Pの攻撃
     [SerializeField]
-    List<GameObject> attackColliderOnePlayer = new List<GameObject>();
+    public List<GameObject> attackColliderOnePlayer = new List<GameObject>();
     [SerializeField]
     List<AttackTable> attackParameterOnePlayer = new List<AttackTable>();
 
@@ -60,8 +61,8 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     Rigidbody2D P1rb;
     Rigidbody2D P2rb;
     //ジャンプしているか
-    bool P1jump;
-    bool P2jump;
+    [HideInInspector]public bool P1jump;
+    [HideInInspector]public bool P2jump;
     //ガードしているか
     bool[] guard = { false, false };
     //しゃがんでいるか
@@ -104,6 +105,11 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     Sprite[] jumpSprite1p = new Sprite[2];
     [SerializeField]
     Sprite[] jumpSprite2p = new Sprite[2];
+    //K.OのSprite
+    [SerializeField]
+    Sprite[] kOSprite1p = new Sprite[2];
+    [SerializeField]
+    Sprite[] kOSprite2p = new Sprite[2];
     //次の歩きの絵を表示するまでの時間
     int[] walkTime = { 0, 0 };
     //次に表示する歩きの絵の番号
@@ -117,6 +123,10 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
 
     //勝負がついたか
     public bool isPlaying = true;
+    //K.Oされたプレイヤー、Falseが１P
+    public bool kOPlayer = false;
+    //K.Oのアニメ中かどうか
+    public bool kOanimeTime = false;
 
     public bool Move1P
     {
@@ -161,14 +171,26 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         {
             attackCollider[1][i].gameObject.SetActive(false);
         }
+
+        int id1 = PlayerSporn.Instance.GetPlayerSelectID(PLAYERID.ID_1);
+        //PlayerGet exampleAsset = AssetDatabase.LoadAssetAtPath<PlayerGet>("Assets/CharaInfo" + id1 + ".asset");
+        //exampleAsset.GetCharaID();
+
     }
     private void Update()
     {
         if (!isPlaying)
         {
-            if (Input.GetKeyDown("joystick 1 button 2"))
+            if (kOanimeTime) { KOAnim(kOPlayer); }
+            else
             {
-                SceneManagers.Instance.ChangeSceneState();
+                if (Input.GetKeyDown("joystick 1 button 2"))
+                {
+
+                    SceneManagers.Instance.ChangeSceneState();
+
+                }
+
             }
         }
         else
@@ -665,6 +687,37 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         }
 
     }
+    //KOのアニメーション
+    void KOAnim(bool player)
+    {
+        int playernum = player ? 0 : 1;
+        image[playernum].gameObject.transform.position += new Vector3(0.03f,0,0);
+        walkTime[playernum]++;
+        if (walkTime[playernum] <= 3) { return; }
+        walkTime[playernum] = 0;
+        Sprite[] kOSprites = kOSprite1p;
+        if (player == false)
+        {
+            kOSprites = kOSprite1p;
+        }
+        else if (player == true)
+        {
+            kOSprites = kOSprite2p;
+        }
+        image[playernum].sprite = kOSprites[nextWalk[playernum]];
+        if (nextWalk[playernum] == kOSprites.Length - 1)
+        {
+            nextWalk[playernum] = 0;
+            kOanimeTime= false;
+        }
+        else
+        {
+            nextWalk[playernum]++;
+        }
+
+
+    }
+
 
     void AttackOccurrence(int attackNum , int player)
     {

@@ -44,6 +44,7 @@ public class Camera : SingletonMonoBehavior<Camera> {
         onePos = onePlayer.transform.position;
         twoPos = twoPlayer.transform.position;
         onePos.z = -10;
+        twoPos.z = -10;
     }
     public void CameraMove() {
         
