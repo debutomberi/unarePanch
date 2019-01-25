@@ -676,8 +676,9 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     //KOのアニメーション
     void KOAnim(bool player)
     {
-        int playernum = player ? 0 : 1;
-        image[playernum].gameObject.transform.position += new Vector3(0.03f,0,0);
+        int playernum = player ? 1 : 0;
+        int vector = player ? 1 : -1;
+        image[playernum].gameObject.transform.position += new Vector3(0.03f * vector, 0,0);
         walkTime[playernum]++;
         if (walkTime[playernum] <= 3) { return; }
         walkTime[playernum] = 0;
