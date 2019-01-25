@@ -1331,7 +1331,7 @@ GameObject:
   - component: {fileID: 1373789676}
   m_Layer: 0
   m_Name: Collider2P
-  m_TagString: 1P
+  m_TagString: 2P
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1605,7 +1605,7 @@ GameObject:
   - component: {fileID: 1460821161}
   m_Layer: 0
   m_Name: ShitCollider2P
-  m_TagString: 1P
+  m_TagString: 2P
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
