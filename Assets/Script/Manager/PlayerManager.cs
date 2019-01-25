@@ -366,15 +366,15 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     
         if (Input.GetAxis("Horizontal") <= 0.5 && Input.GetAxis("Horizontal") >= -0.5)
         {
-            if (Input.GetAxis("Vertical") == 1 && !P1jump)
+            if (Input.GetAxis("Vertical") >= 0.8 && !P1jump)
             {
-                if (Input.GetAxis("Vertical") == 1)
+                if (Input.GetAxis("Vertical") >= 0.8)
                 {
                     StatusManager.Instance.SetCommandOnePlayer(8);
                     return;
                 }
             }
-            if (Input.GetAxis("Vertical") == -1)
+            if (Input.GetAxis("Vertical") <= -0.8)
             {
                 StatusManager.Instance.SetCommandOnePlayer(2);
                 return;
@@ -431,7 +431,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
 
         if (Input.GetAxis("Horizontal2") <= 0.5 && Input.GetAxis("Horizontal2") >= -0.5)
         {
-            if (Input.GetAxis("Vertical2") == 1 && !P2jump)
+            if (Input.GetAxis("Vertical2") >= 0.8 && !P2jump)
             {
                 if (Input.GetAxis("Vertical2") == 1)
                 {
@@ -440,7 +440,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 }
 
             }
-            if (Input.GetAxis("Vertical2") == -1)
+            if (Input.GetAxis("Vertical2") <= -0.8)
             {
                 StatusManager.Instance.SetCommandTwoPlayer(2);
                 return;

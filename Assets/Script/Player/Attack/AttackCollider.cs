@@ -111,9 +111,8 @@ public class AttackCollider : MonoBehaviour {
         UIManager.Instance.WinText(Playernum);
         PlayerManager.Instance.kOPlayer = Playernum;
         PlayerManager.Instance.kOanimeTime = true;
-        Time.timeScale = 0.1f;
         yield return new WaitForSeconds(2.0f);
-        Time.timeScale = 1.0f;
+        
     }
 
 }
