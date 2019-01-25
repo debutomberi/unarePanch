@@ -21,9 +21,13 @@ MonoBehaviour:
   shitCollider:
   - {fileID: 0}
   - {fileID: 0}
+  c_image: {fileID: 0}
   d_image: {fileID: 0}
   w_Lists:
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  ko:
   - {fileID: 0}
   - {fileID: 0}
   s_image: {fileID: 0}

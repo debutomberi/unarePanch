@@ -24,6 +24,11 @@ public class UIManager : SingletonMonoBehavior<UIManager>
     int twoPgage;
 
     [SerializeField]
+    Slider _1pslider;
+    [SerializeField]
+    Slider _2pslider;
+
+    [SerializeField]
     GameObject wintext;
     Text _wimtext;
     [SerializeField]
@@ -51,9 +56,12 @@ public class UIManager : SingletonMonoBehavior<UIManager>
         onePgage = StatusManager.Instance.DeathblowGuage[1];
         twoPgage = StatusManager.Instance.DeathblowGuage[0];
 
-        text[0].text = onePgage.ToString();
+        _1pslider.value = onePgage / 100;
+        _2pslider.value = twoPgage / 100;
+
+        //text[0].text = onePgage.ToString();
         //pop[0].StartAction();
-        text[1].text = twoPgage.ToString();
+        //text[1].text = twoPgage.ToString();
         //pop[1].StartAction();
     }
 
