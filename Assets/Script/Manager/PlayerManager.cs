@@ -758,12 +758,6 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         image[player - 1].sprite = damageSprite[player - 1];
         int i = 0;
         var obj = Instantiate(effect, rb.transform.position, Quaternion.identity);
-        while (i >= 60)
-        {
-            rb.transform.position += new Vector3(value, 0, 0);
-            i++;
-            yield return null;
-        }
         StatusManager.Instance.GuageUp(player, guagePow);
         if (player == 2) { PlayerManager.Instance.move1P = false; }
         else if (player == 1) { PlayerManager.Instance.move2P = false; }
