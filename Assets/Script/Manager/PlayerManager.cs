@@ -747,17 +747,16 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     }
 
 
-    public void HitAttack(int player, float value, GameObject rb, bool move, int guagePow)
+    public void HitAttack(int player, GameObject rb, bool move, int guagePow)
     {
         if (!move) { return; }
-        StartCoroutine(HitAttackCoroutine(player, value,rb,move,guagePow));
+        StartCoroutine(HitAttackCoroutine(player,rb,move,guagePow));
     }
 
-    IEnumerator HitAttackCoroutine(int player, float value, GameObject rb, bool move, int guagePow)
+    IEnumerator HitAttackCoroutine(int player, GameObject rb, bool move, int guagePow)
     {
         if (!move) { yield break; }
         image[player - 1].sprite = damageSprite[player - 1];
-        int i = 0;
         var obj = Instantiate(effect, rb.transform.position, Quaternion.identity);
         StatusManager.Instance.GuageUp(player, guagePow);
         if (player == 2) { PlayerManager.Instance.move1P = false; }
