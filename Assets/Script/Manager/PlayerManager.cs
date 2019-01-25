@@ -223,7 +223,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
 
     void Attack()
     {
-        if (!P1jump)
+        if (!P1jump && move1P)
         {
             //DEBUG
             if (Input.GetKeyDown(KeyCode.Z))
@@ -296,7 +296,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 //Debug.Log("RB");
             }
         }
-        if (!P2jump)
+        if (!P2jump && move2P)
         {
             if (Input.GetKeyDown(KeyCode.Z))
             {
@@ -306,19 +306,19 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             if (Input.GetKeyDown("joystick 2 button 0"))
             {
                 Debug.Log("パンチしました");
-                if (shitCollider[1].activeInHierarchy) { AttackOccurrence(1, 2); }
+                if (shitCollider[0].activeInHierarchy) { AttackOccurrence(1, 2); }
                 else { AttackOccurrence(0, 2); }
             }
             if (Input.GetKeyDown("joystick 2 button 1"))
             {
-                if (shitCollider[1].activeInHierarchy) { AttackOccurrence(3, 2); }
+                if (shitCollider[0].activeInHierarchy) { AttackOccurrence(3, 2); }
                 else { AttackOccurrence(2, 2); }
             }
             if (Input.GetKeyDown("joystick 2 button 2"))
             {
                 if (center2p) { missileDirection = 1; }
                 else if (!center2p) { missileDirection = -1; }
-                if (shitCollider[1].activeInHierarchy) { AttackOccurrence(5, 2); }
+                if (shitCollider[0].activeInHierarchy) { AttackOccurrence(5, 2); }
                 else { AttackOccurrence(4, 2); }
             }
             if (Input.GetKeyDown("joystick 2 button 3"))
@@ -490,13 +490,13 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 if (player == 1)
                 {
                     Player1.transform.position += new Vector3(Speed * Time.deltaTime, 0, 0);
-                    if (center1p) { guard[0] = true; Debug.Log("ガード1"); }
+                    if (center1p) { guard[0] = true;}
 
                 }
                 else if(player == 2)
                 {
                     Player2.transform.position += new Vector3(Speed * Time.deltaTime, 0, 0);
-                    if (!center2p) { guard[0] = true; Debug.Log("ガード2"); }
+                    if (!center1p) { guard[1] = true;}
                     
                 }
                 break;
@@ -511,12 +511,12 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 {
                     Player1.transform.position += new Vector3(-Speed * Time.deltaTime, 0, 0);
                     guard[1] = true;
-                    if (!center1p) { guard[0] = true; Debug.Log("ガード1"); }
+                    if (!center1p) { guard[0] = true; }
                 }
                 else if (player == 2)
                 {
                     Player2.transform.position += new Vector3(-Speed * Time.deltaTime, 0, 0);
-                    if (center2p) { guard[0] = true; Debug.Log("ガード2"); }
+                    if (center1p) { guard[1] = true;}
 
                 }
                 break;
@@ -739,6 +739,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         if (!move) { yield break; }
         if(player == 1) { move1P = false; }
         else if(player == 2) { move2P = false; }
+        //yield return new WaitForSeconds(1.0f);
         int i = 0;
         while (i <= 60)
         {
@@ -747,7 +748,6 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             yield return null;
         }
         //rb.AddForce(new Vector2(step, 0));
-        yield return new WaitForSeconds(1.0f);
         if (player == 1) { move1P = true; }
         else if (player == 2) { move2P = true; }
     }
@@ -766,15 +766,15 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         var vec = new Vector3(rb.transform.position.x, rb.transform.position.y,rb.transform.position.z - 9);
         var obj = Instantiate(effect, vec, Quaternion.identity);
         StatusManager.Instance.GuageUp(player, guagePow);
-        if (player == 2) { move1P = false; }
-        else if (player == 1) { move2P = false; }
+        if (player == 2) { move2P = false; }
+        else if (player == 1) { move1P = false; }
         Debug.Log("Hit1P:" + move1P + "Hit2P:" + move2P);
         yield return new WaitForSeconds(1.0f);
         image[player - 1].sprite = defultSprite[player - 1];
         Debug.Log(player);
         Destroy(obj);
-        if (player == 2) { PlayerManager.Instance.move1P = true; }
-        else if (player == 1) { PlayerManager.Instance.move2P = true; }
+        if (player == 2) { PlayerManager.Instance.move2P = true; }
+        else if (player == 1) { PlayerManager.Instance.move1P = true; }
     }
 
     public void GuardAttack(int player , bool move)
@@ -787,13 +787,13 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     {
         if (!move) { yield break; }
         image[player - 1].sprite = guardSprite[player - 1];
-        if (player == 2) { PlayerManager.Instance.move1P = false; }
-        else if (player == 1) { PlayerManager.Instance.move2P = false; }
+        if (player == 2) { PlayerManager.Instance.move2P = false; }
+        else if (player == 1) { PlayerManager.Instance.move1P = false; }
         yield return new WaitForSeconds(1.0f);
         image[player - 1].sprite = defultSprite[player - 1];
         Debug.Log(player);
-        if (player == 2) { PlayerManager.Instance.move1P = true; }
-        else if (player == 1) { PlayerManager.Instance.move2P = true; }
+        if (player == 2) { PlayerManager.Instance.move2P = true; }
+        else if (player == 1) { PlayerManager.Instance.move1P = true; }
     }
 
 
