@@ -363,8 +363,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1e0b790a9da3b7543a93870887111448, type: 3}
-  m_Color: {r: 0.17254902, g: 0.5294118, b: 0.83137256, a: 1}
+  m_Sprite: {fileID: 21300000, guid: ef18910270fea6040897e1634e3ce5be, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -381,6 +381,7 @@ GameObject:
   m_Component:
   - component: {fileID: 738321058}
   - component: {fileID: 738321059}
+  - component: {fileID: 738321060}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -422,6 +423,22 @@ MonoBehaviour:
   point2: {fileID: 1275642404}
   x: {x: 1, y: 0}
   y: {x: 0, y: 1}
+--- !u!114 &738321060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 738321057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba93619277eb44a41a2624a7c2e7486a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _1pSpr: {fileID: 1635657205}
+  _2pSpr: {fileID: 1234144131}
+  text: {fileID: 2099566209}
+  select1p: 0
+  select2p: 0
 --- !u!1 &982410175
 GameObject:
   m_ObjectHideFlags: 0
@@ -724,9 +741,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 403240f860dd9064a84ecf10ccd23011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _select: {fileID: 738321060}
   controler: 1
-  _1pSpr: {fileID: 0}
-  _2pSpr: {fileID: 0}
 --- !u!50 &1275642409
 Rigidbody2D:
   serializedVersion: 4
@@ -857,9 +873,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 403240f860dd9064a84ecf10ccd23011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _select: {fileID: 738321060}
   controler: 0
-  _1pSpr: {fileID: 0}
-  _2pSpr: {fileID: 0}
 --- !u!50 &1573411385
 Rigidbody2D:
   serializedVersion: 4
@@ -1378,8 +1393,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1e0b790a9da3b7543a93870887111448, type: 3}
-  m_Color: {r: 0.17254902, g: 0.5294118, b: 0.83137256, a: 1}
+  m_Sprite: {fileID: 21300000, guid: ef18910270fea6040897e1634e3ce5be, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1403,7 +1418,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2099566210
 RectTransform:
   m_ObjectHideFlags: 0

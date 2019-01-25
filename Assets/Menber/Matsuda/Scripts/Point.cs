@@ -8,12 +8,10 @@ public class Point : MonoBehaviour {
         playerOne,
         playerTwe
     }
-    [SerializeField] Controler controler;
 
-    [SerializeField] SpriteRenderer _1pSpr;
-    [SerializeField] SpriteRenderer _2pSpr;
-    bool select1p = false;
-    bool select2p = false;
+    [SerializeField] SelectCharas _select;
+    [SerializeField] Controler controler;
+    
 
 	// Use this for initialization
 	void Start () {
@@ -21,34 +19,30 @@ public class Point : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        
+            switch (controler)
+            {
 
-        switch (controler)
-        {
-            case Controler.playerOne:
-                if (Input.GetKeyDown("joystick 1 button 1"))
-                {
-                    Debug.Log("P1 1 button");
-                }
-                if (Input.GetKeyDown("joystick 1 button 2"))
-                {
-                    Debug.Log("P1 2 button");
-                }break;
-            case Controler.playerTwe:
-                if (Input.GetKeyDown("joystick 2 button 1"))
-                {
-                    Debug.Log("P2 1 button");
-                }
-                if (Input.GetKeyDown("joystick 2 button 2"))
-                {
-                    Debug.Log("P2 2 button");
-                }break;
-        }
+                case Controler.playerOne:
+
+                    if (Input.GetKeyDown("joystick 1 button 1"))
+                    {
+                        _select.ReSelect(1);
+                        Debug.Log("P1 2 button");
+                    }
+                    break;
+                case Controler.playerTwe:
+                    
+                    if (Input.GetKeyDown("joystick 2 button 1"))
+                    {
+                        _select.ReSelect(2);
+                        Debug.Log("P2 2 button");
+                    }
+                    break;
+            }
+        
     }
 
-    private void selectChara()
-    {
-
-    }
     private void OnTriggerStay2D(Collider2D collision)
     {
         switch (controler)
@@ -56,21 +50,13 @@ public class Point : MonoBehaviour {
             case Controler.playerOne:
                 if (Input.GetKeyDown("joystick 1 button 2"))
                 {
-                    if (collision.gameObject.tag == "2P") return;
-                    Debug.Log(collision.gameObject.name);
-                    var _spriteRenderer = collision.gameObject.GetComponent<SpriteRenderer>();
-                    _1pSpr.sprite = _spriteRenderer.sprite;
-                    select1p = true;
+                    _select.ChoisChara(collision, 1);
                 }
                 break;
             case Controler.playerTwe:
                 if (Input.GetKeyDown("joystick 2 button 2"))
                 {
-                    if (collision.gameObject.tag == "1P") return;
-                    Debug.Log(collision.gameObject.name);
-                    var _spriteRenderer = collision.gameObject.GetComponent<SpriteRenderer>();
-                    _1pSpr.sprite = _spriteRenderer.sprite;
-                    select1p = true;
+                    _select.ChoisChara(collision, 2);
                 }
                 break;
         }
