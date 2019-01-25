@@ -10,7 +10,7 @@ public class PlayerCollider : MonoBehaviour {
 	void Update () {
         if (this.gameObject.activeInHierarchy)
         {
-            this.GetComponent<Rigidbody2D>().WakeUp();
+            this.gameObject.transform.parent.GetComponent<Rigidbody2D>().WakeUp();
             if (hit) { StartCoroutine(HitUp()); }
         }
 	}
