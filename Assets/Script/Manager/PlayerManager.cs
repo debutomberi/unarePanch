@@ -316,19 +316,19 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             if (Input.GetKeyDown("joystick 2 button 0"))
             {
                 Debug.Log("パンチしました");
-                if (shitCollider[1].activeInHierarchy) { AttackOccurrence(1, 2); }
+                if (shitCollider[0].activeInHierarchy) { AttackOccurrence(1, 2); }
                 else { AttackOccurrence(0, 2); }
             }
             if (Input.GetKeyDown("joystick 2 button 1"))
             {
-                if (shitCollider[1].activeInHierarchy) { AttackOccurrence(3, 2); }
+                if (shitCollider[0].activeInHierarchy) { AttackOccurrence(3, 2); }
                 else { AttackOccurrence(2, 2); }
             }
             if (Input.GetKeyDown("joystick 2 button 2"))
             {
                 if (center2p) { missileDirection = 1; }
                 else if (!center2p) { missileDirection = -1; }
-                if (shitCollider[1].activeInHierarchy) { AttackOccurrence(5, 2); }
+                if (shitCollider[0].activeInHierarchy) { AttackOccurrence(5, 2); }
                 else { AttackOccurrence(4, 2); }
             }
             if (Input.GetKeyDown("joystick 2 button 3"))
@@ -516,8 +516,8 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 break;
             //6方向にステップ
             case 'S':
-                if (player == 1) { Step(0.05f, Player1, move1P,1); }
-                else if (player == 2) { Step(0.05f, Player2, move2P,2); }
+                if (player == 1) { Step(0.2f, Player1, move1P,1); }
+                else if (player == 2) { Step(0.2f, Player2, move2P,2); }
                 break;
             //4方向に移動
             case 'l':
@@ -536,8 +536,8 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 break;
             //4方向にステップ
             case 's':
-                if (player == 1) { Step(-0.05f, Player1, move1P,1); }
-                else if (player == 2) { Step(-0.05f, Player2, move2P,2); }
+                if (player == 1) { Step(-0.2f, Player1, move1P,1); }
+                else if (player == 2) { Step(-0.2f, Player2, move2P,2); }
                 break;
             //垂直ジャンプ
             case 'j':
@@ -755,7 +755,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         else if(player == 2) { move2P = false; }
         //yield return new WaitForSeconds(1.0f);
         int i = 0;
-        while (i <= 60)
+        while (i <= 10)
         {
             rb.transform.position += new Vector3(step,0,0);
             i++;
