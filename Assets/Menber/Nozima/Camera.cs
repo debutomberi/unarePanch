@@ -15,7 +15,10 @@ public class Camera : SingletonMonoBehavior<Camera> {
 
     Vector3 onePos;
     Vector3 twoPos;
-    
+
+    Camera Cam;
+    float camSize;
+
     bool fixation;
 
     PlayerManager script;
@@ -26,6 +29,8 @@ public class Camera : SingletonMonoBehavior<Camera> {
         onePlayer = GameObject.Find("Player1");
         twoPlayer = GameObject.Find("Player2");
         fixation = false;
+        Cam = mainCamera.GetComponent<Camera>();
+        
     }
 
     private void Update()
@@ -72,10 +77,12 @@ public class Camera : SingletonMonoBehavior<Camera> {
     public void OneDeathblowCamera()
     {
         mainCamera.transform.position = onePos;
-    }
+        fixation = true;
+     }
     public void TwoDeathblowCamera()
     {
         mainCamera.transform.position = twoPos;
+        fixation = true;
     }
 
 }
