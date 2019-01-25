@@ -56,8 +56,8 @@ public class UIManager : SingletonMonoBehavior<UIManager>
         onePgage = StatusManager.Instance.DeathblowGuage[1];
         twoPgage = StatusManager.Instance.DeathblowGuage[0];
 
-        _1pslider.value = onePgage / 100;
-        _2pslider.value = twoPgage / 100;
+        _1pslider.value = onePgage;
+        _2pslider.value = twoPgage;
 
         text[0].text = onePgage.ToString();
         //pop[0].StartAction();
