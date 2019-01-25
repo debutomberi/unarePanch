@@ -48,8 +48,8 @@ public class UIManager : SingletonMonoBehavior<UIManager>
     }
 
     public void PageChenge() {
-        onePgage = StatusManager.Instance.DeathblowGuage[0];
-        twoPgage = StatusManager.Instance.DeathblowGuage[1];
+        onePgage = StatusManager.Instance.DeathblowGuage[1];
+        twoPgage = StatusManager.Instance.DeathblowGuage[0];
 
         text[0].text = onePgage.ToString();
         //pop[0].StartAction();

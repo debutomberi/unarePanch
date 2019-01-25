@@ -60,21 +60,21 @@ public class AttackCollider : MonoBehaviour {
         }
         if (collision.gameObject.tag == "1P"&&!PlayerManager.Instance.Guard[0]) {
             //Rigidbody2D rb2D = collision.transform.parent.GetComponent<Rigidbody2D>();
-            PlayerManager.Instance.HitAttack(2, -0.1f, collision.gameObject, PlayerManager.Instance.Move1P,guagePow);
+            PlayerManager.Instance.HitAttack(1, collision.gameObject, PlayerManager.Instance.Move1P,guagePow);
             //var audio = GetComponent<AudioSource>();
             //audio.Play();
         }
         else if (collision.gameObject.tag == "1P" && !PlayerManager.Instance.Guard[0]){
-            PlayerManager.Instance.GuardAttack(2, PlayerManager.Instance.Move1P);
+            PlayerManager.Instance.GuardAttack(1, PlayerManager.Instance.Move1P);
         }
         else if (collision.gameObject.tag == "2P"&& !PlayerManager.Instance.Guard[1]) {
             //Rigidbody2D rb2D = collision.transform.parent.GetComponent<Rigidbody2D>();
-            PlayerManager.Instance.HitAttack(1, 0.1f, collision.gameObject, PlayerManager.Instance.Move2P,guagePow);
+            PlayerManager.Instance.HitAttack(2, collision.gameObject, PlayerManager.Instance.Move2P,guagePow);
             //var audio = GetComponent<AudioSource>();
             //audio.Play();
         }
         else if (collision.gameObject.tag == "2P" && !PlayerManager.Instance.Guard[1]){
-            PlayerManager.Instance.GuardAttack(1, PlayerManager.Instance.Move2P);
+            PlayerManager.Instance.GuardAttack(2, PlayerManager.Instance.Move2P);
         }
         UIManager.Instance.PageChenge();
     }
