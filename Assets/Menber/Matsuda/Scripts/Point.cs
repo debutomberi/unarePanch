@@ -9,6 +9,12 @@ public class Point : MonoBehaviour {
         playerTwe
     }
     [SerializeField] Controler controler;
+
+    [SerializeField] SpriteRenderer _1pSpr;
+    [SerializeField] SpriteRenderer _2pSpr;
+    bool select1p = false;
+    bool select2p = false;
+
 	// Use this for initialization
 	void Start () {
 	}
@@ -19,42 +25,52 @@ public class Point : MonoBehaviour {
         switch (controler)
         {
             case Controler.playerOne:
-                if (Input.GetKeyDown("joystick 1 button 6"))
+                if (Input.GetKeyDown("joystick 1 button 1"))
                 {
-                    Debug.Log("6 button");
+                    Debug.Log("P1 1 button");
                 }
-                if (Input.GetKeyDown("joystick 1 button 7"))
+                if (Input.GetKeyDown("joystick 1 button 2"))
                 {
-                    Debug.Log("7 button");
+                    Debug.Log("P1 2 button");
                 }break;
             case Controler.playerTwe:
-                if (Input.GetKeyDown("joystick 2 button 6"))
+                if (Input.GetKeyDown("joystick 2 button 1"))
                 {
-                    Debug.Log("6 button");
+                    Debug.Log("P2 1 button");
                 }
-                if (Input.GetKeyDown("joystick 2 button 7"))
+                if (Input.GetKeyDown("joystick 2 button 2"))
                 {
-                    Debug.Log("7 button");
+                    Debug.Log("P2 2 button");
                 }break;
         }
+    }
+
+    private void selectChara()
+    {
+
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
         switch (controler)
         {
             case Controler.playerOne:
-                if (Input.GetKeyDown("joystick 1 button 1"))
+                if (Input.GetKeyDown("joystick 1 button 2"))
                 {
-                    Debug.Log("A");
                     if (collision.gameObject.tag == "2P") return;
                     Debug.Log(collision.gameObject.name);
+                    var _spriteRenderer = collision.gameObject.GetComponent<SpriteRenderer>();
+                    _1pSpr.sprite = _spriteRenderer.sprite;
+                    select1p = true;
                 }
                 break;
             case Controler.playerTwe:
-                if (Input.GetKeyDown("joystick 2 button 1"))
+                if (Input.GetKeyDown("joystick 2 button 2"))
                 {
                     if (collision.gameObject.tag == "1P") return;
                     Debug.Log(collision.gameObject.name);
+                    var _spriteRenderer = collision.gameObject.GetComponent<SpriteRenderer>();
+                    _1pSpr.sprite = _spriteRenderer.sprite;
+                    select1p = true;
                 }
                 break;
         }
