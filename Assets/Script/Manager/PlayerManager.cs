@@ -293,7 +293,6 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                     UIManager.Instance.PageChenge();
                     timeControl = true;
                     StartCoroutine("OnePlayerCamera");
-                    AttackOccurrence(6, 1);
                 }
             }
             if (Input.GetKeyDown("joystick 1 button 4"))
@@ -340,7 +339,6 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                     UIManager.Instance.PageChenge();
                     timeControl = true;
                     StartCoroutine("TwoPlayerCamera");
-                    AttackOccurrence(6, 2);
                     
                 }
             }
@@ -861,6 +859,8 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         timeControl = false;
         yield return new WaitForSecondsRealtime(0);
         Camera.Instance.NotTouchWall();
+        yield return new WaitForSecondsRealtime(0);
+        AttackOccurrence(6, 1);
     }
     IEnumerator TwoPlayerCamera()
     {
@@ -875,6 +875,8 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         timeControl = false;
         yield return new WaitForSecondsRealtime(0);
         Camera.Instance.NotTouchWall();
+        yield return new WaitForSecondsRealtime(0);
+        AttackOccurrence(6, 2);
     }
 
     void ReturnTitle()
