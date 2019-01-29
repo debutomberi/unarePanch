@@ -22,7 +22,7 @@ public class ready_go : MonoBehaviour {
         text.text = "Ready";
         Debug.Log("ready");
         yield return new WaitForSecondsRealtime(2.0f);
-        text.text = "Go";
+        text.text = "Fight";
         Debug.Log("go");
         yield return new WaitForSecondsRealtime(1.0f);
         text.text = "";
