@@ -111,11 +111,10 @@ public class AttackCollider : MonoBehaviour {
         
     }
 
-    public void Fire(float time, int pow){
+    public void Fire(float time, int pow ,int direction){
         var s = Instantiate(mslPrefab,this.transform);
         s.GetComponent<AttackCollider>().missile = true;
         s.GetComponent<AttackCollider>().flyTime = time;
-        int direction = PlayerManager.Instance.missileDirection;
         s.GetComponent<AttackCollider>().flySpeed = flySpeed * direction;
         s.GetComponent<AttackCollider>().guagePow = pow;
         s.transform.parent = null;
