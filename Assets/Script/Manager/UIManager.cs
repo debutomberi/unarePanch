@@ -31,6 +31,10 @@ public class UIManager : SingletonMonoBehavior<UIManager>
     Slider _2pslider;
     [SerializeField]
     Image _2pimage;
+    [SerializeField]
+    GameObject _1psliderImage;
+    [SerializeField]
+    GameObject _2psliderImage;
 
     [SerializeField]
     GameObject wintext;
@@ -66,10 +70,14 @@ public class UIManager : SingletonMonoBehavior<UIManager>
         if(_1pslider.value == 100)
         {
             _1pimage.color = Color.yellow;
+            _1psliderImage.SetActive(true);
+            StartCoroutine( _1psliderImage.GetComponent<parsentMax>().Rain(_1psliderImage));
         }
         if(_2pslider.value == 100)
         {
             _2pimage.color = Color.yellow;
+            _2psliderImage.SetActive(true);
+            StartCoroutine(_2psliderImage.GetComponent<parsentMax>().Rain(_2psliderImage));
         }
 
         text[0].text = onePgage.ToString();
