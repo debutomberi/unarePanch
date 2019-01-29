@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddd20f58f1876f7439da3725bb4222f2, type: 3}
+  m_Name: JumpKick
+  m_EditorClassIdentifier: 
+  oFlame: 0
+  cFlame: 0
+  sFlame: 0
+  power: 0
+  deathblow: 0
+  missile: 0
+  flyTime: 1
+  AttackSprite:
+  - {fileID: 21300000, guid: d0cf02b044f03f042ba970b5c951e68f, type: 3}
+  - {fileID: 21300000, guid: a58873b2b4d5e0f40a0539c056ac2e62, type: 3}
+  - {fileID: 21300000, guid: 3785ba48557d8fd4b87d4e74ec72cb71, type: 3}
+  - {fileID: 21300000, guid: 7e346f2921810a74ca835914a39916fb, type: 3}
+  - {fileID: 21300000, guid: bd086b600ac445e4e85241df8c2e42d4, type: 3}
+  - {fileID: 21300000, guid: 89634937b268ef14da39ae1dacdd7fb0, type: 3}
+  - {fileID: 21300000, guid: bbece96922a25974584af00a4a1c22a9, type: 3}
+  - {fileID: 21300000, guid: ff7e626991a2fd04fb1d73b2277d9151, type: 3}

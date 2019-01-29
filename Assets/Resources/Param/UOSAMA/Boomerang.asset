@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddd20f58f1876f7439da3725bb4222f2, type: 3}
+  m_Name: Boomerang
+  m_EditorClassIdentifier: 
+  oFlame: 0
+  cFlame: 0
+  sFlame: 0
+  power: 0
+  deathblow: 0
+  missile: 0
+  flyTime: 1
+  AttackSprite:
+  - {fileID: 21300000, guid: 28c2ec2b53f4a0040b067b0fd3695819, type: 3}
+  - {fileID: 21300000, guid: 012b534be64f551458e9614e30ef347c, type: 3}
+  - {fileID: 21300000, guid: 25e9e2a0be391524a901d1b8176d8283, type: 3}
+  - {fileID: 21300000, guid: 685b71720e15f51478aee79a211f1d69, type: 3}
+  - {fileID: 21300000, guid: ca7dcae4e8bdd864bbb3be1882a02888, type: 3}
+  - {fileID: 21300000, guid: 0072b998e9b51e741816cb80fe3def4f, type: 3}
+  - {fileID: 21300000, guid: ad08c1fc1407e0e4381842da1aa2be6d, type: 3}
+  - {fileID: 21300000, guid: a94f57cf460b52b429ea745bcdf944fc, type: 3}
