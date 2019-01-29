@@ -446,7 +446,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 354222834}
-  - component: {fileID: 354222837}
   - component: {fileID: 354222836}
   - component: {fileID: 354222835}
   m_Layer: 0
@@ -506,49 +505,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 10, y: 10}
   m_EdgeRadius: 0
---- !u!212 &354222837
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 354222833}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: d1f426c1095ca0a42a654d57d2f08b4e, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 8.2, y: 11}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
 --- !u!1 &399415815
 GameObject:
   m_ObjectHideFlags: 0
@@ -1121,7 +1079,9 @@ MonoBehaviour:
   - {fileID: 2139367995}
   - {fileID: 2100323525}
   _1pslider: {fileID: 861914072}
+  _1pimage: {fileID: 0}
   _2pslider: {fileID: 1456968371}
+  _2pimage: {fileID: 0}
   wintext: {fileID: 1742445292}
   timerText: {fileID: 0}
   spr: []
@@ -2991,7 +2951,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1907693865}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.62, y: 0.060000002, z: 0}
+  m_LocalPosition: {x: 0.26, y: -0.41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1888991123}
@@ -3029,8 +2989,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: d1affdd4d61b43c488774e3cecf39ee1, type: 3}
-  m_Color: {r: 0.17106403, g: 0.5305513, b: 0.8308824, a: 1}
+  m_Sprite: {fileID: 21300000, guid: c9ae1a4f85ab8754ca69f69ccded7dbe, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
