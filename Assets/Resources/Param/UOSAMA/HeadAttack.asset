@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddd20f58f1876f7439da3725bb4222f2, type: 3}
+  m_Name: HeadAttack
+  m_EditorClassIdentifier: 
+  oFlame: 0
+  cFlame: 0
+  sFlame: 0
+  power: 0
+  deathblow: 0
+  missile: 0
+  flyTime: 1
+  AttackSprite:
+  - {fileID: 21300000, guid: e6a41d090ced15b4bbc2dbe5da5f0f6e, type: 3}
+  - {fileID: 21300000, guid: cea454fa9899ae94ca1212875743462d, type: 3}
+  - {fileID: 21300000, guid: e91a8d05dd007ad4fb70d36ed3617b76, type: 3}
+  - {fileID: 21300000, guid: 797d04a2f4afe174f9d44b1fc862c4f8, type: 3}
+  - {fileID: 21300000, guid: d87b8ced3992d53468f693f43de02ce6, type: 3}
+  - {fileID: 21300000, guid: 3dc3e9451198abe498d6a0a41f8d9305, type: 3}
+  - {fileID: 21300000, guid: b37db614c1a6f1d429ba82e511f2423e, type: 3}
+  - {fileID: 21300000, guid: 31d1ee6338ad45c4397b50c5099c5f59, type: 3}

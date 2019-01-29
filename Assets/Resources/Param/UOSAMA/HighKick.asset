@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddd20f58f1876f7439da3725bb4222f2, type: 3}
+  m_Name: HighKick
+  m_EditorClassIdentifier: 
+  oFlame: 0
+  cFlame: 0
+  sFlame: 0
+  power: 0
+  deathblow: 0
+  missile: 0
+  flyTime: 1
+  AttackSprite:
+  - {fileID: 21300000, guid: cf011d929d7b578458546913c0a000bf, type: 3}
+  - {fileID: 21300000, guid: c71e58f053ff725439ec904446b0a419, type: 3}
+  - {fileID: 21300000, guid: 3d4b457d76e85a74a83fbb3233e0a427, type: 3}
+  - {fileID: 21300000, guid: 0fc5e24d2ffedd34683700545decd090, type: 3}
+  - {fileID: 21300000, guid: b8f28d2a493fe9e40a1aa94ab75f4ac7, type: 3}
+  - {fileID: 21300000, guid: d64ecf0ad6eff4e48afecee6792314e9, type: 3}
+  - {fileID: 21300000, guid: 0c31149db5157ae4c9ebb8f5e0bedaba, type: 3}
+  - {fileID: 21300000, guid: 722a5152ec738ef4dbe59692bf6ed1cd, type: 3}
