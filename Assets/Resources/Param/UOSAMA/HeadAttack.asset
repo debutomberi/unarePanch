@@ -11,10 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddd20f58f1876f7439da3725bb4222f2, type: 3}
   m_Name: HeadAttack
   m_EditorClassIdentifier: 
-  oFlame: 0
-  cFlame: 0
-  sFlame: 0
-  power: 0
+  oFlame: 4
+  cFlame: 6
+  sFlame: 4
+  power: 3
   deathblow: 0
   missile: 0
   flyTime: 1

@@ -11,12 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddd20f58f1876f7439da3725bb4222f2, type: 3}
   m_Name: IWASI
   m_EditorClassIdentifier: 
-  oFlame: 24
-  cFlame: 6
-  sFlame: 18
-  power: 0
+  oFlame: 18
+  cFlame: 8
+  sFlame: 24
+  power: 5
   deathblow: 0
-  missile: 0
+  missile: 1
   flyTime: 1
   AttackSprite:
   - {fileID: 21300000, guid: 718922ecf04af1849aa61f5c118a38ff, type: 3}
