@@ -737,7 +737,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     void AttackOccurrence(int attackNum , int player)
     {
         if (attack[player-1].AttackCheck) { return; }
-        IEnumerator coroutine = attack[player-1].SetParamete(attackParameter[player-1][attackNum], attackCollider[player-1][attackNum],image[player-1],player - 1 );
+        IEnumerator coroutine = attack[player-1].SetParamete(attackParameter[player-1][attackNum], attackCollider[player-1][attackNum],image[player-1],player - 1,missileDirection );
         StartCoroutine(coroutine);
     }
 
