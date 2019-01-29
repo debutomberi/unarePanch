@@ -36,7 +36,7 @@ public class Attack {
         attackCollider.SetActive(true);
         //飛び道具のときは専用のステータスを組む。
         if (msl) {
-            attackColliderScript.Fire(time,pow);
+            attackColliderScript.Fire(time,pow,direction);
         }
         //Debug.Log(pow);    
         //player.sprite = Resources.Load("Images/斜め横　パピヨンEX 差分", typeof(Sprite)) as Sprite;
