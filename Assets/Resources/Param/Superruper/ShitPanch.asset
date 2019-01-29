@@ -11,9 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddd20f58f1876f7439da3725bb4222f2, type: 3}
   m_Name: ShitPanch
   m_EditorClassIdentifier: 
-  oFlame: 6
+  oFlame: 4
   cFlame: 6
-  sFlame: 6
+  sFlame: 4
   power: 4
   deathblow: 0
   missile: 0

@@ -914,13 +914,13 @@ MonoBehaviour:
   - {fileID: 2001306212}
   - {fileID: 354222833}
   attackParameterTwoPlayer:
-  - {fileID: 11400000, guid: a6175ea7d7078944183347fd6bdc8c3e, type: 2}
-  - {fileID: 11400000, guid: 27099093cb5b098418753e1b613fcec1, type: 2}
-  - {fileID: 11400000, guid: d5a3fb39c84b4224182af94940eb9c30, type: 2}
-  - {fileID: 11400000, guid: 8afcf68410d41e540bd9f0fcd5d35e6a, type: 2}
-  - {fileID: 11400000, guid: ee7f82fcac159e44da0c6649ab043b73, type: 2}
-  - {fileID: 11400000, guid: d93f011a9a607054a99323eb1c972dc8, type: 2}
-  - {fileID: 11400000, guid: 90eb4c761331a4140858ad453f36c4a9, type: 2}
+  - {fileID: 11400000, guid: 175cf466a9ed81b48a2fe413cfdb446a, type: 2}
+  - {fileID: 11400000, guid: 27efacfb2bae91c41a955a80db56044a, type: 2}
+  - {fileID: 11400000, guid: 38b545da7458ef440bb88944732d3a2d, type: 2}
+  - {fileID: 11400000, guid: 6cba5f1ed741a8a47805355bf5076060, type: 2}
+  - {fileID: 11400000, guid: f08718c0689818049ac757cc25ab6251, type: 2}
+  - {fileID: 11400000, guid: 7489ea2f48f2dea45b4a9ef487d09b2c, type: 2}
+  - {fileID: 11400000, guid: 0c3eef0d84ae3c54ebad6a37a94aa6be, type: 2}
   image:
   - {fileID: 1383455652}
   - {fileID: 1907693867}

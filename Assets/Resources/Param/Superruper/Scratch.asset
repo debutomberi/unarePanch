@@ -11,10 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddd20f58f1876f7439da3725bb4222f2, type: 3}
   m_Name: Scratch
   m_EditorClassIdentifier: 
-  oFlame: 10
+  oFlame: 16
   cFlame: 10
-  sFlame: 8
-  power: 6
+  sFlame: 16
+  power: 8
   deathblow: 0
   missile: 0
   flyTime: 1

@@ -11,9 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddd20f58f1876f7439da3725bb4222f2, type: 3}
   m_Name: Fire
   m_EditorClassIdentifier: 
-  oFlame: 8
-  cFlame: 16
-  sFlame: 8
+  oFlame: 7
+  cFlame: 20
+  sFlame: 10
   power: 5
   deathblow: 0
   missile: 1
