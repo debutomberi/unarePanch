@@ -23,6 +23,9 @@ public class UIManager : SingletonMonoBehavior<UIManager>
     int onePgage;
     int twoPgage;
 
+    bool p1gage = false;
+    bool p2gage = false;
+
     [SerializeField]
     Slider _1pslider;
     [SerializeField]
@@ -71,13 +74,18 @@ public class UIManager : SingletonMonoBehavior<UIManager>
         {
             _1psliderImage.SetActive(true);
             text[0].text = onePgage.ToString();
-            StartCoroutine( _1psliderImage.GetComponent<parsentMax>().Rain(_1psliderImage));
+            if (!p1gage)
+            {
+                p1gage = true;
+                StartCoroutine(_1psliderImage.GetComponent<parsentMax>().Rain(_1psliderImage));
+            }
         }
         else
         {
             if (_1psliderImage.activeSelf)
             {
                 _1psliderImage.SetActive(false);
+                p1gage = false;
                 StopCoroutine(_1psliderImage.GetComponent<parsentMax>().Rain(_1psliderImage));
             }
         }
@@ -86,13 +94,19 @@ public class UIManager : SingletonMonoBehavior<UIManager>
             
             _2psliderImage.SetActive(true);
             text[1].text = twoPgage.ToString();
-            StartCoroutine(_2psliderImage.GetComponent<parsentMax>().Rain(_2psliderImage));
+            if (!p2gage)
+            {
+                p2gage = true;
+                StartCoroutine(_2psliderImage.GetComponent<parsentMax>().Rain(_2psliderImage));
+            }
+            
         }
         else
         {
             if (_2psliderImage.activeSelf)
             {
                 _2psliderImage.SetActive(false);
+                p2gage = false;
                 StopCoroutine(_2psliderImage.GetComponent<parsentMax>().Rain(_2psliderImage));
             }
         }
