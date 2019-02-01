@@ -2647,7 +2647,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flySpeed: 2
   flyTime: 0.5
-  mslPrefab: {fileID: 1304190107149834, guid: f340e11ead7680849b5781d9929713c5, type: 2}
+  mslPrefab: {fileID: 1552280344960762, guid: 56c7b2b553f05514cb12a2a6c31030b1, type: 2}
 --- !u!1 &1742445292
 GameObject:
   m_ObjectHideFlags: 0
