@@ -2646,7 +2646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flySpeed: 2
-  flyTime: 1
+  flyTime: 0.5
   mslPrefab: {fileID: 1304190107149834, guid: f340e11ead7680849b5781d9929713c5, type: 2}
 --- !u!1 &1742445292
 GameObject:
@@ -3354,9 +3354,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6566fe1a84ea90b44b4fb44695e93c8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flySpeed: 2
+  flySpeed: 4
   flyTime: 1
-  mslPrefab: {fileID: 1304190107149834, guid: f340e11ead7680849b5781d9929713c5, type: 2}
+  mslPrefab: {fileID: 1552280344960762, guid: 56c7b2b553f05514cb12a2a6c31030b1, type: 2}
 --- !u!1 &2001915098
 GameObject:
   m_ObjectHideFlags: 0
