@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddd20f58f1876f7439da3725bb4222f2, type: 3}
+  m_Name: ShitIWASI
+  m_EditorClassIdentifier: 
+  oFlame: 18
+  cFlame: 8
+  sFlame: 24
+  power: 5
+  deathblow: 0
+  missile: 1
+  flyTime: 1
+  AttackSprite:
+  - {fileID: 21300000, guid: ec288e906afc84945aa22c218bf5b41a, type: 3}
+  - {fileID: 21300000, guid: c6396f75dc13ce745802b6f5ef3ff2b6, type: 3}
+  - {fileID: 21300000, guid: 1ee2b9ef85b733f45a3b52bb299b328e, type: 3}
+  - {fileID: 21300000, guid: 14f49e1b0825d7c4294e9768a4a46bb9, type: 3}
+  - {fileID: 21300000, guid: c9624e5bdc12cde4c8539140ed703f17, type: 3}
+  - {fileID: 21300000, guid: a7f628961a0862a4d94a6e17687c2e14, type: 3}
+  - {fileID: 21300000, guid: 4ad1b881c5aaa5447beba0a382365f55, type: 3}
+  - {fileID: 21300000, guid: 325515f4d61078545ab0a0bacf6e4a38, type: 3}

@@ -16,7 +16,7 @@ public class Attack {
     }
 
     //攻撃の処理
-    public IEnumerator Technique(int[] flame,GameObject attackCollider,SpriteRenderer player,Sprite[] attackSprite,float time=1.0f){
+    public IEnumerator Technique(int[] flame,GameObject attackCollider,SpriteRenderer player,Sprite[] attackSprite,float time=1.0f,int direction = 1){
         //攻撃発生までの猶予
         attackCheck = true;
         player.sprite = attackSprite[1];
@@ -36,7 +36,7 @@ public class Attack {
         attackCollider.SetActive(true);
         //飛び道具のときは専用のステータスを組む。
         if (msl) {
-            attackColliderScript.Fire(time,pow);
+            attackColliderScript.Fire(time,pow,direction);
         }
         //Debug.Log(pow);    
         //player.sprite = Resources.Load("Images/斜め横　パピヨンEX 差分", typeof(Sprite)) as Sprite;
@@ -76,7 +76,7 @@ public class Attack {
     }
 
     //IEnumeratorを渡す関数
-    public IEnumerator SetParamete(AttackTable paramete,GameObject attackCollider,SpriteRenderer player,int playerNum) {
+    public IEnumerator SetParamete(AttackTable paramete, GameObject attackCollider, SpriteRenderer player, int playerNum,int direciton) {
         int[] attackFlame = { 20, 20, 20 };
         attackFlame[0] = paramete.oFlame;
         attackFlame[1] = paramete.cFlame;
@@ -87,7 +87,7 @@ public class Attack {
         msl = paramete.missile;
         if (paramete.AttackSprite.Length != 8) { Debug.LogError("攻撃のスプライトの数が違います。"); return null; }
             Sprite[] Sprites = paramete.AttackSprite;
-            return Technique(attackFlame, attackCollider, player, Sprites, time);
+            return Technique(attackFlame, attackCollider, player, Sprites, time ,direciton);
        
     }
 

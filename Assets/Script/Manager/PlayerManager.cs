@@ -314,19 +314,19 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
             if (Input.GetKeyDown("joystick 2 button 0"))
             {
                 Debug.Log("パンチしました");
-                if (shitCollider[0].activeInHierarchy) { AttackOccurrence(1, 2); }
+                if (shitCollider[1].activeInHierarchy) { AttackOccurrence(1, 2); }
                 else { AttackOccurrence(0, 2); }
             }
             if (Input.GetKeyDown("joystick 2 button 1"))
             {
-                if (shitCollider[0].activeInHierarchy) { AttackOccurrence(3, 2); }
+                if (shitCollider[1].activeInHierarchy) { AttackOccurrence(3, 2); }
                 else { AttackOccurrence(2, 2); }
             }
             if (Input.GetKeyDown("joystick 2 button 2"))
             {
                 if (center2p) { missileDirection = 1; }
                 else if (!center2p) { missileDirection = -1; }
-                if (shitCollider[0].activeInHierarchy) { AttackOccurrence(5, 2); }
+                if (shitCollider[1].activeInHierarchy) { AttackOccurrence(5, 2); }
                 else { AttackOccurrence(4, 2); }
             }
             if (Input.GetKeyDown("joystick 2 button 3"))
@@ -737,7 +737,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     void AttackOccurrence(int attackNum , int player)
     {
         if (attack[player-1].AttackCheck) { return; }
-        IEnumerator coroutine = attack[player-1].SetParamete(attackParameter[player-1][attackNum], attackCollider[player-1][attackNum],image[player-1],player - 1 );
+        IEnumerator coroutine = attack[player-1].SetParamete(attackParameter[player-1][attackNum], attackCollider[player-1][attackNum],image[player-1],player - 1,missileDirection );
         StartCoroutine(coroutine);
     }
 

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddd20f58f1876f7439da3725bb4222f2, type: 3}
+  m_Name: IWASI
+  m_EditorClassIdentifier: 
+  oFlame: 18
+  cFlame: 8
+  sFlame: 24
+  power: 5
+  deathblow: 0
+  missile: 1
+  flyTime: 1
+  AttackSprite:
+  - {fileID: 21300000, guid: 718922ecf04af1849aa61f5c118a38ff, type: 3}
+  - {fileID: 21300000, guid: 4aa9433b7d5ad6d439fb50d7980af396, type: 3}
+  - {fileID: 21300000, guid: b47ee8de9987e5049a73f40d60acab60, type: 3}
+  - {fileID: 21300000, guid: 40bd9c6791eb22447b21a1101404c5d3, type: 3}
+  - {fileID: 21300000, guid: a05f6ad8b8c7dfe42b3e803b2168df00, type: 3}
+  - {fileID: 21300000, guid: 33fd7a40c2bdb274aaca42e72929154d, type: 3}
+  - {fileID: 21300000, guid: fd48c2c348dfb5747b2ff44666ddd3b7, type: 3}
+  - {fileID: 21300000, guid: ee90fb62444200b4d816bd610312279e, type: 3}

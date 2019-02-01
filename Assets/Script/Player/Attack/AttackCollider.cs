@@ -96,8 +96,7 @@ public class AttackCollider : MonoBehaviour {
     }
 
     void FlyMissile(){
-        int direction = PlayerManager.Instance.missileDirection;
-        transform.position += new Vector3(flySpeed*direction*Time.deltaTime,0,0);
+        transform.position += new Vector3(flySpeed*Time.deltaTime,0,0);
         flyTimer += Time.deltaTime;
         if(FlyTime <= flyTimer) {
             Destroy(this.gameObject);
@@ -112,10 +111,11 @@ public class AttackCollider : MonoBehaviour {
         
     }
 
-    public void Fire(float time, int pow){
+    public void Fire(float time, int pow ,int direction){
         var s = Instantiate(mslPrefab,this.transform);
         s.GetComponent<AttackCollider>().missile = true;
         s.GetComponent<AttackCollider>().flyTime = time;
+        s.GetComponent<AttackCollider>().flySpeed = flySpeed * direction;
         s.GetComponent<AttackCollider>().guagePow = pow;
         s.transform.parent = null;
         
