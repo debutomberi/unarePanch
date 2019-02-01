@@ -14,17 +14,8 @@ public class parsentMax : MonoBehaviour {
     {
         r,rd
     }
-    coler _coler;
-	// Use this for initialization
-	void Start () {
-        _coler = coler.r;
-    }
+    coler _coler = coler.r;
 	
-	// Update is called once per frame
-	void Update () {
-        
-    }
-
     public IEnumerator Rain(GameObject obj)
     {
         while (true)
