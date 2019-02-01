@@ -17,7 +17,7 @@ MonoBehaviour:
   power: 5
   deathblow: 0
   missile: 1
-  flyTime: 2
+  flyTime: 1
   AttackSprite:
   - {fileID: 21300000, guid: f6c61fffb0c3e2045827089670319719, type: 3}
   - {fileID: 21300000, guid: ec6568db4bee37c4ca753b8cce075f13, type: 3}
