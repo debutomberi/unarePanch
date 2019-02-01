@@ -69,15 +69,32 @@ public class UIManager : SingletonMonoBehavior<UIManager>
 
         if(_1pslider.value == 100)
         {
-            _1pimage.color = Color.yellow;
             _1psliderImage.SetActive(true);
+            text[0].text = onePgage.ToString();
             StartCoroutine( _1psliderImage.GetComponent<parsentMax>().Rain(_1psliderImage));
+        }
+        else
+        {
+            if (_1psliderImage.activeSelf)
+            {
+                _1psliderImage.SetActive(false);
+                StopCoroutine(_1psliderImage.GetComponent<parsentMax>().Rain(_1psliderImage));
+            }
         }
         if(_2pslider.value == 100)
         {
-            _2pimage.color = Color.yellow;
+            
             _2psliderImage.SetActive(true);
+            text[1].text = twoPgage.ToString();
             StartCoroutine(_2psliderImage.GetComponent<parsentMax>().Rain(_2psliderImage));
+        }
+        else
+        {
+            if (_2psliderImage.activeSelf)
+            {
+                _2psliderImage.SetActive(false);
+                StopCoroutine(_2psliderImage.GetComponent<parsentMax>().Rain(_2psliderImage));
+            }
         }
 
         text[0].text = onePgage.ToString();
