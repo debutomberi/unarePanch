@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 144445002}
   - component: {fileID: 144445001}
   m_Layer: 0
-  m_Name: Panch2P
+  m_Name: rowkick2P
   m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -270,7 +270,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 144444999}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.89, y: 1, z: 0}
+  m_LocalPosition: {x: -2.05, y: -2.63, z: 0}
   m_LocalScale: {x: 3.2172098, y: 3.2172098, z: 3.2172098}
   m_Children: []
   m_Father: {fileID: 1888991123}
@@ -313,7 +313,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.26, y: 0.27}
+  m_Size: {x: 0.4, y: 0.27}
   m_EdgeRadius: 0
 --- !u!1 &214075236
 GameObject:
@@ -530,7 +530,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 354222833}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.05, y: -1.57, z: 0}
+  m_LocalPosition: {x: -3.37, y: -1.57, z: 0}
   m_LocalScale: {x: 0.23, y: 0.23, z: 0.49682033}
   m_Children: []
   m_Father: {fileID: 1888991123}
@@ -573,7 +573,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 10, y: 10}
+  m_Size: {x: 11, y: 10}
   m_EdgeRadius: 0
 --- !u!1 &399415815
 GameObject:
@@ -626,7 +626,7 @@ GameObject:
   - component: {fileID: 445593018}
   - component: {fileID: 445593017}
   m_Layer: 0
-  m_Name: ShitPanch2P
+  m_Name: ShitHeadAttack2P
   m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -639,7 +639,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 445593015}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.15, y: -0.12, z: 0}
+  m_LocalPosition: {x: -2.45, y: 0.16, z: 0}
   m_LocalScale: {x: 3.2172098, y: 3.2172098, z: 3.2172098}
   m_Children: []
   m_Father: {fileID: 1888991123}
@@ -682,7 +682,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.24}
+  m_Size: {x: 0.47, y: 0.88}
   m_EdgeRadius: 0
 --- !u!1 &449835261
 GameObject:
@@ -729,7 +729,7 @@ GameObject:
   - component: {fileID: 456962592}
   - component: {fileID: 456962591}
   m_Layer: 0
-  m_Name: Hikkaki2P
+  m_Name: Highkick2P
   m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -742,7 +742,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 456962589}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.5, y: 1, z: 0}
+  m_LocalPosition: {x: -3.45, y: -0.39, z: 0}
   m_LocalScale: {x: 3.2172098, y: 3.2172098, z: 3.2172098}
   m_Children: []
   m_Father: {fileID: 1888991123}
@@ -785,7 +785,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.68, y: 1.09}
+  m_Size: {x: 0.75, y: 0.3}
   m_EdgeRadius: 0
 --- !u!1 &526946216
 GameObject:
@@ -1569,7 +1569,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.99, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1580,7 +1580,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 22.49, y: 13.14}
   m_EdgeRadius: 0
 --- !u!212 &1062158460
 SpriteRenderer:
@@ -1833,8 +1833,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000030518, y: 228.5}
-  m_SizeDelta: {x: 373.83, y: 70}
+  m_AnchoredPosition: {x: 0.17838, y: 175}
+  m_SizeDelta: {x: 498.35, y: 225}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1284912996
 MonoBehaviour:
@@ -1869,18 +1869,20 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 50
-    m_FontStyle: 0
+    m_FontSize: 86
+    m_FontStyle: 2
     m_BestFit: 0
     m_MinSize: 5
-    m_MaxSize: 50
-    m_Alignment: 4
+    m_MaxSize: 86
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 'new
+
+    text'
 --- !u!222 &1284912998
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2901,7 +2903,7 @@ GameObject:
   - component: {fileID: 1758044274}
   - component: {fileID: 1758044273}
   m_Layer: 0
-  m_Name: ShitZoomPanch2P
+  m_Name: ShitBoomerang2P
   m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2914,7 +2916,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1758044271}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.52, y: -0.25, z: 0}
+  m_LocalPosition: {x: -3.26, y: 0.15, z: 0}
   m_LocalScale: {x: 3.2172098, y: 3.2172098, z: 3.2172098}
   m_Children: []
   m_Father: {fileID: 1888991123}
@@ -2957,7 +2959,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.84, y: 0.39}
+  m_Size: {x: 0.45, y: 0.79}
   m_EdgeRadius: 0
 --- !u!1 &1786532195
 GameObject:
@@ -3248,7 +3250,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: c9ae1a4f85ab8754ca69f69ccded7dbe, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7e346f2921810a74ca835914a39916fb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

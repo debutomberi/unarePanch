@@ -14,7 +14,7 @@ MonoBehaviour:
   oFlame: 9
   cFlame: 9
   sFlame: 9
-  power: 5
+  power: 8
   deathblow: 0
   missile: 0
   flyTime: 1
