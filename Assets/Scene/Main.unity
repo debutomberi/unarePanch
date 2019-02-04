@@ -1848,6 +1848,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startgo: {fileID: 1284912994}
+  se: {fileID: 1638329864}
 --- !u!114 &1284912997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2591,6 +2592,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 86a9112ec259a1049841257f07db2988, type: 3}
   - {fileID: 8300000, guid: 45948c62c1080e948ad1a8aaa1107426, type: 3}
   - {fileID: 8300000, guid: 6ee711a9c34e70b4d918d907cb1ed742, type: 3}
+  - {fileID: 8300000, guid: d216041a50919284e9938190ab7bbee4, type: 3}
+  - {fileID: 8300000, guid: 43e40556003a9b247b3954c8ba7ee57e, type: 3}
   audioSource: {fileID: 1638329865}
 --- !u!82 &1638329865
 AudioSource:

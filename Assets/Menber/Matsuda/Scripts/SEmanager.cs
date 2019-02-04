@@ -6,6 +6,7 @@ public class SEmanager : MonoBehaviour {
 
     [SerializeField]AudioClip[] clips;
     [SerializeField]AudioSource audioSource;
+    
 	// Use this for initialization
 	void Start () {
 		

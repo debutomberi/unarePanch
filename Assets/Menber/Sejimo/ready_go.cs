@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ready_go : MonoBehaviour {
 
     public GameObject startgo = null;
-
+    [SerializeField] SEmanager se;
     // Use this for initialization
     void Start()
     {
@@ -21,9 +21,11 @@ public class ready_go : MonoBehaviour {
         UnityEngine.UI.Text text = startgo.GetComponent<UnityEngine.UI.Text>();
         text.text = "Ready";
         Debug.Log("ready");
+        se.PlaySE(3);
         yield return new WaitForSecondsRealtime(2.0f);
         text.text = "Fight!";
         Debug.Log("go");
+        se.PlaySE(4);
         yield return new WaitForSecondsRealtime(1.0f);
         text.text = "";
         yield return new WaitForSecondsRealtime(0f);
