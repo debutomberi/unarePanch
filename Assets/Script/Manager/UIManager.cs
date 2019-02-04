@@ -23,8 +23,8 @@ public class UIManager : SingletonMonoBehavior<UIManager>
     int onePgage;
     int twoPgage;
 
-    bool p1gage = false;
-    bool p2gage = false;
+    bool p1gageMax = false;
+    bool p2gageMax = false;
 
     [SerializeField]
     Slider _1pslider;
@@ -66,18 +66,23 @@ public class UIManager : SingletonMonoBehavior<UIManager>
     public void PageChenge() {
         onePgage = StatusManager.Instance.DeathblowGuage[1];
         twoPgage = StatusManager.Instance.DeathblowGuage[0];
-
-        _1pslider.value = onePgage;
+        if(onePgage == 0)
+        {
+            StartCoroutine(_1pslider.GetComponent<parsentMax>().UseGage());
+        }
+        else
+        {
+            _1pslider.value = onePgage;
+        }
         _2pslider.value = twoPgage;
-
         if(_1pslider.value == 100)
         {
             _1psliderImage.SetActive(true);
             text[0].text = onePgage.ToString();
-            if (!p1gage)
+            if (!p1gageMax)
             {
-                p1gage = true;
-                StartCoroutine(_1psliderImage.GetComponent<parsentMax>().Rain(_1psliderImage));
+                p1gageMax = true;
+                StartCoroutine(_1pslider.GetComponent<parsentMax>().MaxParsent(_1psliderImage));
             }
         }
         else
@@ -85,8 +90,8 @@ public class UIManager : SingletonMonoBehavior<UIManager>
             if (_1psliderImage.activeSelf)
             {
                 _1psliderImage.SetActive(false);
-                p1gage = false;
-                StopCoroutine(_1psliderImage.GetComponent<parsentMax>().Rain(_1psliderImage));
+                p1gageMax = false;
+                StopCoroutine(_1pslider.GetComponent<parsentMax>().MaxParsent(_1psliderImage));
             }
         }
         if(_2pslider.value == 100)
@@ -94,20 +99,19 @@ public class UIManager : SingletonMonoBehavior<UIManager>
             
             _2psliderImage.SetActive(true);
             text[1].text = twoPgage.ToString();
-            if (!p2gage)
+            if (!p2gageMax)
             {
-                p2gage = true;
-                StartCoroutine(_2psliderImage.GetComponent<parsentMax>().Rain(_2psliderImage));
+                p2gageMax = true;
+                StartCoroutine(_2psliderImage.GetComponent<parsentMax>().MaxParsent(_2psliderImage));
             }
-            
         }
         else
         {
             if (_2psliderImage.activeSelf)
             {
                 _2psliderImage.SetActive(false);
-                p2gage = false;
-                StopCoroutine(_2psliderImage.GetComponent<parsentMax>().Rain(_2psliderImage));
+                p2gageMax = false;
+                StopCoroutine(_2psliderImage.GetComponent<parsentMax>().MaxParsent(_2psliderImage));
             }
         }
 

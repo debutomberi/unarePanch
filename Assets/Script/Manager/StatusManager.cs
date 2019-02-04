@@ -164,6 +164,7 @@ public class StatusManager : SingletonMonoBehavior<StatusManager> {
         }*/
         if(deathblowGuage[player] <= 99) { return; }
         deathblowGuage[player] = 0;
+        
         //Debug.Log("ゲージ量_1P:" + deathblowGuage[0] + "2P:" + deathblowGuage[1]);
     }
 }

@@ -9,32 +9,41 @@ public class parsentMax : MonoBehaviour {
     float b = 0;
     float z = 0.75f;
 
-    float i = 0.01f;
-    enum coler
-    {
-        r,rd
-    }
-    coler _coler = coler.r;
-	
-    public IEnumerator Rain(GameObject obj)
+    float speed = 0.01f;
+    bool col = true;
+
+    bool isGageDown = true;
+    [SerializeField]Image img;
+    [SerializeField]Slider slider;
+    
+    public IEnumerator MaxParsent(GameObject obj)
     {
         while (true)
         {
-            GetComponent<Image>().color = new Color(r, g, b,z);
-            switch (_coler)
+            img.color = new Color(r, g, b,z);
+            if (col)
             {
-                case coler.r:
-                    r += i;
-                    z += 0.05f;
-                    if (r >= 1f) _coler = coler.rd;
-                    break;
-                case coler.rd:
-                    r -= i;
-                    z -= 0.05f;
-                    if (r <= 0.6f) _coler = coler.r;
-                    break;
-                
+                r += speed;
+                z += 0.05f;
+                if (r >= 1f) col = false;
             }
+            else
+            {
+                r -= speed;
+                z -= 0.05f;
+                if (r <= 0.6f) col = true;
+            }
+            
+            yield return null;
+        }
+    }
+    public IEnumerator UseGage()
+    {
+        isGageDown = true;
+        while (isGageDown)
+        {
+            slider.value -= 1;
+            if (slider.value == 0) isGageDown = false;
             yield return null;
         }
     }
