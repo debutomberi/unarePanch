@@ -74,7 +74,14 @@ public class UIManager : SingletonMonoBehavior<UIManager>
         {
             _1pslider.value = onePgage;
         }
-        _2pslider.value = twoPgage;
+        if(twoPgage == 0)
+        {
+            StartCoroutine(_2pslider.GetComponent<parsentMax>().UseGage());
+        }
+        else
+        {
+            _2pslider.value = twoPgage;
+        }
         if(_1pslider.value == 100)
         {
             _1psliderImage.SetActive(true);
