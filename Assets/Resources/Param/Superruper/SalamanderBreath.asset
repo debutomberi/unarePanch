@@ -19,11 +19,11 @@ MonoBehaviour:
   missile: 0
   flyTime: 1
   AttackSprite:
-  - {fileID: 21300000, guid: dc0df79654bb9f8428530d9d6bc741c8, type: 3}
-  - {fileID: 21300000, guid: b471a26b992021e428dbb7d661a6f294, type: 3}
-  - {fileID: 21300000, guid: 5fbcee07628737f4da89c9672a072ecb, type: 3}
-  - {fileID: 21300000, guid: da295b0e1c4b66648b3991bca4dc54b8, type: 3}
-  - {fileID: 21300000, guid: fa2f53875cf9c3f478c7370dd4887b7c, type: 3}
-  - {fileID: 21300000, guid: ffb69f3a25061164492dc7d0f32bc222, type: 3}
-  - {fileID: 21300000, guid: 00f250ce91269d444849c592f2e70c0d, type: 3}
-  - {fileID: 21300000, guid: a8ca87475b3c6b6469168b5f7d4d961a, type: 3}
+  - {fileID: 21300000, guid: d5dcd2fed9451bb4282d4ab1f580fd3c, type: 3}
+  - {fileID: 21300000, guid: 10a2e7f3aad2c5e4489f39284cccdd86, type: 3}
+  - {fileID: 21300000, guid: aa3a6151087acfb459d54a072273499d, type: 3}
+  - {fileID: 21300000, guid: 41f8825e5d4eacb48aab7106aef0375f, type: 3}
+  - {fileID: 21300000, guid: 52d77c0d6dca93340a43d319c27765b3, type: 3}
+  - {fileID: 21300000, guid: 2a0dbea2ee7b3be42bc1284956a900da, type: 3}
+  - {fileID: 21300000, guid: d8efb3adc57fd8547a87a93ec947953e, type: 3}
+  - {fileID: 21300000, guid: a6319076efc413449b42b988bb467263, type: 3}
