@@ -20,6 +20,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
         }
     }
     */
+    float TimeCount = 0.1f;
 
     [SerializeField]
     GameObject effect;
@@ -179,26 +180,36 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     }
     private void Update()
     {
-        if (!isPlaying)
+        TimeCount -= Time.deltaTime;
+        
+        if (TimeCount <= 0)
         {
-            if (kOanimeTime) { KOAnim(kOPlayer); }
-            else
+            if (!isPlaying)
             {
-                if (Input.GetKeyDown("joystick 1 button 2"))
+                if (kOanimeTime) { KOAnim(kOPlayer); }
+                else
                 {
-                    SceneManagers.Instance.ChangeSceneState();
-                }
-                else if (Input.GetKeyDown("joystick 2 button 2"))
-                {
-                    SceneManagers.Instance.ChangeSceneState();
+                    if (Input.GetKeyDown("joystick 1 button 2"))
+                    {
+                        SceneManagers.Instance.ChangeSceneState();
+                    }
+                    else if (Input.GetKeyDown("joystick 2 button 2"))
+                    {
+                        SceneManagers.Instance.ChangeSceneState();
+                    }
                 }
             }
+            else
+            {
+                Attack();
+            }
+            ReturnTitle();
         }
-        else
+        if(TimeCount <= -1)
         {
-            Attack();
+            TimeCount = -1;
+
         }
-        ReturnTitle();
     }
     // Update is called once per frame
     void FixedUpdate()
