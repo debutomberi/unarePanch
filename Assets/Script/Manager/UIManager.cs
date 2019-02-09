@@ -109,7 +109,7 @@ public class UIManager : SingletonMonoBehavior<UIManager>
             if (!p2gageMax)
             {
                 p2gageMax = true;
-                StartCoroutine(_2psliderImage.GetComponent<parsentMax>().MaxParsent(_2psliderImage));
+                StartCoroutine(_2pslider.GetComponent<parsentMax>().MaxParsent(_2psliderImage));
             }
         }
         else
@@ -118,7 +118,7 @@ public class UIManager : SingletonMonoBehavior<UIManager>
             {
                 _2psliderImage.SetActive(false);
                 p2gageMax = false;
-                StopCoroutine(_2psliderImage.GetComponent<parsentMax>().MaxParsent(_2psliderImage));
+                StopCoroutine(_2pslider.GetComponent<parsentMax>().MaxParsent(_2psliderImage));
             }
         }
 
