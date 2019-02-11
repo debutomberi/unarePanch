@@ -62,7 +62,7 @@ public class AttackCollider : MonoBehaviour {
             PlayerManager.Instance.HitAttack(1, collision.gameObject, PlayerManager.Instance.Move1P,guagePow);
             GameObject.Find("Audio Source").GetComponent<SEmanager>().PlaySE(0);
         }
-        else if (collision.gameObject.tag == "1P" && !PlayerManager.Instance.Guard[0]){
+        else if (collision.gameObject.tag == "1P" && PlayerManager.Instance.Guard[0]){
             var colliderScript = collision.GetComponent<PlayerCollider>();
             if (colliderScript.hit){ return; }
             colliderScript.hit = true;
@@ -74,7 +74,7 @@ public class AttackCollider : MonoBehaviour {
             PlayerManager.Instance.HitAttack(2, collision.gameObject, PlayerManager.Instance.Move2P,guagePow);
             GameObject.Find("Audio Source").GetComponent<SEmanager>().PlaySE(0);
         }
-        else if (collision.gameObject.tag == "2P" && !PlayerManager.Instance.Guard[1]){
+        else if (collision.gameObject.tag == "2P" && PlayerManager.Instance.Guard[1]){
             PlayerManager.Instance.GuardAttack(2, PlayerManager.Instance.Move2P);
             GameObject.Find("Audio Source").GetComponent<SEmanager>().PlaySE(1);
         }
