@@ -17,7 +17,7 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        rg2d.WakeUp();
 	}
 
     private void OnCollisionEnter2D(Collision2D collision){
