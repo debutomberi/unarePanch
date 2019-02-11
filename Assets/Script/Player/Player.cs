@@ -22,6 +22,7 @@ public class Player : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision){
         //ジャンプの処理
+        
         if(collision.gameObject.tag == "Floor") {
             PlayerManager.Instance.OnPlayerCollisionEnter(playerID, collision);
         }

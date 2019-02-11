@@ -550,23 +550,23 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 break;
             //垂直ジャンプ
             case 'j':
-                if (player == 1) {
+                if (player == 1 && !shitCollider[player-1].activeInHierarchy) {
                     P1rb.AddForce(new Vector2(0, Jump));
                     P1jump = true;
                 }
-                else if (player == 2) {
+                else if (player == 2 && !shitCollider[player - 1].activeInHierarchy) {
                     P2rb.AddForce(new Vector2(0, Jump));
                     P2jump = true;
                 }
                 break;
             //6方向ジャンプ
             case 'c':
-                if (player == 1)
+                if (player == 1 && !shitCollider[player - 1].activeInHierarchy)
                 {
                     P1rb.AddForce(new Vector2(200, Jump));
                     P1jump = true;
                 }
-                else if (player == 2)
+                else if (player == 2 && !shitCollider[player - 1].activeInHierarchy)
                 {
                     P2rb.AddForce(new Vector2(200, Jump));
                     P2jump = true;
@@ -574,12 +574,12 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 break;
             //4方向ジャンプ
             case 'z':
-                if (player == 1)
+                if (player == 1 && !shitCollider[player - 1].activeInHierarchy)
                 {
                     P1rb.AddForce(new Vector2(-200, Jump));
                     P1jump = true;
                 }
-                else if (player == 2)
+                else if (player == 2 && !shitCollider[player - 1].activeInHierarchy)
                 {
                     P2rb.AddForce(new Vector2(-200, Jump));
                     P2jump = true;
