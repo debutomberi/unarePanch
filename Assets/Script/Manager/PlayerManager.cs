@@ -65,7 +65,7 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
     [HideInInspector]public bool P1jump;
     [HideInInspector]public bool P2jump;
     //ガードしているか
-    bool[] guard = { false, false };
+    public bool[] guard = { false, false };
     //しゃがんでいるか
     bool[] shit = { false, false };
 
@@ -525,8 +525,8 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 break;
             //6方向にステップ
             case 'S':
-                if (player == 1) { Step(0.2f, Player1, move1P,1); }
-                else if (player == 2) { Step(0.2f, Player2, move2P,2); }
+                if (player == 1) { Step(0.2f, Player1, move1P, 1); GameObject.Find("Audio Source").GetComponent<SEmanager>().PlaySE(6); }
+                else if (player == 2) { Step(0.2f, Player2, move2P, 2); GameObject.Find("Audio Source").GetComponent<SEmanager>().PlaySE(6); ; }
                 break;
             //4方向に移動
             case 'l':
@@ -545,8 +545,8 @@ public class PlayerManager : SingletonMonoBehavior<PlayerManager>
                 break;
             //4方向にステップ
             case 's':
-                if (player == 1) { Step(-0.2f, Player1, move1P,1); }
-                else if (player == 2) { Step(-0.2f, Player2, move2P,2); }
+                if (player == 1) { Step(-0.2f, Player1, move1P, 1); GameObject.Find("Audio Source").GetComponent<SEmanager>().PlaySE(6); ; }
+                else if (player == 2) { Step(-0.2f, Player2, move2P, 2); GameObject.Find("Audio Source").GetComponent<SEmanager>().PlaySE(6); ; }
                 break;
             //垂直ジャンプ
             case 'j':

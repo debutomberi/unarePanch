@@ -1063,6 +1063,7 @@ MonoBehaviour:
   centerPos: {x: 0, y: 0}
   P1jump: 0
   P2jump: 0
+  guard: 0000
   standCollider:
   - {fileID: 214075236}
   - {fileID: 1373789674}
@@ -2594,6 +2595,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6ee711a9c34e70b4d918d907cb1ed742, type: 3}
   - {fileID: 8300000, guid: d264a467db4121342b591df413b20798, type: 3}
   - {fileID: 8300000, guid: 8cfea568eb316f04791642b0bd79dc46, type: 3}
+  - {fileID: 8300000, guid: 6692d66408a5be44180b414553589d8e, type: 3}
+  - {fileID: 8300000, guid: 9265d320b28855243bab452668eb07ad, type: 3}
   audioSource: {fileID: 1638329865}
 --- !u!82 &1638329865
 AudioSource:

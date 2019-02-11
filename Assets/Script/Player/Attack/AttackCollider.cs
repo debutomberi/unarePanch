@@ -57,10 +57,15 @@ public class AttackCollider : MonoBehaviour {
             OnDeathblowEnter(collision);
             return;
         }
-        if (collision.gameObject.tag == "1P"&&!PlayerManager.Instance.Guard[0]) {
+        if (collision.gameObject.tag == "1P" && !PlayerManager.Instance.Guard[0]) {
             //Rigidbody2D rb2D = collision.transform.parent.GetComponent<Rigidbody2D>();
-            PlayerManager.Instance.HitAttack(1, collision.gameObject, PlayerManager.Instance.Move1P,guagePow);
-            GameObject.Find("Audio Source").GetComponent<SEmanager>().PlaySE(0);
+            PlayerManager.Instance.HitAttack(1, collision.gameObject, PlayerManager.Instance.Move1P, guagePow);
+            if (PlayerManager.Instance.Guard[0]){
+                GameObject.Find("Audio Source").GetComponent<SEmanager>().PlaySE(5);
+            }
+            else { 
+                GameObject.Find("Audio Source").GetComponent<SEmanager>().PlaySE(0);
+            }
         }
         else if (collision.gameObject.tag == "1P" && PlayerManager.Instance.Guard[0]){
             var colliderScript = collision.GetComponent<PlayerCollider>();
@@ -72,7 +77,13 @@ public class AttackCollider : MonoBehaviour {
         else if (collision.gameObject.tag == "2P"&& !PlayerManager.Instance.Guard[1]) {
             //Rigidbody2D rb2D = collision.transform.parent.GetComponent<Rigidbody2D>();
             PlayerManager.Instance.HitAttack(2, collision.gameObject, PlayerManager.Instance.Move2P,guagePow);
-            GameObject.Find("Audio Source").GetComponent<SEmanager>().PlaySE(0);
+            if (PlayerManager.Instance.Guard[0]){
+                GameObject.Find("Audio Source").GetComponent<SEmanager>().PlaySE(5);
+            }
+            else{
+                GameObject.Find("Audio Source").GetComponent<SEmanager>().PlaySE(0);
+            }
+
         }
         else if (collision.gameObject.tag == "2P" && PlayerManager.Instance.Guard[1]){
             PlayerManager.Instance.GuardAttack(2, PlayerManager.Instance.Move2P);
